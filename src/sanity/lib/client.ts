@@ -1,12 +1,11 @@
+import { env } from "@/lib/env";
 import { createClient } from "next-sanity";
 
-import { apiVersion, dataset, projectId, useCdn } from "../env";
-
 export const client = createClient({
-  projectId,
-  dataset,
-  apiVersion,
-  useCdn,
+  projectId: env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: env.NEXT_PUBLIC_SANITY_DATASET,
+  apiVersion: env.NEXT_PUBLIC_SANITY_API_VERSION,
+  useCdn: env.NEXT_PUBLIC_SITE_ENV === "production",
   perspective: "published",
   stega: {
     studioUrl: process.env.NEXT_PUBLIC_SITE_URL + "/studio",
