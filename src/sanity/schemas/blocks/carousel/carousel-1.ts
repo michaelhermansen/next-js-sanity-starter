@@ -1,11 +1,11 @@
 import { defineField, defineType } from "sanity";
-import { GalleryHorizontal } from "lucide-react";
+import { InlineElementIcon } from "@sanity/icons";
 
 export default defineType({
   name: "carousel-1",
   type: "object",
   title: "Carousel 1",
-  icon: GalleryHorizontal,
+  icon: InlineElementIcon,
   description: "A carousel of images",
   fields: [
     defineField({

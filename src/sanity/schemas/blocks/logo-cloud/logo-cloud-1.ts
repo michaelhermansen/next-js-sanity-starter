@@ -1,10 +1,10 @@
 import { defineType, defineField } from "sanity";
-import { Images } from "lucide-react";
+import { ImagesIcon } from "@sanity/icons";
 
 export default defineType({
   name: "logo-cloud-1",
   type: "object",
-  icon: Images,
+  icon: ImagesIcon,
   fields: [
     defineField({
       name: "padding",

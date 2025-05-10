@@ -1,12 +1,12 @@
 import { defineField, defineType } from "sanity";
-import { LayoutGrid } from "lucide-react";
+import { ThLargeIcon } from "@sanity/icons";
 import { COLS_VARIANTS } from "../shared/layout-variants";
 
 export default defineType({
   name: "grid-row",
   title: "Grid Row",
   type: "object",
-  icon: LayoutGrid,
+  icon: ThLargeIcon,
   fields: [
     defineField({
       name: "padding",

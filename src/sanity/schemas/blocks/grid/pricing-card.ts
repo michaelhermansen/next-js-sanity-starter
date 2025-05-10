@@ -1,10 +1,10 @@
 import { defineField, defineType } from "sanity";
-import { WalletCards } from "lucide-react";
+import { CreditCardIcon } from "@sanity/icons";
 
 export default defineType({
   name: "pricing-card",
   type: "object",
-  icon: WalletCards,
+  icon: CreditCardIcon,
   fields: [
     defineField({
       name: "title",

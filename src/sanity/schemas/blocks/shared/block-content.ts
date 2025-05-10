@@ -1,6 +1,6 @@
 import { defineType, defineArrayMember } from "sanity";
-import { SquarePlay } from "lucide-react";
 import { YouTubePreview } from "@/sanity/schemas/previews/youtube-preview";
+import { VideoIcon } from "@sanity/icons";
 
 export default defineType({
   title: "Block Content",
@@ -63,7 +63,7 @@ export default defineType({
       name: "youtube",
       type: "object",
       title: "YouTube",
-      icon: SquarePlay,
+      icon: VideoIcon,
       fields: [
         {
           name: "videoId",

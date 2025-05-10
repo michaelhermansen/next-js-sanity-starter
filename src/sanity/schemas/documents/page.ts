@@ -1,12 +1,12 @@
-import { defineField, defineType } from "sanity";
-import { Files } from "lucide-react";
+import { DocumentIcon } from "@sanity/icons";
 import { orderRankField } from "@sanity/orderable-document-list";
+import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "page",
   type: "document",
   title: "Page",
-  icon: Files,
+  icon: DocumentIcon,
   groups: [
     {
       name: "content",
@@ -45,11 +45,9 @@ export default defineType({
         { type: "split-row" },
         { type: "grid-row" },
         { type: "carousel-1" },
-        { type: "carousel-2" },
         { type: "timeline-row" },
         { type: "cta-1" },
         { type: "logo-cloud-1" },
-        { type: "faqs" },
         { type: "form-newsletter" },
         { type: "all-posts" },
       ],
@@ -84,7 +82,7 @@ export default defineType({
             {
               name: "carousel",
               title: "Carousel",
-              of: ["carousel-1", "carousel-2"],
+              of: ["carousel-1"],
             },
             {
               name: "timeline",
@@ -95,11 +93,6 @@ export default defineType({
               name: "cta",
               title: "CTA",
               of: ["cta-1"],
-            },
-            {
-              name: "faqs",
-              title: "FAQs",
-              of: ["faqs"],
             },
             {
               name: "forms",

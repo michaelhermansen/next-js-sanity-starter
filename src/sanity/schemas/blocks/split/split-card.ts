@@ -1,10 +1,10 @@
 import { defineField, defineType } from "sanity";
-import { TextQuote } from "lucide-react";
+import { BlockquoteIcon } from "@sanity/icons";
 
 export default defineType({
   name: "split-card",
   type: "object",
-  icon: TextQuote,
+  icon: BlockquoteIcon,
   title: "Split Card",
   description:
     "Column with tag line, title and content body. Part of a split cards.",

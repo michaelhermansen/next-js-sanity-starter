@@ -1,10 +1,10 @@
 import { defineField, defineType } from "sanity";
-import { Image } from "lucide-react";
+import { ImageIcon } from "@sanity/icons";
 
 export default defineType({
   name: "split-image",
   type: "object",
-  icon: Image,
+  icon: ImageIcon,
   description: "Column with full image.",
   fields: [
     defineField({

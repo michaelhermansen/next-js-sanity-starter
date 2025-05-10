@@ -1,11 +1,11 @@
 import { defineField, defineType } from "sanity";
-import { Info } from "lucide-react";
+import { InfoOutlineIcon } from "@sanity/icons";
 import { extractPlainText } from "@/lib/utils";
 
 export default defineType({
   name: "split-info-list",
   type: "object",
-  icon: Info,
+  icon: InfoOutlineIcon,
   title: "Split Info List",
   description:
     "Column with list of cards. Each card has a title, content body, image and tags",

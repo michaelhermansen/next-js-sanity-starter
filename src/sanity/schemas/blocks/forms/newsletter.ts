@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { Mails } from "lucide-react";
+import { EnvelopeIcon } from "@sanity/icons";
 import { STACK_ALIGN } from "../shared/layout-variants";
 
 export default defineType({
@@ -8,7 +8,7 @@ export default defineType({
   title: "Form: Newsletter",
   description:
     "A subscription form ideal for collecting email addresses for newsletters and waitlists.",
-  icon: Mails,
+  icon: EnvelopeIcon,
   fields: [
     defineField({
       name: "padding",

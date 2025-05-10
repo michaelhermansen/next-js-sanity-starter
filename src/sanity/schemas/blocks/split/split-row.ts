@@ -1,5 +1,5 @@
 import { defineType, defineField } from "sanity";
-import { SquareSplitHorizontal } from "lucide-react";
+import { SplitHorizontalIcon } from "@sanity/icons";
 
 export default defineType({
   name: "split-row",
@@ -7,7 +7,7 @@ export default defineType({
   title: "Split Row",
   description:
     "Split Row: Customizable split row with multiple columns variants",
-  icon: SquareSplitHorizontal,
+  icon: SplitHorizontalIcon,
   fields: [
     defineField({
       name: "padding",

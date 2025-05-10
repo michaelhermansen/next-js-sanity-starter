@@ -1,10 +1,10 @@
 import { defineField, defineType } from "sanity";
-import { LayoutGrid } from "lucide-react";
+import { ThLargeIcon } from "@sanity/icons";
 
 export default defineType({
   name: "grid-post",
   type: "object",
-  icon: LayoutGrid,
+  icon: ThLargeIcon,
   fields: [
     defineField({
       name: "post",

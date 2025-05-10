@@ -1,11 +1,11 @@
 import { defineField, defineType } from "sanity";
-import { LayoutTemplate } from "lucide-react";
+import { ThLargeIcon } from "@sanity/icons";
 
 export default defineType({
   name: "hero-1",
   title: "Hero 1",
   type: "object",
-  icon: LayoutTemplate,
+  icon: ThLargeIcon,
   fields: [
     defineField({
       name: "tagLine",

@@ -1,13 +1,13 @@
 import { defineField, defineType } from "sanity";
-import { LetterText } from "lucide-react";
 import { STACK_ALIGN, SECTION_WIDTH } from "./shared/layout-variants";
+import { BlockContentIcon } from "@sanity/icons";
 
 export default defineType({
   name: "section-header",
   type: "object",
   title: "Section Header",
   description: "A section header with a tag line, title, and description",
-  icon: LetterText,
+  icon: BlockContentIcon,
   fields: [
     defineField({
       name: "padding",

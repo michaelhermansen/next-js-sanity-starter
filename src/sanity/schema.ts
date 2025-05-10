@@ -4,8 +4,6 @@ import page from "./schemas/documents/page";
 import post from "./schemas/documents/post";
 import author from "./schemas/documents/author";
 import category from "./schemas/documents/category";
-import faq from "./schemas/documents/faq";
-import testimonial from "./schemas/documents/testimonial";
 
 // Schema UI shared objects
 import blockContent from "./schemas/blocks/shared/block-content";
@@ -29,12 +27,10 @@ import pricingCard from "./schemas/blocks/grid/pricing-card";
 import gridPost from "./schemas/blocks/grid/grid-post";
 import gridRow from "./schemas/blocks/grid/grid-row";
 import carousel1 from "./schemas/blocks/carousel/carousel-1";
-import carousel2 from "./schemas/blocks/carousel/carousel-2";
 import timelineRow from "./schemas/blocks/timeline/timeline-row";
 import timelinesOne from "./schemas/blocks/timeline/timelines-1";
 import cta1 from "./schemas/blocks/cta/cta-1";
 import logoCloud1 from "./schemas/blocks/logo-cloud/logo-cloud-1";
-import faqs from "./schemas/blocks/faqs";
 import newsletter from "./schemas/blocks/forms/newsletter";
 import allPosts from "./schemas/blocks/all-posts";
 
@@ -45,8 +41,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     post,
     author,
     category,
-    faq,
-    testimonial,
     // shared objects
     blockContent,
     link,
@@ -69,12 +63,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     gridPost,
     gridRow,
     carousel1,
-    carousel2,
     timelineRow,
     timelinesOne,
     cta1,
     logoCloud1,
-    faqs,
     newsletter,
     allPosts,
   ],

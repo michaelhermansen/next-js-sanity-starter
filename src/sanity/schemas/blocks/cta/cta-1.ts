@@ -1,12 +1,12 @@
+import { EnvelopeIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { Captions } from "lucide-react";
-import { STACK_ALIGN, SECTION_WIDTH } from "../shared/layout-variants";
+import { SECTION_WIDTH, STACK_ALIGN } from "../shared/layout-variants";
 
 export default defineType({
   name: "cta-1",
   title: "CTA 1",
   type: "object",
-  icon: Captions,
+  icon: EnvelopeIcon,
   fields: [
     defineField({
       name: "padding",

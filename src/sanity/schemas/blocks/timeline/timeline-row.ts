@@ -1,12 +1,12 @@
 import { defineType, defineField } from "sanity";
-import { ArrowDownNarrowWide } from "lucide-react";
+import { TimelineIcon } from "@sanity/icons";
 
 export default defineType({
   name: "timeline-row",
   type: "object",
   title: "Timeline Row",
   description: "Row of Timeline Sections",
-  icon: ArrowDownNarrowWide,
+  icon: TimelineIcon,
   fields: [
     defineField({
       name: "padding",

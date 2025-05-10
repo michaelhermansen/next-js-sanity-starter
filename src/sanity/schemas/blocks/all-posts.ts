@@ -1,12 +1,12 @@
+import { DocumentTextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { Newspaper } from "lucide-react";
 
 export default defineType({
   name: "all-posts",
   type: "object",
   title: "All Posts",
   description: "A list of all posts",
-  icon: Newspaper,
+  icon: DocumentTextIcon,
   fields: [
     defineField({
       name: "padding",
