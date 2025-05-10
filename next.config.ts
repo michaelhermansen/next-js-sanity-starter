@@ -1,14 +1,17 @@
-/** @type {import('next').NextConfig} */
+import type { NextConfig } from "next";
 
-const nextConfig = {
+// This will validate environment variables on build
+import "@/lib/env";
+
+const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/index',
-        destination: '/',
+        source: "/index",
+        destination: "/",
         permanent: true,
       },
-    ]
+    ];
   },
   images: {
     unoptimized: true,
