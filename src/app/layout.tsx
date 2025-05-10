@@ -4,14 +4,15 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { config } from "@/lib/config";
 
 const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
   title: {
-    template: "%s | Schema UI Starter",
-    default: "Sanity Next.js Website | Schema UI Starter",
+    template: `%s | ${config.siteName}`,
+    default: `Sanity Next.js Website | ${config.siteName}`,
   },
   openGraph: {
     images: [

@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "typegen": "sanity schema extract && sanity typegen generate",
+    "typegen:watch": "concurrently \"chokidar 'src/sanity/queries/**/*' -c 'sanity typegen generate'\" \"chokidar 'src/sanity/schemas/**/*' -c 'pnpm typegen'\""
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -44,7 +46,8 @@
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.24.3"
+    "zod": "^3.24.3",
+    "styled-components": "^6.1.17"
   },
   "devDependencies": {
     "@sanity/client": "^6.29.0",
@@ -52,6 +55,8 @@
     "@types/node": "^22.14.1",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.1.2",
     "eslint": "^9.25.1",
     "eslint-config-next": "15.3.1",
     "postcss": "^8.5.3",
