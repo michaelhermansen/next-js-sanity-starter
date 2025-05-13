@@ -19,20 +19,13 @@ export default function PostHero({
       {title && <h1 className="mb-4 md:mb-6 text-3xl lg:text-5xl">{title}</h1>}
       {image && image.asset?._id && (
         <div className="my-4 md:my-6 rounded-2xl overflow-hidden">
-          <Image
-            src={urlFor(image).quality(100).url()}
-            alt={image.alt || ""}
-            placeholder={image?.asset?.metadata?.lqip ? "blur" : undefined}
-            blurDataURL={image.asset?.metadata?.lqip || undefined}
-            width={image.asset?.metadata?.dimensions?.width || 1200}
-            height={image?.asset?.metadata?.dimensions?.height || 630}
-            quality={100}
-          />
           <CmsImage
+            className="w-full"
             image={image}
             alt={image.alt || ""}
             width={1200}
-            height={630}
+            height={800}
+            loading="eager"
           />
         </div>
       )}
