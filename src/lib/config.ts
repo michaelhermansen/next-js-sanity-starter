@@ -1,3 +1,3 @@
 export const config = {
-  siteName: "Next+Sanity Starter",
+  siteName: "Acme",
 } as const;
