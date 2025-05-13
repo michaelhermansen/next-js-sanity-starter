@@ -29,7 +29,7 @@ export function ThemeToggle() {
           Lyst
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Mørks
+          Mørkt
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>
           Automatisk
