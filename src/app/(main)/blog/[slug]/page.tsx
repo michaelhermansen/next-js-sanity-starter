@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
-import Breadcrumbs from "@/components/ui/breadcrumbs";
+import Breadcrumbs, { BreadcrumbLinkType } from "@/components/ui/breadcrumbs";
 import PostHero from "@/components/blocks/post-hero";
-import { BreadcrumbLink } from "@/types";
 import PortableTextRenderer from "@/components/portable-text-renderer";
 import {
   fetchSanityPostBySlug,
@@ -40,7 +39,7 @@ export default async function PostPage(props: {
     notFound();
   }
 
-  const links: BreadcrumbLink[] = post
+  const links: BreadcrumbLinkType[] = post
     ? [
         {
           label: "Home",

@@ -1,5 +1,5 @@
+import { config } from "@/lib/config";
 import Link from "next/link";
-import Logo from "@/components/logo";
 
 const navItems = [
   {
@@ -28,11 +28,11 @@ export default function Footer() {
     <footer>
       <div className="dark:bg-background pb-5 xl:pb-5 dark:text-gray-300">
         <Link
-          className="block w-[6.25rem] mx-auto"
+          className="block w-fit font-semibold mx-auto"
           href="/"
           aria-label="Home page"
         >
-          <Logo />
+          {config.siteName}
         </Link>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-7 text-primary">
           {navItems.map((navItem) => (

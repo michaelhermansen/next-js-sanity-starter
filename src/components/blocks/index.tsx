@@ -9,7 +9,7 @@ import Cta1 from "@/components/blocks/cta/cta-1";
 import LogoCloud1 from "@/components/blocks/logo-cloud/logo-cloud-1";
 import FormNewsletter from "@/components/blocks/forms/newsletter";
 import AllPosts from "@/components/blocks/all-posts";
-import { PAGE_QUERYResult } from "../../../sanity.types";
+import { PAGE_QUERYResult } from "../../sanity/sanity.types";
 
 type Block = NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number];
 

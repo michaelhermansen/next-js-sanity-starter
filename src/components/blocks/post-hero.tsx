@@ -1,8 +1,9 @@
 import Image from "next/image";
-import PostDate from "@/components/post-date";
 import { Mail } from "lucide-react";
 import { urlFor } from "@/sanity/lib/image";
-import { POST_QUERYResult } from "@/sanity.types";
+import { POST_QUERYResult } from "../../sanity/sanity.types";
+import { formatDate } from "@/lib/utils";
+import { CmsImage } from "../cms-image";
 
 type PostHeroProps = NonNullable<POST_QUERYResult>;
 
@@ -26,6 +27,12 @@ export default function PostHero({
             width={image.asset?.metadata?.dimensions?.width || 1200}
             height={image?.asset?.metadata?.dimensions?.height || 630}
             quality={100}
+          />
+          <CmsImage
+            image={image}
+            alt={image.alt || ""}
+            width={1200}
+            height={630}
           />
         </div>
       )}
@@ -53,7 +60,7 @@ export default function PostHero({
             {author?.name && <div>{author.name}</div>}
             <div className="hidden md:block">•</div>
           </div>
-          <PostDate date={_createdAt as string} />
+          <div>{formatDate(_createdAt)}</div>
         </div>
         <div className="flex flex-col md:flex-row gap-2">
           <div>Share this post</div>

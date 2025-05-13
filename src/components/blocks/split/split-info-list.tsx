@@ -1,5 +1,5 @@
 import SplitInfoItem from "@/components/blocks/split/split-info-item";
-import { PAGE_QUERYResult } from "../../../../sanity.types";
+import { PAGE_QUERYResult } from "../../../sanity/sanity.types";
 
 type Block = NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number];
 type SplitRow = Extract<Block, { _type: "split-row" }>;

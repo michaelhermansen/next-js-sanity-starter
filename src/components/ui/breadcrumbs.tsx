@@ -8,7 +8,10 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 
-import { BreadcrumbLink as BreadcrumbLinkType } from "@/types";
+export type BreadcrumbLinkType = {
+  label: string;
+  href: string;
+};
 
 const BreadcrumbCustomItem = ({
   label,

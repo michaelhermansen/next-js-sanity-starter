@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import SectionContainer from "@/components/ui/section-container";
 import { stegaClean } from "next-sanity";
-import { PAGE_QUERYResult } from "@/sanity.types";
+import { PAGE_QUERYResult } from "../../../sanity/sanity.types";
 import SplitContent from "./split-content";
 import SplitCardsList from "./split-cards-list";
 import SplitImage from "./split-image";

@@ -4,7 +4,7 @@ import { stegaClean } from "next-sanity";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
-import { PAGE_QUERYResult, ColorVariant } from "@/sanity.types";
+import { PAGE_QUERYResult, ColorVariant } from "../../../sanity/sanity.types";
 
 type Block = NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number];
 type GridRow = Extract<Block, { _type: "grid-row" }>;

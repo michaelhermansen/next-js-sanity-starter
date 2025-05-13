@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { SectionPadding, ColorVariant } from "@/sanity.types";
+import { SectionPadding, ColorVariant } from "../../sanity/sanity.types";
 
 interface SectionContainerProps {
   color?: ColorVariant | null;

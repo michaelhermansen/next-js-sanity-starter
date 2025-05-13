@@ -1,9 +1,8 @@
-import Link from "next/link";
-import Logo from "@/components/logo";
-import MobileNav from "@/components/header/mobile-nav";
 import DesktopNav from "@/components/header/desktop-nav";
-import { ModeToggle } from "@/components/menu-toggle";
+import MobileNav from "@/components/header/mobile-nav";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { config } from "@/lib/config";
+import Link from "next/link";
 
 const navItems = [
   {
@@ -32,10 +31,10 @@ export default function Header() {
         </Link>
         <div className="hidden xl:flex gap-7 items-center justify-between">
           <DesktopNav navItems={navItems} />
-          <ModeToggle />
+          <ThemeToggle />
         </div>
         <div className="flex items-center xl:hidden">
-          <ModeToggle />
+          <ThemeToggle />
           <MobileNav navItems={navItems} />
         </div>
       </div>

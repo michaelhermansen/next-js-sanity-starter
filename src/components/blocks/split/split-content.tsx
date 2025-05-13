@@ -5,7 +5,7 @@ import Link from "next/link";
 import TagLine from "@/components/ui/tag-line";
 import { createElement } from "react";
 import { stegaClean } from "next-sanity";
-import { PAGE_QUERYResult } from "../../../../sanity.types";
+import { PAGE_QUERYResult } from "../../../sanity/sanity.types";
 
 type Block = NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number];
 type SplitRow = Extract<Block, { _type: "split-row" }>;

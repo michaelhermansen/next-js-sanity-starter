@@ -9,10 +9,10 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { NavItem } from "@/types";
-import Logo from "@/components/logo";
 import { useState } from "react";
 import { AlignRight } from "lucide-react";
+import { config } from "@/lib/config";
+import { NavItem } from "./types";
 
 export default function MobileNav({ navItems }: { navItems: NavItem[] }) {
   const [open, setOpen] = useState(false);
@@ -29,9 +29,7 @@ export default function MobileNav({ navItems }: { navItems: NavItem[] }) {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <div className="mx-auto">
-            <Logo />
-          </div>
+          <div className="mx-auto font-semibold">{config.siteName}</div>
           <div className="sr-only">
             <SheetTitle>Main Navigation</SheetTitle>
             <SheetDescription>Navigate to the website pages</SheetDescription>
