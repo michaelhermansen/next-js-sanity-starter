@@ -6,30 +6,27 @@ import Link from "next/link";
 
 const navItems = [
   {
-    label: "Home",
-    href: "/",
-    target: false,
+    label: "Side 1",
+    href: "/side-1",
   },
   {
-    label: "Blog",
-    href: "/blog",
-    target: false,
+    label: "Side 2",
+    href: "/side-2",
   },
   {
-    label: "About",
-    href: "/about",
-    target: false,
+    label: "Side 3",
+    href: "/side-3",
   },
 ];
 
 export default function Header() {
   return (
-    <header className="sticky top-0 w-full border-border/40 bg-background/95 z-50">
-      <div className="container flex items-center justify-between h-14">
+    <header className="border-b">
+      <div className="container flex h-20 items-center justify-between">
         <Link href="/" aria-label="Hjem" className="font-semibold">
           {config.siteName}
         </Link>
-        <div className="hidden xl:flex gap-7 items-center justify-between">
+        <div className="hidden items-center justify-between gap-7 xl:flex">
           <DesktopNav navItems={navItems} />
           <ThemeToggle />
         </div>

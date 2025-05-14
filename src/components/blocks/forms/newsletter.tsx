@@ -77,7 +77,7 @@ export default function FormNewsletter({
         throw new Error(error.message);
       }
     },
-    [form]
+    [form],
   );
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -117,7 +117,7 @@ export default function FormNewsletter({
               disabled={isSubmitting}
             >
               {isSubmitting && (
-                <Loader2 className="w-6 h-6 mr-2 animate-spin" />
+                <Loader2 className="mr-2 h-6 w-6 animate-spin" />
               )}
               {buttonText}
             </Button>

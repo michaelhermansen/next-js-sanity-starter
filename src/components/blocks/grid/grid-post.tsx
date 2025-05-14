@@ -23,20 +23,20 @@ export default function GridPost({ color, post }: GridPostProps) {
   return (
     <Link
       key={title}
-      className="flex w-full rounded-3xl ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 group"
+      className="ring-offset-background focus-visible:ring-ring group flex w-full rounded-3xl focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden"
       href={`/blog/${slug?.current}`}
     >
       <div
         className={cn(
-          "flex w-full flex-col justify-between overflow-hidden transition ease-in-out group border rounded-3xl p-4 hover:border-primary",
+          "group hover:border-primary flex w-full flex-col justify-between overflow-hidden rounded-3xl border p-4 transition ease-in-out",
           color === "primary"
             ? "group-hover:border-primary-foreground/50"
-            : "group-hover:border-primary"
+            : "group-hover:border-primary",
         )}
       >
         <div className="flex flex-col">
           {image && image.asset?._id && (
-            <div className="mb-4 relative h-[15rem] sm:h-[20rem] md:h-[25rem] lg:h-[9.5rem] xl:h-[12rem] rounded-2xl overflow-hidden">
+            <div className="relative mb-4 h-[15rem] overflow-hidden rounded-2xl sm:h-[20rem] md:h-[25rem] lg:h-[9.5rem] xl:h-[12rem]">
               <Image
                 src={urlFor(image).url()}
                 alt={image.alt || ""}
@@ -52,12 +52,12 @@ export default function GridPost({ color, post }: GridPostProps) {
             </div>
           )}
           {title && (
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="font-bold text-[1.5rem] leading-[1.2]">{title}</h3>
+            <div className="mb-4 flex items-center justify-between">
+              <h3 className="text-[1.5rem] leading-[1.2] font-bold">{title}</h3>
             </div>
           )}
           {categories && categories.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="mb-4 flex flex-wrap gap-2">
               {categories.map((category) => (
                 <Badge key={category._id} color="primary">
                   {category.title}
@@ -67,7 +67,7 @@ export default function GridPost({ color, post }: GridPostProps) {
           )}
           {excerpt && <p>{excerpt}</p>}
         </div>
-        <div className="mt-3 xl:mt-6 w-10 h-10 border rounded-full flex items-center justify-center group-hover:border-primary">
+        <div className="group-hover:border-primary mt-3 flex h-10 w-10 items-center justify-center rounded-full border xl:mt-6">
           <ChevronRight
             className="text-border group-hover:text-primary"
             size={24}

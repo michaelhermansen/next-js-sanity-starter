@@ -30,15 +30,15 @@ const portableTextComponents: PortableTextProps["components"] = {
     youtube: ({ value }) => {
       const { videoId } = value;
       return (
-        <div className="aspect-video max-w-[45rem] rounded-xl overflow-hidden mb-4">
+        <div className="mb-4 aspect-video max-w-[45rem] overflow-hidden rounded-xl">
           <YouTubeEmbed videoid={videoId} params="rel=0" />
         </div>
       );
     },
     code: ({ value }) => {
       return (
-        <div className="grid my-4 overflow-x-auto rounded-lg border border-border text-xs lg:text-sm bg-primary/80 dark:bg-muted/80">
-          <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-primary/80 dark:bg-muted">
+        <div className="border-border lg: bg-primary/80 dark:bg-muted/80 my-4 grid overflow-x-auto rounded-lg border text-xs">
+          <div className="border-border bg-primary/80 dark:bg-muted flex items-center justify-between border-b px-4 py-2">
             <div className="text-muted-foreground font-mono">
               {value.filename || ""}
             </div>

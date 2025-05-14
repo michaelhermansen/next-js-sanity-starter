@@ -36,7 +36,7 @@ export default function SplitRow({
         <div
           className={cn(
             "grid grid-cols-1 lg:grid-cols-2",
-            noGap ? "gap-0" : "gap-12 lg:gap-20"
+            noGap ? "gap-0" : "gap-12 lg:gap-20",
           )}
         >
           {splitColumns?.map((column) => {
@@ -44,7 +44,7 @@ export default function SplitRow({
             if (!Component) {
               // Fallback for development/debugging of new component types
               console.warn(
-                `No component implemented for split column type: ${column._type}`
+                `No component implemented for split column type: ${column._type}`,
               );
               return <div data-type={column._type} key={column._key} />;
             }

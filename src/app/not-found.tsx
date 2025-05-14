@@ -13,9 +13,9 @@ export default function NotFoundPage() {
   return (
     <>
       <Header />
-      <div className="relative z-20 min-h-[80vh] flex items-center justify-center">
-        <div className="relative px-8 md:px-0 py-[4rem] sm:py-[5rem] md:py-[6.25rem] mx-auto sm:max-w-[37.5rem] md:max-w-[40.625rem] lg:max-w-[53.125rem] xl:max-w-[70rem]">
-          <h1 className="font-bold text-[9.9vw] md:text-[4.5rem] sm:text-[3.4375rem] lg:text-[6rem] xl:text-[8rem] leading-[1.12]">
+      <div className="relative z-20 flex min-h-[80vh] items-center justify-center">
+        <div className="relative mx-auto px-8 py-[4rem] sm:max-w-[37.5rem] sm:py-[5rem] md:max-w-[40.625rem] md:px-0 md:py-[6.25rem] lg:max-w-[53.125rem] xl:max-w-[70rem]">
+          <h1 className="text-[9.9vw] leading-[1.12] font-bold sm:text-[3.4375rem] md:text-[4.5rem] lg:text-[6rem] xl:text-[8rem]">
             Page not found
           </h1>
           <div className="mt-5 text-center">

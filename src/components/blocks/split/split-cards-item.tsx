@@ -32,17 +32,17 @@ export default function SplitCardsItem({
     <motion.div
       ref={ref}
       className={cn(
-        "flex flex-col items-start border border-primary rounded-3xl px-6 lg:px-8 py-6 lg:py-8 transition-colors duration-1000 ease-in-out",
+        "border-primary flex flex-col items-start rounded-3xl border px-6 py-6 transition-colors duration-1000 ease-in-out lg:px-8 lg:py-8",
         isInView ? "bg-foreground/85" : "bg-background",
-        color === "primary" ? "text-background" : undefined
+        color === "primary" ? "text-background" : undefined,
       )}
     >
       {tagLine && (
         <div
           className={cn(
-            "font-bold text-2xl lg:text-3xl transition-colors duration-1000 ease-in-out",
+            "text-2xl font-bold transition-colors duration-1000 ease-in-out lg:text-3xl",
             isInView ? "text-background" : "text-foreground",
-            color === "primary" ? "text-background" : undefined
+            color === "primary" ? "text-background" : undefined,
           )}
         >
           {tagLine}
@@ -51,9 +51,9 @@ export default function SplitCardsItem({
       {title && (
         <div
           className={cn(
-            "my-2 font-semibold text-xl transition-colors duration-1000 ease-in-out",
+            "my-2 text-xl font-semibold transition-colors duration-1000 ease-in-out",
             isInView ? "text-background" : "text-foreground",
-            color === "primary" ? "text-background" : undefined
+            color === "primary" ? "text-background" : undefined,
           )}
         >
           {title}
@@ -63,7 +63,7 @@ export default function SplitCardsItem({
         <div
           className={cn(
             "transition-colors duration-1000 ease-in-out",
-            isInView ? "text-background" : "text-foreground"
+            isInView ? "text-background" : "text-foreground",
           )}
         >
           <PortableTextRenderer value={body} />

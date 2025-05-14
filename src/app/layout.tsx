@@ -46,8 +46,8 @@ export default function RootLayout({
       <link rel="icon" href="/favicon.ico" />
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased overscroll-none",
-          fontSans.variable
+          "bg-background min-h-screen overscroll-none font-sans antialiased",
+          fontSans.variable,
         )}
       >
         <ThemeProvider

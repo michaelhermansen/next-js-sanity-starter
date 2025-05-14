@@ -15,8 +15,8 @@ export default function TagLine({
   return (
     <TagElement
       className={cn(
-        "inline-block leading-[0] text-base font-semibold",
-        className
+        "inline-block text-base leading-[0] font-semibold",
+        className,
       )}
     >
       {title}

@@ -34,7 +34,7 @@ export default function GridRow({
         <div
           className={cn(
             `grid grid-cols-1 gap-6`,
-            `lg:${stegaClean(gridColumns)}`
+            `lg:${stegaClean(gridColumns)}`,
           )}
         >
           {columns.map((column) => {
@@ -42,7 +42,7 @@ export default function GridRow({
             if (!Component) {
               // Fallback for development/debugging of new component types
               console.warn(
-                `No component implemented for grid column type: ${column._type}`
+                `No component implemented for grid column type: ${column._type}`,
               );
               return <div data-type={column._type} key={column._key} />;
             }

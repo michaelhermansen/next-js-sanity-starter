@@ -19,8 +19,8 @@ export function StarRating({
             <Star
               key={i}
               className={cn(
-                "w-4 h-4 fill-yellow-400 text-yellow-400",
-                size === "lg" && "w-8 h-8"
+                "h-4 w-4 fill-yellow-400 text-yellow-400",
+                size === "lg" && "h-8 w-8",
               )}
             />
           );
@@ -30,13 +30,13 @@ export function StarRating({
             <StarHalf
               key={i}
               className={cn(
-                "w-4 h-4 fill-yellow-400 text-yellow-400",
-                size === "lg" && "w-8 h-8"
+                "h-4 w-4 fill-yellow-400 text-yellow-400",
+                size === "lg" && "h-8 w-8",
               )}
             />
           );
         }
-        return <Star key={i} className="w-4 h-4 text-gray-300" />;
+        return <Star key={i} className="h-4 w-4 text-gray-300" />;
       })}
     </div>
   );

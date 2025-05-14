@@ -19,26 +19,26 @@ export default function Hero1({
   links,
 }: Hero1Props) {
   return (
-    <div className="container dark:bg-background py-20 lg:pt-40">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <div className="dark:bg-background container py-20 lg:pt-40">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
         <div className="flex flex-col justify-center">
           {tagLine && (
-            <h1 className="leading-[0] font-sans animate-fade-up [animation-delay:100ms] opacity-0">
+            <h1 className="animate-fade-up font-sans leading-[0] opacity-0 [animation-delay:100ms]">
               <span className="text-base font-semibold">{tagLine}</span>
             </h1>
           )}
           {title && (
-            <h2 className="mt-6 font-bold leading-[1.1] text-4xl md:text-5xl lg:text-6xl animate-fade-up [animation-delay:200ms] opacity-0">
+            <h2 className="animate-fade-up mt-6 text-4xl leading-[1.1] font-bold opacity-0 [animation-delay:200ms] md:text-5xl lg:text-6xl">
               {title}
             </h2>
           )}
           {body && (
-            <div className="text-lg mt-6 animate-fade-up [animation-delay:300ms] opacity-0">
+            <div className="animate-fade-up mt-6 text-lg opacity-0 [animation-delay:300ms]">
               <PortableTextRenderer value={body} />
             </div>
           )}
           {links && links.length > 0 && (
-            <div className="mt-10 flex flex-wrap gap-4 animate-fade-up [animation-delay:400ms] opacity-0">
+            <div className="animate-fade-up mt-10 flex flex-wrap gap-4 opacity-0 [animation-delay:400ms]">
               {links.map((link) => (
                 <Button
                   key={link.title}
@@ -60,7 +60,7 @@ export default function Hero1({
         <div className="flex flex-col justify-center">
           {image && image.asset?._id && (
             <Image
-              className="rounded-xl animate-fade-up [animation-delay:500ms] opacity-0"
+              className="animate-fade-up rounded-xl opacity-0 [animation-delay:500ms]"
               src={urlFor(image).url()}
               alt={image.alt || ""}
               width={image.asset?.metadata?.dimensions?.width || 800}

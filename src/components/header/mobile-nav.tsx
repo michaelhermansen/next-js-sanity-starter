@@ -37,16 +37,14 @@ export default function MobileNav({ navItems }: { navItems: NavItem[] }) {
         </SheetHeader>
         <div className="pt-10 pb-20">
           <div className="container">
-            <ul className="list-none text-center space-y-3">
+            <ul className="list-none space-y-3 text-center">
               <>
                 {navItems.map((navItem) => (
                   <li key={navItem.label}>
                     <Link
                       onClick={() => setOpen(false)}
                       href={navItem.href}
-                      target={navItem.target ? "_blank" : undefined}
-                      rel={navItem.target ? "noopener noreferrer" : undefined}
-                      className="hover:text-decoration-none hover:opacity-50 text-lg"
+                      className="hover:text-decoration-none text-lg hover:opacity-50"
                     >
                       {navItem.label}
                     </Link>

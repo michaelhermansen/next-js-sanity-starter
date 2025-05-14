@@ -20,7 +20,7 @@ const BreadcrumbCustomItem = ({
 }: BreadcrumbLinkType & { isCurrent?: boolean }) => {
   return (
     <>
-      <BreadcrumbItem className="font-bold text-primary">
+      <BreadcrumbItem className="text-primary font-bold">
         {!isCurrent ? (
           <BreadcrumbLink className="hover:text-primary/70" asChild>
             <Link href={href}>{label}</Link>

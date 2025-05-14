@@ -29,15 +29,15 @@ export default function Cta1({
     <SectionContainer color={color} padding={padding}>
       <div
         className={cn(
-          align === "center" ? "max-w-[48rem] text-center mx-auto" : undefined,
-          isNarrow ? "max-w-[48rem] mx-auto" : undefined
+          align === "center" ? "mx-auto max-w-[48rem] text-center" : undefined,
+          isNarrow ? "mx-auto max-w-[48rem]" : undefined,
         )}
       >
         <div
           className={cn(color === "primary" ? "text-background" : undefined)}
         >
           {tagLine && (
-            <h1 className="leading-[0] mb-4">
+            <h1 className="mb-4 leading-[0]">
               <span className="text-base font-semibold">{tagLine}</span>
             </h1>
           )}
@@ -48,7 +48,7 @@ export default function Cta1({
           <div
             className={cn(
               "mt-10 flex flex-wrap gap-4",
-              align === "center" ? "justify-center" : undefined
+              align === "center" ? "justify-center" : undefined,
             )}
           >
             {links &&

@@ -31,19 +31,19 @@ export default function SplitCardsItem({
     <motion.div
       ref={ref}
       className={cn(
-        "border border-primary rounded-3xl px-6 lg:px-8 py-6 lg:py-8 transition-colors duration-1000 ease-in-out",
-        isInView ? "bg-foreground/85" : "bg-background"
+        "border-primary rounded-3xl border px-6 py-6 transition-colors duration-1000 ease-in-out lg:px-8 lg:py-8",
+        isInView ? "bg-foreground/85" : "bg-background",
       )}
     >
       <div
         className={cn(
           "flex flex-col gap-4 transition-colors duration-1000 ease-in-out",
-          isInView ? "text-background" : "text-foreground"
+          isInView ? "text-background" : "text-foreground",
         )}
       >
         <div className="flex items-center gap-2">
           {image && image.asset?._id && (
-            <div className="shrink-0 w-10 h-10 flex items-center justify-center">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center">
               <Image
                 src={urlFor(image).url()}
                 alt={image.alt || ""}
@@ -60,7 +60,7 @@ export default function SplitCardsItem({
             </div>
           )}
           {title && (
-            <div className="text-xl font-semibold leading-[1.1]">{title}</div>
+            <div className="text-xl leading-[1.1] font-semibold">{title}</div>
           )}
         </div>
         {body && <PortableTextRenderer value={body} />}
@@ -68,8 +68,8 @@ export default function SplitCardsItem({
       {tags && (
         <div
           className={cn(
-            "flex flex-wrap gap-3 mt-4 transition-colors duration-1000 ease-in-out",
-            isInView ? "text-background" : "text-foreground"
+            "mt-4 flex flex-wrap gap-3 transition-colors duration-1000 ease-in-out",
+            isInView ? "text-background" : "text-foreground",
           )}
         >
           {tags.map((tag) => (
@@ -79,7 +79,7 @@ export default function SplitCardsItem({
                 "transition-colors duration-1000 ease-in-out",
                 isInView
                   ? "bg-background text-foreground"
-                  : "bg-foreground text-background"
+                  : "bg-foreground text-background",
               )}
             >
               {tag}

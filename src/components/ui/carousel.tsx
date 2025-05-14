@@ -56,7 +56,7 @@ function Carousel({
       ...opts,
       axis: orientation === "horizontal" ? "x" : "y",
     },
-    plugins
+    plugins,
   );
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
   const [canScrollNext, setCanScrollNext] = React.useState(false);
@@ -85,7 +85,7 @@ function Carousel({
         scrollNext();
       }
     },
-    [scrollPrev, scrollNext]
+    [scrollPrev, scrollNext],
   );
 
   React.useEffect(() => {
@@ -145,7 +145,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
         className={cn(
           "flex",
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
-          className
+          className,
         )}
         {...props}
       />
@@ -164,7 +164,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
         orientation === "horizontal" ? "pl-4" : "pt-4",
-        className
+        className,
       )}
       {...props}
     />
@@ -189,7 +189,7 @@ function CarouselPrevious({
         orientation === "horizontal"
           ? "top-1/2 -left-12 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
-        className
+        className,
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
@@ -219,7 +219,7 @@ function CarouselNext({
         orientation === "horizontal"
           ? "top-1/2 -right-12 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
-        className
+        className,
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
@@ -262,7 +262,7 @@ function CarouselDots({
 
   return (
     <div
-      className={cn("flex gap-2 justify-center absolute -bottom-12", className)}
+      className={cn("absolute -bottom-12 flex justify-center gap-2", className)}
       {...props}
     >
       {[...Array(slideCount)].map((_, index) => (
@@ -270,23 +270,23 @@ function CarouselDots({
           key={index}
           onClick={() => goToSlide(index)}
           className={cn(
-            "rounded-full transition-colors p-2",
+            "rounded-full p-2 transition-colors",
             {
-              "w-8 h-8 flex items-center justify-center": true,
+              "flex h-8 w-8 items-center justify-center": true,
             },
-            "hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-            "disabled:pointer-events-none disabled:opacity-50"
+            "hover:bg-primary/5 focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+            "disabled:pointer-events-none disabled:opacity-50",
           )}
           aria-label={`Go to slide ${index + 1}`}
         >
           <span
             className={cn(
-              "rounded-full block",
+              "block rounded-full",
               {
-                "w-2 h-2": size === "sm",
-                "w-3 h-3": size === "lg",
+                "h-2 w-2": size === "sm",
+                "h-3 w-3": size === "lg",
               },
-              selectedIndex === index ? "bg-primary" : "bg-primary/30"
+              selectedIndex === index ? "bg-primary" : "bg-primary/30",
             )}
           />
         </button>
@@ -320,8 +320,8 @@ function CarouselCounter({
   return (
     <div
       className={cn(
-        "text-sm text-muted-foreground flex justify-center mt-4",
-        className
+        "text-muted-foreground mt-4 flex justify-center",
+        className,
       )}
       {...props}
     >

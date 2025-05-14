@@ -18,7 +18,7 @@ export default function TimelineRow({
   return (
     <SectionContainer color={color} padding={padding}>
       {timelines && timelines?.length > 0 && (
-        <div className="max-w-[48rem] mx-auto">
+        <div className="mx-auto max-w-[48rem]">
           {timelines?.map((timeline, index) => (
             <Timeline1
               key={index}

@@ -19,11 +19,11 @@ export default async function AllPosts({
 
   return (
     <SectionContainer color={color} padding={padding}>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {posts.map((post) => (
           <Link
             key={post?.slug?.current}
-            className="flex w-full rounded-3xl ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="ring-offset-background focus-visible:ring-ring flex w-full rounded-3xl focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden"
             href={`/blog/${post?.slug?.current}`}
           >
             <PostCard

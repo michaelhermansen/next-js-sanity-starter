@@ -23,9 +23,9 @@ export default function Timeline1({
   const isInView = useInView(ref);
 
   return (
-    <div ref={ref} className="relative border-l-2 pl-12 lg:pl-28 py-8">
+    <div ref={ref} className="relative border-l-2 py-8 pl-12 lg:pl-28">
       <motion.div
-        className="absolute w-8 h-8 rounded-full top-[3.5rem] lg:top-[3.75rem] left-[-1.1rem] border-8"
+        className="absolute top-[3.5rem] left-[-1.1rem] h-8 w-8 rounded-full border-8 lg:top-[3.75rem]"
         initial={{
           backgroundColor: "hsl(var(--background))",
           opacity: 0.3,
@@ -43,7 +43,7 @@ export default function Timeline1({
         }}
       />
       <div className={cn(color === "primary" ? "text-background" : undefined)}>
-        <h3 className="flex justify-between items-center font-semibold mb-4">
+        <h3 className="mb-4 flex items-center justify-between font-semibold">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={

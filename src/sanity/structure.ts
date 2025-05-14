@@ -20,7 +20,7 @@ export const structure: StructureResolver = (S, context) =>
         .child(
           S.documentTypeList("post")
             .title("Post")
-            .defaultOrdering([{ field: "_createdAt", direction: "desc" }]) // Default ordering
+            .defaultOrdering([{ field: "_createdAt", direction: "desc" }]), // Default ordering
         ),
       orderableDocumentListDeskItem({
         type: "category",

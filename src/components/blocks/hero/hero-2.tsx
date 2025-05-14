@@ -11,24 +11,24 @@ type Hero2Props = Extract<
 
 export default function Hero2({ tagLine, title, body, links }: Hero2Props) {
   return (
-    <div className="container dark:bg-background py-20 lg:pt-40 text-center">
+    <div className="dark:bg-background container py-20 text-center lg:pt-40">
       {tagLine && (
-        <h1 className="leading-[0] font-sans animate-fade-up [animation-delay:100ms] opacity-0">
+        <h1 className="animate-fade-up font-sans leading-[0] opacity-0 [animation-delay:100ms]">
           <span className="text-base font-semibold">{tagLine}</span>
         </h1>
       )}
       {title && (
-        <h2 className="mt-6 font-bold leading-[1.1] text-4xl md:text-5xl lg:text-6xl animate-fade-up [animation-delay:200ms] opacity-0">
+        <h2 className="animate-fade-up mt-6 text-4xl leading-[1.1] font-bold opacity-0 [animation-delay:200ms] md:text-5xl lg:text-6xl">
           {title}
         </h2>
       )}
       {body && (
-        <div className="text-lg mt-6 max-w-2xl mx-auto animate-fade-up [animation-delay:300ms] opacity-0">
+        <div className="animate-fade-up mx-auto mt-6 max-w-2xl text-lg opacity-0 [animation-delay:300ms]">
           <PortableTextRenderer value={body} />
         </div>
       )}
       {links && links.length > 0 && (
-        <div className="mt-10 flex flex-wrap gap-4 justify-center animate-fade-up [animation-delay:400ms] opacity-0">
+        <div className="animate-fade-up mt-10 flex flex-wrap justify-center gap-4 opacity-0 [animation-delay:400ms]">
           {links.map((link) => (
             <Button
               key={link.title}

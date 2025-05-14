@@ -16,9 +16,9 @@ export default function PostHero({
 }: PostHeroProps) {
   return (
     <>
-      {title && <h1 className="mb-4 md:mb-6 text-3xl lg:text-5xl">{title}</h1>}
+      {title && <h1 className="mb-4 text-3xl md:mb-6 lg:text-5xl">{title}</h1>}
       {image && image.asset?._id && (
-        <div className="my-4 md:my-6 rounded-2xl overflow-hidden">
+        <div className="my-4 overflow-hidden rounded-2xl md:my-6">
           <CmsImage
             className="w-full"
             image={image}
@@ -29,11 +29,11 @@ export default function PostHero({
           />
         </div>
       )}
-      <div className="flex items-center justify-between gap-2 text-sm md:text-base">
-        <div className="flex flex-col md:flex-row md:items-center gap-2">
+      <div className="flex items-center justify-between gap-2 md:text-base">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center">
           <div className="flex items-center gap-2">
             {author?.image && author.image.asset?._id && (
-              <div className="relative w-6 h-6 md:w-10 md:h-10">
+              <div className="relative h-6 w-6 md:h-10 md:w-10">
                 <Image
                   src={urlFor(author.image).url()}
                   alt={author.image.alt ? author.image.alt : ""}
@@ -46,7 +46,7 @@ export default function PostHero({
                   }
                   blurDataURL={author.image.asset?.metadata?.lqip || undefined}
                   sizes="40px"
-                  className="w-10 h-10 rounded-full mr-2"
+                  className="mr-2 h-10 w-10 rounded-full"
                 />
               </div>
             )}
@@ -55,7 +55,7 @@ export default function PostHero({
           </div>
           <div>{formatDate(_createdAt)}</div>
         </div>
-        <div className="flex flex-col md:flex-row gap-2">
+        <div className="flex flex-col gap-2 md:flex-row">
           <div>Share this post</div>
           <div className="flex gap-2">
             <a
@@ -92,7 +92,7 @@ export default function PostHero({
           </div>
         </div>
       </div>
-      <hr className="my-4 md:my-6 border-primary/30" />
+      <hr className="border-primary/30 my-4 md:my-6" />
     </>
   );
 }

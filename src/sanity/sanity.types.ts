@@ -71,13 +71,27 @@ export type Geopoint = {
 export type AllPosts = {
   _type: "all-posts";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?:
+    | "background"
+    | "primary"
+    | "secondary"
+    | "card"
+    | "accent"
+    | "destructive"
+    | "muted";
 };
 
 export type FormNewsletter = {
   _type: "form-newsletter";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?:
+    | "background"
+    | "primary"
+    | "secondary"
+    | "card"
+    | "accent"
+    | "destructive"
+    | "muted";
   stackAlign?: "left" | "center";
   consentText?: string;
   buttonText?: string;
@@ -87,7 +101,14 @@ export type FormNewsletter = {
 export type LogoCloud1 = {
   _type: "logo-cloud-1";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?:
+    | "background"
+    | "primary"
+    | "secondary"
+    | "card"
+    | "accent"
+    | "destructive"
+    | "muted";
   title?: string;
   images?: Array<{
     asset?: {
@@ -108,109 +129,144 @@ export type LogoCloud1 = {
 export type Cta1 = {
   _type: "cta-1";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?:
+    | "background"
+    | "primary"
+    | "secondary"
+    | "card"
+    | "accent"
+    | "destructive"
+    | "muted";
   sectionWidth?: "default" | "narrow";
   stackAlign?: "left" | "center";
   tagLine?: string;
   title?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+    | {
+        videoId?: string;
+        _type: "youtube";
+        _key: string;
+      }
+    | ({
+        _key: string;
+      } & Code)
+  >;
+  links?: Array<
+    {
       _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
-  links?: Array<{
-    _key: string;
-  } & Link>;
+    } & Link
+  >;
 };
 
 export type Timelines1 = {
   _type: "timelines-1";
   title?: string;
   tagLine?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+    | {
+        videoId?: string;
+        _type: "youtube";
+        _key: string;
+      }
+    | ({
+        _key: string;
+      } & Code)
+  >;
 };
 
 export type TimelineRow = {
   _type: "timeline-row";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
-  timelines?: Array<{
-    _key: string;
-  } & Timelines1>;
+  colorVariant?:
+    | "background"
+    | "primary"
+    | "secondary"
+    | "card"
+    | "accent"
+    | "destructive"
+    | "muted";
+  timelines?: Array<
+    {
+      _key: string;
+    } & Timelines1
+  >;
 };
 
 export type Carousel1 = {
   _type: "carousel-1";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?:
+    | "background"
+    | "primary"
+    | "secondary"
+    | "card"
+    | "accent"
+    | "destructive"
+    | "muted";
   size?: "one" | "two" | "three";
   indicators?: "none" | "dots" | "count";
   images?: Array<{
@@ -232,15 +288,26 @@ export type Carousel1 = {
 export type GridRow = {
   _type: "grid-row";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?:
+    | "background"
+    | "primary"
+    | "secondary"
+    | "card"
+    | "accent"
+    | "destructive"
+    | "muted";
   gridColumns?: "grid-cols-2" | "grid-cols-3" | "grid-cols-4";
-  columns?: Array<{
-    _key: string;
-  } & GridCard | {
-    _key: string;
-  } & GridPost | {
-    _key: string;
-  } & PricingCard>;
+  columns?: Array<
+    | ({
+        _key: string;
+      } & GridCard)
+    | ({
+        _key: string;
+      } & GridPost)
+    | ({
+        _key: string;
+      } & PricingCard)
+  >;
 };
 
 export type GridPost = {
@@ -302,51 +369,58 @@ export type SplitInfo = {
     _type: "image";
   };
   title?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+    | {
+        videoId?: string;
+        _type: "youtube";
+        _key: string;
+      }
+    | ({
+        _key: string;
+      } & Code)
+  >;
   tags?: Array<string>;
 };
 
 export type SplitInfoList = {
   _type: "split-info-list";
-  list?: Array<{
-    _key: string;
-  } & SplitInfo>;
+  list?: Array<
+    {
+      _key: string;
+    } & SplitInfo
+  >;
 };
 
 export type SplitImage = {
@@ -370,119 +444,157 @@ export type SplitCard = {
   _type: "split-card";
   tagLine?: string;
   title?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+    | {
+        videoId?: string;
+        _type: "youtube";
+        _key: string;
+      }
+    | ({
+        _key: string;
+      } & Code)
+  >;
 };
 
 export type SplitCardsList = {
   _type: "split-cards-list";
-  list?: Array<{
-    _key: string;
-  } & SplitCard>;
+  list?: Array<
+    {
+      _key: string;
+    } & SplitCard
+  >;
 };
 
 export type SplitContent = {
   _type: "split-content";
   sticky?: boolean;
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?:
+    | "background"
+    | "primary"
+    | "secondary"
+    | "card"
+    | "accent"
+    | "destructive"
+    | "muted";
   tagLine?: string;
   title?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+    | {
+        videoId?: string;
+        _type: "youtube";
+        _key: string;
+      }
+    | ({
+        _key: string;
+      } & Code)
+  >;
   link?: Link;
 };
 
 export type SplitRow = {
   _type: "split-row";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?:
+    | "background"
+    | "primary"
+    | "secondary"
+    | "card"
+    | "accent"
+    | "destructive"
+    | "muted";
   noGap?: boolean;
-  splitColumns?: Array<{
-    _key: string;
-  } & SplitContent | {
-    _key: string;
-  } & SplitCardsList | {
-    _key: string;
-  } & SplitImage | {
-    _key: string;
-  } & SplitInfoList>;
+  splitColumns?: Array<
+    | ({
+        _key: string;
+      } & SplitContent)
+    | ({
+        _key: string;
+      } & SplitCardsList)
+    | ({
+        _key: string;
+      } & SplitImage)
+    | ({
+        _key: string;
+      } & SplitInfoList)
+  >;
 };
 
 export type SectionHeader = {
   _type: "section-header";
   padding?: SectionPadding;
-  colorVariant?: "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+  colorVariant?:
+    | "background"
+    | "primary"
+    | "secondary"
+    | "card"
+    | "accent"
+    | "destructive"
+    | "muted";
   sectionWidth?: "default" | "narrow";
   stackAlign?: "left" | "center";
   tagLine?: string;
@@ -494,89 +606,101 @@ export type Hero2 = {
   _type: "hero-2";
   tagLine?: string;
   title?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+    | {
+        videoId?: string;
+        _type: "youtube";
+        _key: string;
+      }
+    | ({
+        _key: string;
+      } & Code)
+  >;
+  links?: Array<
+    {
       _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
-  links?: Array<{
-    _key: string;
-  } & Link>;
+    } & Link
+  >;
 };
 
 export type Hero1 = {
   _type: "hero-1";
   tagLine?: string;
   title?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  } | {
-    _key: string;
-  } & Code>;
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+    | {
+        videoId?: string;
+        _type: "youtube";
+        _key: string;
+      }
+    | ({
+        _key: string;
+      } & Code)
+  >;
   image?: {
     asset?: {
       _ref: string;
@@ -590,9 +714,11 @@ export type Hero1 = {
     alt?: string;
     _type: "image";
   };
-  links?: Array<{
-    _key: string;
-  } & Link>;
+  links?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
 };
 
 export type SectionPadding = {
@@ -601,9 +727,22 @@ export type SectionPadding = {
   bottom?: boolean;
 };
 
-export type ButtonVariant = "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+export type ButtonVariant =
+  | "default"
+  | "destructive"
+  | "outline"
+  | "secondary"
+  | "ghost"
+  | "link";
 
-export type ColorVariant = "background" | "primary" | "secondary" | "card" | "accent" | "destructive" | "muted";
+export type ColorVariant =
+  | "background"
+  | "primary"
+  | "secondary"
+  | "card"
+  | "accent"
+  | "destructive"
+  | "muted";
 
 export type Link = {
   _type: "link";
@@ -613,43 +752,48 @@ export type Link = {
   buttonVariant?: ButtonVariant;
 };
 
-export type BlockContent = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-  listItem?: "bullet" | "number";
-  markDefs?: Array<{
-    href?: string;
-    _type: "link";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
-} | {
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-  };
-  media?: unknown;
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-  _key: string;
-} | {
-  videoId?: string;
-  _type: "youtube";
-  _key: string;
-} | {
-  _key: string;
-} & Code>;
+export type BlockContent = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }
+  | {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+      _key: string;
+    }
+  | {
+      videoId?: string;
+      _type: "youtube";
+      _key: string;
+    }
+  | ({
+      _key: string;
+    } & Code)
+>;
 
 export type Category = {
   _id: string;
@@ -746,29 +890,41 @@ export type Page = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  blocks?: Array<{
-    _key: string;
-  } & Hero1 | {
-    _key: string;
-  } & Hero2 | {
-    _key: string;
-  } & SectionHeader | {
-    _key: string;
-  } & SplitRow | {
-    _key: string;
-  } & GridRow | {
-    _key: string;
-  } & Carousel1 | {
-    _key: string;
-  } & TimelineRow | {
-    _key: string;
-  } & Cta1 | {
-    _key: string;
-  } & LogoCloud1 | {
-    _key: string;
-  } & FormNewsletter | {
-    _key: string;
-  } & AllPosts>;
+  blocks?: Array<
+    | ({
+        _key: string;
+      } & Hero1)
+    | ({
+        _key: string;
+      } & Hero2)
+    | ({
+        _key: string;
+      } & SectionHeader)
+    | ({
+        _key: string;
+      } & SplitRow)
+    | ({
+        _key: string;
+      } & GridRow)
+    | ({
+        _key: string;
+      } & Carousel1)
+    | ({
+        _key: string;
+      } & TimelineRow)
+    | ({
+        _key: string;
+      } & Cta1)
+    | ({
+        _key: string;
+      } & LogoCloud1)
+    | ({
+        _key: string;
+      } & FormNewsletter)
+    | ({
+        _key: string;
+      } & AllPosts)
+  >;
   meta_title?: string;
   meta_description?: string;
   noindex?: boolean;
@@ -858,7 +1014,49 @@ export type Code = {
   highlightedLines?: Array<number>;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | AllPosts | FormNewsletter | LogoCloud1 | Cta1 | Timelines1 | TimelineRow | Carousel1 | GridRow | GridPost | PricingCard | GridCard | SplitInfo | SplitInfoList | SplitImage | SplitCard | SplitCardsList | SplitContent | SplitRow | SectionHeader | Hero2 | Hero1 | SectionPadding | ButtonVariant | ColorVariant | Link | BlockContent | Category | Post | Author | Page | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug | Code;
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityFileAsset
+  | Geopoint
+  | AllPosts
+  | FormNewsletter
+  | LogoCloud1
+  | Cta1
+  | Timelines1
+  | TimelineRow
+  | Carousel1
+  | GridRow
+  | GridPost
+  | PricingCard
+  | GridCard
+  | SplitInfo
+  | SplitInfoList
+  | SplitImage
+  | SplitCard
+  | SplitCardsList
+  | SplitContent
+  | SplitRow
+  | SectionHeader
+  | Hero2
+  | Hero1
+  | SectionPadding
+  | ButtonVariant
+  | ColorVariant
+  | Link
+  | BlockContent
+  | Category
+  | Post
+  | Author
+  | Page
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | Slug
+  | Code;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: src/app/sitemap.ts
 // Variable: pagesQuery
@@ -882,142 +1080,38 @@ export type PostsQueryResult = Array<{
 // Variable: PAGE_QUERY
 // Query: *[_type == "page" && slug.current == $slug][0]{    blocks[]{        _type == "hero-1" => {    _type,    _key,    tagLine,    title,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        }      }    },    image{      ...,      asset->{        _id,        url,        mimeType,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    links,  },        _type == "hero-2" => {    _type,    _key,    tagLine,    title,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        }      }    },    links,  },        _type == "section-header" => {    _type,    _key,    padding,    colorVariant,    sectionWidth,    stackAlign,    tagLine,    title,    description,    link,  },        _type == "split-row" => {    _type,    _key,    padding,    colorVariant,    noGap,    splitColumns[]{        _type == "split-content" => {    _type,    _key,    sticky,    padding,    colorVariant,    tagLine,    title,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        }      }    },    link,  },        _type == "split-cards-list" => {    _type,    _key,    list[]{      tagLine,      title,      body[]{        ...,        _type == "image" => {          ...,          asset->{            _id,            url,            mimeType,            metadata {              lqip,              dimensions {                width,                height              }            }          }        }      },    },  },        _type == "split-image" => {    _type,    _key,    image{      asset->{        _id,        url,        mimeType,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },  },        _type == "split-info-list" => {    _type,    _key,    list[]{      image{        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        },        alt      },      title,      body[]{        ...,        _type == "image" => {          ...,          asset->{            _id,            url,            mimeType,            metadata {              lqip,              dimensions {                width,                height              }            }          }        }      },      tags[],    },  },    },  },        _type == "grid-row" => {    _type,    _key,    padding,    colorVariant,    gridColumns,    columns[]{        _type == "grid-card" => {    _type,    _key,    title,    excerpt,    image{      ...,      asset->{        _id,        url,        mimeType,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    link,  },        _type == "pricing-card" => {    _type,    _key,    title,    tagLine,    price,    list[],    excerpt,    link,  },        _type == "grid-post" => {    _type,    _key,    post->{      title,      slug,      excerpt,      image{        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        },        alt      },      categories[]->{        _id,        title,      },    },  },    },  },        _type == "carousel-1" => {    _type,    _key,    padding,    colorVariant,    size,    orientation,    indicators,    images[]{      asset->{        _id,        url,        mimeType,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },  },        _type == "timeline-row" => {    _type,    _key,    padding,    colorVariant,    timelines[]{      title,      tagLine,      body[]{        ...,        _type == "image" => {          ...,          asset->{            _id,            url,            mimeType,            metadata {              lqip,              dimensions {                width,                height              }            }          }        }      },    },  },        _type == "cta-1" => {    _type,    _key,    padding,    colorVariant,    sectionWidth,    stackAlign,    tagLine,    title,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        }      }    },    links,  },        _type == "logo-cloud-1" => {    _type,    _key,    padding,    colorVariant,    title,    images[]{      ...,      asset->{        _id,        url,        mimeType,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },  },        _type == "form-newsletter" => {    _type,    _key,    padding,    colorVariant,    stackAlign,    consentText,    buttonText,    successMessage,  },        _type == "all-posts" => {    _type,    _key,    padding,    colorVariant,  },    },    meta_title,    meta_description,    noindex,    ogImage {      asset->{        _id,        url,        metadata {          dimensions {            width,            height          }        }      },    }  }
 export type PAGE_QUERYResult = {
-  blocks: Array<{
-    _type: "all-posts";
-    _key: string;
-    padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
-  } | {
-    _type: "carousel-1";
-    _key: string;
-    padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
-    size: "one" | "three" | "two" | null;
-    orientation: null;
-    indicators: "count" | "dots" | "none" | null;
-    images: Array<{
-      asset: {
-        _id: string;
-        url: string | null;
-        mimeType: string | null;
-        metadata: {
-          lqip: string | null;
-          dimensions: {
-            width: number | null;
-            height: number | null;
-          } | null;
-        } | null;
-      } | null;
-      alt: string | null;
-    }> | null;
-  } | {
-    _type: "cta-1";
-    _key: string;
-    padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
-    sectionWidth: "default" | "narrow" | null;
-    stackAlign: "center" | "left" | null;
-    tagLine: string | null;
-    title: string | null;
-    body: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
+  blocks: Array<
+    | {
+        _type: "all-posts";
         _key: string;
-      }>;
-      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-      listItem?: "bullet" | "number";
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
+        padding: SectionPadding | null;
+        colorVariant:
+          | "accent"
+          | "background"
+          | "card"
+          | "destructive"
+          | "muted"
+          | "primary"
+          | "secondary"
+          | null;
+      }
+    | {
+        _type: "carousel-1";
         _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    } | {
-      _key: string;
-      _type: "code";
-      language?: string;
-      filename?: string;
-      code?: string;
-      highlightedLines?: Array<number>;
-    } | {
-      asset: {
-        _id: string;
-        url: string | null;
-        mimeType: string | null;
-        metadata: {
-          lqip: string | null;
-          dimensions: {
-            width: number | null;
-            height: number | null;
-          } | null;
-        } | null;
-      } | null;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-      _key: string;
-    } | {
-      videoId?: string;
-      _type: "youtube";
-      _key: string;
-    }> | null;
-    links: Array<{
-      _key: string;
-    } & Link> | null;
-  } | {
-    _type: "form-newsletter";
-    _key: string;
-    padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
-    stackAlign: "center" | "left" | null;
-    consentText: string | null;
-    buttonText: string | null;
-    successMessage: string | null;
-  } | {
-    _type: "grid-row";
-    _key: string;
-    padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
-    gridColumns: "grid-cols-2" | "grid-cols-3" | "grid-cols-4" | null;
-    columns: Array<{
-      _type: "grid-card";
-      _key: string;
-      title: string | null;
-      excerpt: string | null;
-      image: {
-        asset: {
-          _id: string;
-          url: string | null;
-          mimeType: string | null;
-          metadata: {
-            lqip: string | null;
-            dimensions: {
-              width: number | null;
-              height: number | null;
-            } | null;
-          } | null;
-        } | null;
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt: string | null;
-        _type: "image";
-      } | null;
-      link: Link | null;
-    } | {
-      _type: "grid-post";
-      _key: string;
-      post: {
-        title: string | null;
-        slug: Slug | null;
-        excerpt: string | null;
-        image: {
+        padding: SectionPadding | null;
+        colorVariant:
+          | "accent"
+          | "background"
+          | "card"
+          | "destructive"
+          | "muted"
+          | "primary"
+          | "secondary"
+          | null;
+        size: "one" | "three" | "two" | null;
+        orientation: null;
+        indicators: "count" | "dots" | "none" | null;
+        images: Array<{
           asset: {
             _id: string;
             url: string | null;
@@ -1031,333 +1125,244 @@ export type PAGE_QUERYResult = {
             } | null;
           } | null;
           alt: string | null;
-        } | null;
-        categories: Array<{
-          _id: string;
-          title: string | null;
         }> | null;
-      } | null;
-    } | {
-      _type: "pricing-card";
-      _key: string;
-      title: string | null;
-      tagLine: string | null;
-      price: {
-        value?: number;
-        period?: string;
-      } | null;
-      list: Array<string> | null;
-      excerpt: string | null;
-      link: Link | null;
-    }> | null;
-  } | {
-    _type: "hero-1";
-    _key: string;
-    tagLine: string | null;
-    title: string | null;
-    body: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
+      }
+    | {
+        _type: "cta-1";
         _key: string;
-      }>;
-      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-      listItem?: "bullet" | "number";
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    } | {
-      _key: string;
-      _type: "code";
-      language?: string;
-      filename?: string;
-      code?: string;
-      highlightedLines?: Array<number>;
-    } | {
-      asset: {
-        _id: string;
-        url: string | null;
-        mimeType: string | null;
-        metadata: {
-          lqip: string | null;
-          dimensions: {
-            width: number | null;
-            height: number | null;
-          } | null;
-        } | null;
-      } | null;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-      _key: string;
-    } | {
-      videoId?: string;
-      _type: "youtube";
-      _key: string;
-    }> | null;
-    image: {
-      asset: {
-        _id: string;
-        url: string | null;
-        mimeType: string | null;
-        metadata: {
-          lqip: string | null;
-          dimensions: {
-            width: number | null;
-            height: number | null;
-          } | null;
-        } | null;
-      } | null;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt: string | null;
-      _type: "image";
-    } | null;
-    links: Array<{
-      _key: string;
-    } & Link> | null;
-  } | {
-    _type: "hero-2";
-    _key: string;
-    tagLine: string | null;
-    title: string | null;
-    body: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-      listItem?: "bullet" | "number";
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    } | {
-      _key: string;
-      _type: "code";
-      language?: string;
-      filename?: string;
-      code?: string;
-      highlightedLines?: Array<number>;
-    } | {
-      asset: {
-        _id: string;
-        url: string | null;
-        mimeType: string | null;
-        metadata: {
-          lqip: string | null;
-          dimensions: {
-            width: number | null;
-            height: number | null;
-          } | null;
-        } | null;
-      } | null;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-      _key: string;
-    } | {
-      videoId?: string;
-      _type: "youtube";
-      _key: string;
-    }> | null;
-    links: Array<{
-      _key: string;
-    } & Link> | null;
-  } | {
-    _type: "logo-cloud-1";
-    _key: string;
-    padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
-    title: string | null;
-    images: Array<{
-      asset: {
-        _id: string;
-        url: string | null;
-        mimeType: string | null;
-        metadata: {
-          lqip: string | null;
-          dimensions: {
-            width: number | null;
-            height: number | null;
-          } | null;
-        } | null;
-      } | null;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt: string | null;
-      _type: "image";
-      _key: string;
-    }> | null;
-  } | {
-    _type: "section-header";
-    _key: string;
-    padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
-    sectionWidth: "default" | "narrow" | null;
-    stackAlign: "center" | "left" | null;
-    tagLine: string | null;
-    title: string | null;
-    description: string | null;
-    link: null;
-  } | {
-    _type: "split-row";
-    _key: string;
-    padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
-    noGap: boolean | null;
-    splitColumns: Array<{
-      _type: "split-cards-list";
-      _key: string;
-      list: Array<{
+        padding: SectionPadding | null;
+        colorVariant:
+          | "accent"
+          | "background"
+          | "card"
+          | "destructive"
+          | "muted"
+          | "primary"
+          | "secondary"
+          | null;
+        sectionWidth: "default" | "narrow" | null;
+        stackAlign: "center" | "left" | null;
         tagLine: string | null;
         title: string | null;
-        body: Array<{
-          children?: Array<{
-            marks?: Array<string>;
-            text?: string;
-            _type: "span";
-            _key: string;
-          }>;
-          style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-          listItem?: "bullet" | "number";
-          markDefs?: Array<{
-            href?: string;
-            _type: "link";
-            _key: string;
-          }>;
-          level?: number;
-          _type: "block";
-          _key: string;
-        } | {
-          _key: string;
-          _type: "code";
-          language?: string;
-          filename?: string;
-          code?: string;
-          highlightedLines?: Array<number>;
-        } | {
-          asset: {
-            _id: string;
-            url: string | null;
-            mimeType: string | null;
-            metadata: {
-              lqip: string | null;
-              dimensions: {
-                width: number | null;
-                height: number | null;
+        body: Array<
+          | {
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                href?: string;
+                _type: "link";
+                _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "code";
+              language?: string;
+              filename?: string;
+              code?: string;
+              highlightedLines?: Array<number>;
+            }
+          | {
+              asset: {
+                _id: string;
+                url: string | null;
+                mimeType: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number | null;
+                    height: number | null;
+                  } | null;
+                } | null;
               } | null;
-            } | null;
-          } | null;
-          media?: unknown;
-          hotspot?: SanityImageHotspot;
-          crop?: SanityImageCrop;
-          alt?: string;
-          _type: "image";
-          _key: string;
-        } | {
-          videoId?: string;
-          _type: "youtube";
-          _key: string;
-        }> | null;
-      }> | null;
-    } | {
-      _type: "split-content";
-      _key: string;
-      sticky: boolean | null;
-      padding: SectionPadding | null;
-      colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
-      tagLine: string | null;
-      title: string | null;
-      body: Array<{
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+              _key: string;
+            }
+          | {
+              videoId?: string;
+              _type: "youtube";
+              _key: string;
+            }
+        > | null;
+        links: Array<
+          {
+            _key: string;
+          } & Link
+        > | null;
+      }
+    | {
+        _type: "form-newsletter";
         _key: string;
-      } | {
+        padding: SectionPadding | null;
+        colorVariant:
+          | "accent"
+          | "background"
+          | "card"
+          | "destructive"
+          | "muted"
+          | "primary"
+          | "secondary"
+          | null;
+        stackAlign: "center" | "left" | null;
+        consentText: string | null;
+        buttonText: string | null;
+        successMessage: string | null;
+      }
+    | {
+        _type: "grid-row";
         _key: string;
-        _type: "code";
-        language?: string;
-        filename?: string;
-        code?: string;
-        highlightedLines?: Array<number>;
-      } | {
-        asset: {
-          _id: string;
-          url: string | null;
-          mimeType: string | null;
-          metadata: {
-            lqip: string | null;
-            dimensions: {
-              width: number | null;
-              height: number | null;
-            } | null;
-          } | null;
-        } | null;
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        _type: "image";
+        padding: SectionPadding | null;
+        colorVariant:
+          | "accent"
+          | "background"
+          | "card"
+          | "destructive"
+          | "muted"
+          | "primary"
+          | "secondary"
+          | null;
+        gridColumns: "grid-cols-2" | "grid-cols-3" | "grid-cols-4" | null;
+        columns: Array<
+          | {
+              _type: "grid-card";
+              _key: string;
+              title: string | null;
+              excerpt: string | null;
+              image: {
+                asset: {
+                  _id: string;
+                  url: string | null;
+                  mimeType: string | null;
+                  metadata: {
+                    lqip: string | null;
+                    dimensions: {
+                      width: number | null;
+                      height: number | null;
+                    } | null;
+                  } | null;
+                } | null;
+                media?: unknown;
+                hotspot?: SanityImageHotspot;
+                crop?: SanityImageCrop;
+                alt: string | null;
+                _type: "image";
+              } | null;
+              link: Link | null;
+            }
+          | {
+              _type: "grid-post";
+              _key: string;
+              post: {
+                title: string | null;
+                slug: Slug | null;
+                excerpt: string | null;
+                image: {
+                  asset: {
+                    _id: string;
+                    url: string | null;
+                    mimeType: string | null;
+                    metadata: {
+                      lqip: string | null;
+                      dimensions: {
+                        width: number | null;
+                        height: number | null;
+                      } | null;
+                    } | null;
+                  } | null;
+                  alt: string | null;
+                } | null;
+                categories: Array<{
+                  _id: string;
+                  title: string | null;
+                }> | null;
+              } | null;
+            }
+          | {
+              _type: "pricing-card";
+              _key: string;
+              title: string | null;
+              tagLine: string | null;
+              price: {
+                value?: number;
+                period?: string;
+              } | null;
+              list: Array<string> | null;
+              excerpt: string | null;
+              link: Link | null;
+            }
+        > | null;
+      }
+    | {
+        _type: "hero-1";
         _key: string;
-      } | {
-        videoId?: string;
-        _type: "youtube";
-        _key: string;
-      }> | null;
-      link: Link | null;
-    } | {
-      _type: "split-image";
-      _key: string;
-      image: {
-        asset: {
-          _id: string;
-          url: string | null;
-          mimeType: string | null;
-          metadata: {
-            lqip: string | null;
-            dimensions: {
-              width: number | null;
-              height: number | null;
-            } | null;
-          } | null;
-        } | null;
-        alt: string | null;
-      } | null;
-    } | {
-      _type: "split-info-list";
-      _key: string;
-      list: Array<{
+        tagLine: string | null;
+        title: string | null;
+        body: Array<
+          | {
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                href?: string;
+                _type: "link";
+                _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "code";
+              language?: string;
+              filename?: string;
+              code?: string;
+              highlightedLines?: Array<number>;
+            }
+          | {
+              asset: {
+                _id: string;
+                url: string | null;
+                mimeType: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number | null;
+                    height: number | null;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+              _key: string;
+            }
+          | {
+              videoId?: string;
+              _type: "youtube";
+              _key: string;
+            }
+        > | null;
         image: {
           asset: {
             _id: string;
@@ -1377,32 +1382,91 @@ export type PAGE_QUERYResult = {
           alt: string | null;
           _type: "image";
         } | null;
+        links: Array<
+          {
+            _key: string;
+          } & Link
+        > | null;
+      }
+    | {
+        _type: "hero-2";
+        _key: string;
+        tagLine: string | null;
         title: string | null;
-        body: Array<{
-          children?: Array<{
-            marks?: Array<string>;
-            text?: string;
-            _type: "span";
+        body: Array<
+          | {
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                href?: string;
+                _type: "link";
+                _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "code";
+              language?: string;
+              filename?: string;
+              code?: string;
+              highlightedLines?: Array<number>;
+            }
+          | {
+              asset: {
+                _id: string;
+                url: string | null;
+                mimeType: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number | null;
+                    height: number | null;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+              _key: string;
+            }
+          | {
+              videoId?: string;
+              _type: "youtube";
+              _key: string;
+            }
+        > | null;
+        links: Array<
+          {
             _key: string;
-          }>;
-          style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-          listItem?: "bullet" | "number";
-          markDefs?: Array<{
-            href?: string;
-            _type: "link";
-            _key: string;
-          }>;
-          level?: number;
-          _type: "block";
-          _key: string;
-        } | {
-          _key: string;
-          _type: "code";
-          language?: string;
-          filename?: string;
-          code?: string;
-          highlightedLines?: Array<number>;
-        } | {
+          } & Link
+        > | null;
+      }
+    | {
+        _type: "logo-cloud-1";
+        _key: string;
+        padding: SectionPadding | null;
+        colorVariant:
+          | "accent"
+          | "background"
+          | "card"
+          | "destructive"
+          | "muted"
+          | "primary"
+          | "secondary"
+          | null;
+        title: string | null;
+        images: Array<{
           asset: {
             _id: string;
             url: string | null;
@@ -1418,75 +1482,363 @@ export type PAGE_QUERYResult = {
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
-          alt?: string;
+          alt: string | null;
           _type: "image";
           _key: string;
-        } | {
-          videoId?: string;
-          _type: "youtube";
-          _key: string;
         }> | null;
-        tags: Array<string> | null;
-      }> | null;
-    }> | null;
-  } | {
-    _type: "timeline-row";
-    _key: string;
-    padding: SectionPadding | null;
-    colorVariant: "accent" | "background" | "card" | "destructive" | "muted" | "primary" | "secondary" | null;
-    timelines: Array<{
-      title: string | null;
-      tagLine: string | null;
-      body: Array<{
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
+      }
+    | {
+        _type: "section-header";
         _key: string;
-      } | {
+        padding: SectionPadding | null;
+        colorVariant:
+          | "accent"
+          | "background"
+          | "card"
+          | "destructive"
+          | "muted"
+          | "primary"
+          | "secondary"
+          | null;
+        sectionWidth: "default" | "narrow" | null;
+        stackAlign: "center" | "left" | null;
+        tagLine: string | null;
+        title: string | null;
+        description: string | null;
+        link: null;
+      }
+    | {
+        _type: "split-row";
         _key: string;
-        _type: "code";
-        language?: string;
-        filename?: string;
-        code?: string;
-        highlightedLines?: Array<number>;
-      } | {
-        asset: {
-          _id: string;
-          url: string | null;
-          mimeType: string | null;
-          metadata: {
-            lqip: string | null;
-            dimensions: {
-              width: number | null;
-              height: number | null;
-            } | null;
-          } | null;
-        } | null;
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        _type: "image";
+        padding: SectionPadding | null;
+        colorVariant:
+          | "accent"
+          | "background"
+          | "card"
+          | "destructive"
+          | "muted"
+          | "primary"
+          | "secondary"
+          | null;
+        noGap: boolean | null;
+        splitColumns: Array<
+          | {
+              _type: "split-cards-list";
+              _key: string;
+              list: Array<{
+                tagLine: string | null;
+                title: string | null;
+                body: Array<
+                  | {
+                      children?: Array<{
+                        marks?: Array<string>;
+                        text?: string;
+                        _type: "span";
+                        _key: string;
+                      }>;
+                      style?:
+                        | "blockquote"
+                        | "h1"
+                        | "h2"
+                        | "h3"
+                        | "h4"
+                        | "normal";
+                      listItem?: "bullet" | "number";
+                      markDefs?: Array<{
+                        href?: string;
+                        _type: "link";
+                        _key: string;
+                      }>;
+                      level?: number;
+                      _type: "block";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "code";
+                      language?: string;
+                      filename?: string;
+                      code?: string;
+                      highlightedLines?: Array<number>;
+                    }
+                  | {
+                      asset: {
+                        _id: string;
+                        url: string | null;
+                        mimeType: string | null;
+                        metadata: {
+                          lqip: string | null;
+                          dimensions: {
+                            width: number | null;
+                            height: number | null;
+                          } | null;
+                        } | null;
+                      } | null;
+                      media?: unknown;
+                      hotspot?: SanityImageHotspot;
+                      crop?: SanityImageCrop;
+                      alt?: string;
+                      _type: "image";
+                      _key: string;
+                    }
+                  | {
+                      videoId?: string;
+                      _type: "youtube";
+                      _key: string;
+                    }
+                > | null;
+              }> | null;
+            }
+          | {
+              _type: "split-content";
+              _key: string;
+              sticky: boolean | null;
+              padding: SectionPadding | null;
+              colorVariant:
+                | "accent"
+                | "background"
+                | "card"
+                | "destructive"
+                | "muted"
+                | "primary"
+                | "secondary"
+                | null;
+              tagLine: string | null;
+              title: string | null;
+              body: Array<
+                | {
+                    children?: Array<{
+                      marks?: Array<string>;
+                      text?: string;
+                      _type: "span";
+                      _key: string;
+                    }>;
+                    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+                    listItem?: "bullet" | "number";
+                    markDefs?: Array<{
+                      href?: string;
+                      _type: "link";
+                      _key: string;
+                    }>;
+                    level?: number;
+                    _type: "block";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "code";
+                    language?: string;
+                    filename?: string;
+                    code?: string;
+                    highlightedLines?: Array<number>;
+                  }
+                | {
+                    asset: {
+                      _id: string;
+                      url: string | null;
+                      mimeType: string | null;
+                      metadata: {
+                        lqip: string | null;
+                        dimensions: {
+                          width: number | null;
+                          height: number | null;
+                        } | null;
+                      } | null;
+                    } | null;
+                    media?: unknown;
+                    hotspot?: SanityImageHotspot;
+                    crop?: SanityImageCrop;
+                    alt?: string;
+                    _type: "image";
+                    _key: string;
+                  }
+                | {
+                    videoId?: string;
+                    _type: "youtube";
+                    _key: string;
+                  }
+              > | null;
+              link: Link | null;
+            }
+          | {
+              _type: "split-image";
+              _key: string;
+              image: {
+                asset: {
+                  _id: string;
+                  url: string | null;
+                  mimeType: string | null;
+                  metadata: {
+                    lqip: string | null;
+                    dimensions: {
+                      width: number | null;
+                      height: number | null;
+                    } | null;
+                  } | null;
+                } | null;
+                alt: string | null;
+              } | null;
+            }
+          | {
+              _type: "split-info-list";
+              _key: string;
+              list: Array<{
+                image: {
+                  asset: {
+                    _id: string;
+                    url: string | null;
+                    mimeType: string | null;
+                    metadata: {
+                      lqip: string | null;
+                      dimensions: {
+                        width: number | null;
+                        height: number | null;
+                      } | null;
+                    } | null;
+                  } | null;
+                  media?: unknown;
+                  hotspot?: SanityImageHotspot;
+                  crop?: SanityImageCrop;
+                  alt: string | null;
+                  _type: "image";
+                } | null;
+                title: string | null;
+                body: Array<
+                  | {
+                      children?: Array<{
+                        marks?: Array<string>;
+                        text?: string;
+                        _type: "span";
+                        _key: string;
+                      }>;
+                      style?:
+                        | "blockquote"
+                        | "h1"
+                        | "h2"
+                        | "h3"
+                        | "h4"
+                        | "normal";
+                      listItem?: "bullet" | "number";
+                      markDefs?: Array<{
+                        href?: string;
+                        _type: "link";
+                        _key: string;
+                      }>;
+                      level?: number;
+                      _type: "block";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "code";
+                      language?: string;
+                      filename?: string;
+                      code?: string;
+                      highlightedLines?: Array<number>;
+                    }
+                  | {
+                      asset: {
+                        _id: string;
+                        url: string | null;
+                        mimeType: string | null;
+                        metadata: {
+                          lqip: string | null;
+                          dimensions: {
+                            width: number | null;
+                            height: number | null;
+                          } | null;
+                        } | null;
+                      } | null;
+                      media?: unknown;
+                      hotspot?: SanityImageHotspot;
+                      crop?: SanityImageCrop;
+                      alt?: string;
+                      _type: "image";
+                      _key: string;
+                    }
+                  | {
+                      videoId?: string;
+                      _type: "youtube";
+                      _key: string;
+                    }
+                > | null;
+                tags: Array<string> | null;
+              }> | null;
+            }
+        > | null;
+      }
+    | {
+        _type: "timeline-row";
         _key: string;
-      } | {
-        videoId?: string;
-        _type: "youtube";
-        _key: string;
-      }> | null;
-    }> | null;
-  }> | null;
+        padding: SectionPadding | null;
+        colorVariant:
+          | "accent"
+          | "background"
+          | "card"
+          | "destructive"
+          | "muted"
+          | "primary"
+          | "secondary"
+          | null;
+        timelines: Array<{
+          title: string | null;
+          tagLine: string | null;
+          body: Array<
+            | {
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+                listItem?: "bullet" | "number";
+                markDefs?: Array<{
+                  href?: string;
+                  _type: "link";
+                  _key: string;
+                }>;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }
+            | {
+                _key: string;
+                _type: "code";
+                language?: string;
+                filename?: string;
+                code?: string;
+                highlightedLines?: Array<number>;
+              }
+            | {
+                asset: {
+                  _id: string;
+                  url: string | null;
+                  mimeType: string | null;
+                  metadata: {
+                    lqip: string | null;
+                    dimensions: {
+                      width: number | null;
+                      height: number | null;
+                    } | null;
+                  } | null;
+                } | null;
+                media?: unknown;
+                hotspot?: SanityImageHotspot;
+                crop?: SanityImageCrop;
+                alt?: string;
+                _type: "image";
+                _key: string;
+              }
+            | {
+                videoId?: string;
+                _type: "youtube";
+                _key: string;
+              }
+          > | null;
+        }> | null;
+      }
+  > | null;
   meta_title: string | null;
   meta_description: string | null;
   noindex: boolean | null;
@@ -1534,54 +1886,59 @@ export type POST_QUERYResult = {
     alt: string | null;
     _type: "image";
   } | null;
-  body: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    _key: string;
-    _type: "code";
-    language?: string;
-    filename?: string;
-    code?: string;
-    highlightedLines?: Array<number>;
-  } | {
-    asset: {
-      _id: string;
-      url: string | null;
-      mimeType: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
+  body: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        _key: string;
+        _type: "code";
+        language?: string;
+        filename?: string;
+        code?: string;
+        highlightedLines?: Array<number>;
+      }
+    | {
+        asset: {
+          _id: string;
+          url: string | null;
+          mimeType: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
         } | null;
-      } | null;
-    } | null;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-  }> | null;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+    | {
+        videoId?: string;
+        _type: "youtube";
+        _key: string;
+      }
+  > | null;
   author: {
     name: string | null;
     image: {
@@ -1656,10 +2013,10 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "\n    *[_type == 'page'] | order(slug.current) {\n      'url': $baseUrl + select(slug.current == 'index' => '', '/' + slug.current),\n      'lastModified': _updatedAt,\n      'changeFrequency': 'daily',\n      'priority': select(\n        slug.current == 'index' => 1,\n        0.5\n      )\n    }\n  ": PagesQueryResult;
     "\n    *[_type == 'post'] | order(_updatedAt desc) {\n      'url': $baseUrl + '/blog/' + slug.current,\n      'lastModified': _updatedAt,\n      'changeFrequency': 'weekly',\n      'priority': 0.7\n    }\n  ": PostsQueryResult;
-    "\n  *[_type == \"page\" && slug.current == $slug][0]{\n    blocks[]{\n      \n  _type == \"hero-1\" => {\n    _type,\n    _key,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == \"image\" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    image{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    links,\n  }\n,\n      \n  _type == \"hero-2\" => {\n    _type,\n    _key,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == \"image\" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == \"section-header\" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    description,\n    link,\n  }\n,\n      \n  _type == \"split-row\" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    noGap,\n    splitColumns[]{\n      \n  _type == \"split-content\" => {\n    _type,\n    _key,\n    sticky,\n    padding,\n    colorVariant,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == \"image\" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    link,\n  }\n,\n      \n  _type == \"split-cards-list\" => {\n    _type,\n    _key,\n    list[]{\n      tagLine,\n      title,\n      body[]{\n        ...,\n        _type == \"image\" => {\n          ...,\n          asset->{\n            _id,\n            url,\n            mimeType,\n            metadata {\n              lqip,\n              dimensions {\n                width,\n                height\n              }\n            }\n          }\n        }\n      },\n    },\n  }\n,\n      \n  _type == \"split-image\" => {\n    _type,\n    _key,\n    image{\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n  }\n,\n      \n  _type == \"split-info-list\" => {\n    _type,\n    _key,\n    list[]{\n      image{\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        },\n        alt\n      },\n      title,\n      body[]{\n        ...,\n        _type == \"image\" => {\n          ...,\n          asset->{\n            _id,\n            url,\n            mimeType,\n            metadata {\n              lqip,\n              dimensions {\n                width,\n                height\n              }\n            }\n          }\n        }\n      },\n      tags[],\n    },\n  }\n,\n    },\n  }\n,\n      \n  _type == \"grid-row\" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    gridColumns,\n    columns[]{\n      \n  _type == \"grid-card\" => {\n    _type,\n    _key,\n    title,\n    excerpt,\n    image{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    link,\n  }\n,\n      \n  _type == \"pricing-card\" => {\n    _type,\n    _key,\n    title,\n    tagLine,\n    price,\n    list[],\n    excerpt,\n    link,\n  }\n,\n      \n  _type == \"grid-post\" => {\n    _type,\n    _key,\n    post->{\n      title,\n      slug,\n      excerpt,\n      image{\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        },\n        alt\n      },\n      categories[]->{\n        _id,\n        title,\n      },\n    },\n  }\n,\n    },\n  }\n,\n      \n  _type == \"carousel-1\" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    size,\n    orientation,\n    indicators,\n    images[]{\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n  }\n,\n      \n  _type == \"timeline-row\" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    timelines[]{\n      title,\n      tagLine,\n      body[]{\n        ...,\n        _type == \"image\" => {\n          ...,\n          asset->{\n            _id,\n            url,\n            mimeType,\n            metadata {\n              lqip,\n              dimensions {\n                width,\n                height\n              }\n            }\n          }\n        }\n      },\n    },\n  }\n,\n      \n  _type == \"cta-1\" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == \"image\" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == \"logo-cloud-1\" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    title,\n    images[]{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n  }\n,\n      \n  _type == \"form-newsletter\" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    stackAlign,\n    consentText,\n    buttonText,\n    successMessage,\n  }\n,\n      \n  _type == \"all-posts\" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n  }\n,\n    },\n    meta_title,\n    meta_description,\n    noindex,\n    ogImage {\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n  }\n": PAGE_QUERYResult;
-    "*[_type == \"page\" && defined(slug)]{slug}": PAGES_SLUGS_QUERYResult;
-    "*[_type == \"post\" && slug.current == $slug][0]{\n    title,\n    slug,\n    image{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    body[]{\n      ...,\n      _type == \"image\" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    author->{\n      name,\n      image {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        },\n        alt\n      }\n    },\n    _createdAt,\n    _updatedAt,\n    meta_title,\n    meta_description,\n    noindex,\n    ogImage {\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n}": POST_QUERYResult;
-    "*[_type == \"post\" && defined(slug)] | order(_createdAt desc){\n    title,\n    slug,\n    excerpt,\n    image{\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n}": POSTS_QUERYResult;
-    "*[_type == \"post\" && defined(slug)]{slug}": POSTS_SLUGS_QUERYResult;
+    '\n  *[_type == "page" && slug.current == $slug][0]{\n    blocks[]{\n      \n  _type == "hero-1" => {\n    _type,\n    _key,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    image{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    links,\n  }\n,\n      \n  _type == "hero-2" => {\n    _type,\n    _key,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == "section-header" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    description,\n    link,\n  }\n,\n      \n  _type == "split-row" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    noGap,\n    splitColumns[]{\n      \n  _type == "split-content" => {\n    _type,\n    _key,\n    sticky,\n    padding,\n    colorVariant,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    link,\n  }\n,\n      \n  _type == "split-cards-list" => {\n    _type,\n    _key,\n    list[]{\n      tagLine,\n      title,\n      body[]{\n        ...,\n        _type == "image" => {\n          ...,\n          asset->{\n            _id,\n            url,\n            mimeType,\n            metadata {\n              lqip,\n              dimensions {\n                width,\n                height\n              }\n            }\n          }\n        }\n      },\n    },\n  }\n,\n      \n  _type == "split-image" => {\n    _type,\n    _key,\n    image{\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n  }\n,\n      \n  _type == "split-info-list" => {\n    _type,\n    _key,\n    list[]{\n      image{\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        },\n        alt\n      },\n      title,\n      body[]{\n        ...,\n        _type == "image" => {\n          ...,\n          asset->{\n            _id,\n            url,\n            mimeType,\n            metadata {\n              lqip,\n              dimensions {\n                width,\n                height\n              }\n            }\n          }\n        }\n      },\n      tags[],\n    },\n  }\n,\n    },\n  }\n,\n      \n  _type == "grid-row" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    gridColumns,\n    columns[]{\n      \n  _type == "grid-card" => {\n    _type,\n    _key,\n    title,\n    excerpt,\n    image{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    link,\n  }\n,\n      \n  _type == "pricing-card" => {\n    _type,\n    _key,\n    title,\n    tagLine,\n    price,\n    list[],\n    excerpt,\n    link,\n  }\n,\n      \n  _type == "grid-post" => {\n    _type,\n    _key,\n    post->{\n      title,\n      slug,\n      excerpt,\n      image{\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        },\n        alt\n      },\n      categories[]->{\n        _id,\n        title,\n      },\n    },\n  }\n,\n    },\n  }\n,\n      \n  _type == "carousel-1" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    size,\n    orientation,\n    indicators,\n    images[]{\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n  }\n,\n      \n  _type == "timeline-row" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    timelines[]{\n      title,\n      tagLine,\n      body[]{\n        ...,\n        _type == "image" => {\n          ...,\n          asset->{\n            _id,\n            url,\n            mimeType,\n            metadata {\n              lqip,\n              dimensions {\n                width,\n                height\n              }\n            }\n          }\n        }\n      },\n    },\n  }\n,\n      \n  _type == "cta-1" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == "logo-cloud-1" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    title,\n    images[]{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n  }\n,\n      \n  _type == "form-newsletter" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    stackAlign,\n    consentText,\n    buttonText,\n    successMessage,\n  }\n,\n      \n  _type == "all-posts" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n  }\n,\n    },\n    meta_title,\n    meta_description,\n    noindex,\n    ogImage {\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n  }\n': PAGE_QUERYResult;
+    '*[_type == "page" && defined(slug)]{slug}': PAGES_SLUGS_QUERYResult;
+    '*[_type == "post" && slug.current == $slug][0]{\n    title,\n    slug,\n    image{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    author->{\n      name,\n      image {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        },\n        alt\n      }\n    },\n    _createdAt,\n    _updatedAt,\n    meta_title,\n    meta_description,\n    noindex,\n    ogImage {\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n}': POST_QUERYResult;
+    '*[_type == "post" && defined(slug)] | order(_createdAt desc){\n    title,\n    slug,\n    excerpt,\n    image{\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n}': POSTS_QUERYResult;
+    '*[_type == "post" && defined(slug)]{slug}': POSTS_SLUGS_QUERYResult;
   }
 }

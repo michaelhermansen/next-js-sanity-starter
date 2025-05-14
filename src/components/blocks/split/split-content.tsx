@@ -32,14 +32,14 @@ export default function SplitContent({
       className={cn(
         !sticky ? "flex flex-col justify-center" : undefined,
         padding?.top ? "pt-16 xl:pt-20" : undefined,
-        padding?.bottom ? "pb-16 xl:pb-20" : undefined
+        padding?.bottom ? "pb-16 xl:pb-20" : undefined,
       )}
     >
       <div
         className={cn(
           "flex flex-col items-start",
           sticky ? "lg:sticky lg:top-56" : undefined,
-          noGap ? "px-10" : undefined
+          noGap ? "px-10" : undefined,
         )}
       >
         {tagLine && <TagLine title={tagLine} element="h2" />}
@@ -49,7 +49,7 @@ export default function SplitContent({
             {
               className: cn("my-4 font-semibold leading-[1.2]"),
             },
-            title
+            title,
           )}
         {body && <PortableTextRenderer value={body} />}
         {link?.href && (

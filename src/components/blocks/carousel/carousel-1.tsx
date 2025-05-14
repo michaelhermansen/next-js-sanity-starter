@@ -65,7 +65,7 @@ export default function Carousel1({
                     className={cn(
                       "relative mx-auto overflow-hidden rounded-2xl",
                       IMAGE_SIZES[stegaSize],
-                      stegaSize === "one" ? "max-w-[35rem]" : undefined
+                      stegaSize === "one" ? "max-w-[35rem]" : undefined,
                     )}
                   >
                     <Image
@@ -94,7 +94,7 @@ export default function Carousel1({
             className="-right-3 md:-right-8 xl:-right-12"
           />
           {stegaIndicators !== "none" && (
-            <div className="w-full flex justify-center">
+            <div className="flex w-full justify-center">
               {stegaIndicators === "dots" && <CarouselDots />}
               {stegaIndicators === "count" && <CarouselCounter />}
             </div>

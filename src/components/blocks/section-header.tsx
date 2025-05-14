@@ -26,19 +26,19 @@ export default function SectionHeader({
     <SectionContainer color={color} padding={padding}>
       <div
         className={cn(
-          align === "center" ? "max-w-[48rem] text-center mx-auto" : undefined,
-          isNarrow ? "max-w-[48rem] mx-auto" : undefined
+          align === "center" ? "mx-auto max-w-[48rem] text-center" : undefined,
+          isNarrow ? "mx-auto max-w-[48rem]" : undefined,
         )}
       >
         <div
           className={cn(color === "primary" ? "text-background" : undefined)}
         >
           {tagLine && (
-            <h1 className="leading-[0] mb-4">
+            <h1 className="mb-4 leading-[0]">
               <span className="text-base font-semibold">{tagLine}</span>
             </h1>
           )}
-          <h2 className="text-3xl md:text-5xl mb-4">{title}</h2>
+          <h2 className="mb-4 text-3xl md:text-5xl">{title}</h2>
         </div>
         <p>{description}</p>
       </div>

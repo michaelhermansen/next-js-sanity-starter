@@ -27,11 +27,11 @@ export default function LogoCloud1({
       className="overflow-hidden"
     >
       {title && (
-        <h2 className="text-lg font-medium tracking-tighter text-center mb-4 animate-fade-up [animation-delay:100ms] opacity-0">
+        <h2 className="animate-fade-up mb-4 text-center text-lg font-medium tracking-tighter opacity-0 [animation-delay:100ms]">
           {title}
         </h2>
       )}
-      <div className="flex relative overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-10 before:bg-linear-to-r before:from-background before:to-transparent before:content-[''] after:absolute after:right-0 after:top-0 after:h-full after:w-10 after:bg-linear-to-l after:from-background after:to-transparent after:content-['']">
+      <div className="before:from-background after:from-background relative flex overflow-hidden before:absolute before:top-0 before:left-0 before:z-10 before:h-full before:w-10 before:bg-linear-to-r before:to-transparent before:content-[''] after:absolute after:top-0 after:right-0 after:h-full after:w-10 after:bg-linear-to-l after:to-transparent after:content-['']">
         <motion.div
           transition={{
             duration: 20,
@@ -48,7 +48,7 @@ export default function LogoCloud1({
               {images?.map((image, index) => (
                 <div
                   key={`${image.asset?._id}-${arrayIndex}-${index}`}
-                  className="shrink-0 w-24 h-24 flex items-center justify-center"
+                  className="flex h-24 w-24 shrink-0 items-center justify-center"
                 >
                   <Image
                     src={urlFor(image).url()}

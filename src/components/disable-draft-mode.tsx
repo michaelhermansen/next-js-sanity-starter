@@ -13,7 +13,7 @@ export function DisableDraftMode() {
 
   return (
     <Button asChild>
-      <a href="/api/draft-mode/disable" className="fixed bottom-4 right-4">
+      <a href="/api/draft-mode/disable" className="fixed right-4 bottom-4">
         Disable Draft Mode
       </a>
     </Button>

@@ -28,26 +28,26 @@ export default function Footer() {
     <footer>
       <div className="dark:bg-background pb-5 xl:pb-5 dark:text-gray-300">
         <Link
-          className="block w-fit font-semibold mx-auto"
+          className="mx-auto block w-fit font-semibold"
           href="/"
           aria-label="Home page"
         >
           {config.siteName}
         </Link>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-7 text-primary">
+        <div className="text-primary mt-8 flex flex-wrap items-center justify-center gap-7">
           {navItems.map((navItem) => (
             <Link
               key={navItem.label}
               href={navItem.href}
               target={navItem.target ? "_blank" : undefined}
               rel={navItem.target ? "noopener noreferrer" : undefined}
-              className="transition-colors hover:text-foreground/80 text-foreground/60 text-sm"
+              className="hover:text-foreground/80 text-foreground/60 transition-colors"
             >
               {navItem.label}
             </Link>
           ))}
         </div>
-        <div className="mt-8 flex flex-col lg:flex-row gap-6 justify-center text-center lg:mt-5 text-xs border-t pt-8">
+        <div className="mt-8 flex flex-col justify-center gap-6 border-t pt-8 text-center text-xs lg:mt-5 lg:flex-row">
           <p className="text-foreground/60">
             &copy; {getCurrentYear()} Built by{" "}
             <Link href="https://x.com/serge_0v" target="_blank" rel="noopener">

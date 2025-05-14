@@ -16,7 +16,7 @@ export const contentType = "image/png";
 export async function GET(req: NextRequest) {
   // Font loading, process.cwd() is Next.js project directory
   const interSemiBold = await readFile(
-    join(process.cwd(), "src/assets/Inter-SemiBold.ttf")
+    join(process.cwd(), "src/assets/Inter-SemiBold.ttf"),
   );
 
   const params = req.nextUrl.searchParams;
@@ -48,6 +48,6 @@ export async function GET(req: NextRequest) {
           weight: 400,
         },
       ],
-    }
+    },
   );
 }

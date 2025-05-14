@@ -37,7 +37,7 @@ export default function Blocks({ blocks }: { blocks: Block[] }) {
         if (!Component) {
           // Fallback for development/debugging of new component types
           console.warn(
-            `No component implemented for block type: ${block._type}`
+            `No component implemented for block type: ${block._type}`,
           );
           return <div data-type={block._type} key={block._key} />;
         }
