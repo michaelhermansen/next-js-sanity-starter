@@ -1,6 +1,6 @@
 import DesktopNav from "@/components/header/desktop-nav";
 import MobileNav from "@/components/header/mobile-nav";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { ThemeToggle } from "@/features/theme/theme-toggle";
 import { config } from "@/lib/config";
 import Link from "next/link";
 

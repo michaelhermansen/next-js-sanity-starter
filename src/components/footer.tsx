@@ -25,38 +25,8 @@ export default function Footer() {
   };
 
   return (
-    <footer>
-      <div className="dark:bg-background pb-5 xl:pb-5 dark:text-gray-300">
-        <Link
-          className="mx-auto block w-fit font-semibold"
-          href="/"
-          aria-label="Home page"
-        >
-          {config.siteName}
-        </Link>
-        <div className="text-primary mt-8 flex flex-wrap items-center justify-center gap-7">
-          {navItems.map((navItem) => (
-            <Link
-              key={navItem.label}
-              href={navItem.href}
-              target={navItem.target ? "_blank" : undefined}
-              rel={navItem.target ? "noopener noreferrer" : undefined}
-              className="hover:text-foreground/80 text-foreground/60 transition-colors"
-            >
-              {navItem.label}
-            </Link>
-          ))}
-        </div>
-        <div className="mt-8 flex flex-col justify-center gap-6 border-t pt-8 text-center text-xs lg:mt-5 lg:flex-row">
-          <p className="text-foreground/60">
-            &copy; {getCurrentYear()} Built by{" "}
-            <Link href="https://x.com/serge_0v" target="_blank" rel="noopener">
-              @serge_0v
-            </Link>
-            .
-          </p>
-        </div>
-      </div>
+    <footer className="border-t">
+      <div className="container py-8">Footer</div>
     </footer>
   );
 }

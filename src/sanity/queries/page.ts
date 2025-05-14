@@ -4,11 +4,8 @@ import { hero2Query } from "./hero/hero-2";
 import { sectionHeaderQuery } from "./section-header";
 import { splitRowQuery } from "./split/split-row";
 import { gridRowQuery } from "./grid/grid-row";
-import { carousel1Query } from "./carousel/carousel-1";
 import { timelineQuery } from "./timeline";
 import { cta1Query } from "./cta/cta-1";
-import { logoCloud1Query } from "./logo-cloud/logo-cloud-1";
-import { formNewsletterQuery } from "./forms/newsletter";
 import { allPostsQuery } from "./all-posts";
 
 export const PAGE_QUERY = groq`
@@ -19,11 +16,8 @@ export const PAGE_QUERY = groq`
       ${sectionHeaderQuery},
       ${splitRowQuery},
       ${gridRowQuery},
-      ${carousel1Query},
       ${timelineQuery},
       ${cta1Query},
-      ${logoCloud1Query},
-      ${formNewsletterQuery},
       ${allPostsQuery},
     },
     meta_title,

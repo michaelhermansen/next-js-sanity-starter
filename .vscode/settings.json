@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["lqip", "radash"]
+  "cSpell.words": ["lqip", "radash"],
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true
 }

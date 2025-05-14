@@ -3,11 +3,8 @@ import Hero2 from "@/components/blocks/hero/hero-2";
 import SectionHeader from "@/components/blocks/section-header";
 import SplitRow from "@/components/blocks/split/split-row";
 import GridRow from "@/components/blocks/grid/grid-row";
-import Carousel1 from "@/components/blocks/carousel/carousel-1";
 import TimelineRow from "@/components/blocks/timeline/timeline-row";
 import Cta1 from "@/components/blocks/cta/cta-1";
-import LogoCloud1 from "@/components/blocks/logo-cloud/logo-cloud-1";
-import FormNewsletter from "@/components/blocks/forms/newsletter";
 import AllPosts from "@/components/blocks/all-posts";
 import { PAGE_QUERYResult } from "../../sanity/sanity.types";
 
@@ -21,11 +18,8 @@ const componentMap: {
   "section-header": SectionHeader,
   "split-row": SplitRow,
   "grid-row": GridRow,
-  "carousel-1": Carousel1,
   "timeline-row": TimelineRow,
   "cta-1": Cta1,
-  "logo-cloud-1": LogoCloud1,
-  "form-newsletter": FormNewsletter,
   "all-posts": AllPosts,
 };
 

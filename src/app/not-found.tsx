@@ -1,9 +1,8 @@
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-
 import type { Metadata } from "next";
+import MainLayout from "./(main)/layout";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Page not found",
@@ -11,21 +10,23 @@ export const metadata: Metadata = {
 
 export default function NotFoundPage() {
   return (
-    <>
-      <Header />
-      <div className="relative z-20 flex min-h-[80vh] items-center justify-center">
-        <div className="relative mx-auto px-8 py-[4rem] sm:max-w-[37.5rem] sm:py-[5rem] md:max-w-[40.625rem] md:px-0 md:py-[6.25rem] lg:max-w-[53.125rem] xl:max-w-[70rem]">
-          <h1 className="text-[9.9vw] leading-[1.12] font-bold sm:text-[3.4375rem] md:text-[4.5rem] lg:text-[6rem] xl:text-[8rem]">
-            Page not found
-          </h1>
-          <div className="mt-5 text-center">
-            <Button size="lg" asChild>
-              <Link href="/">Back to Home page</Link>
-            </Button>
-          </div>
+    <MainLayout>
+      <div className="container max-w-xl py-[20lvh] text-center">
+        <h1 className="pb-6 text-4xl">Siden finnes ikke</h1>
+
+        <p className="text-xl text-balance">
+          Vi kunne ikke finne siden du leter etter. Den kan ha blitt fjernet
+          etter flyttet.
+        </p>
+        <div className="pt-8">
+          <Button asChild size="lg">
+            <Link href="/">
+              <ArrowLeft />
+              <span>Tilbake til forsiden</span>
+            </Link>
+          </Button>
         </div>
       </div>
-      <Footer />
-    </>
+    </MainLayout>
   );
 }

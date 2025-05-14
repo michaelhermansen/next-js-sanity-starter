@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/features/theme/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { config } from "@/lib/config";
 import { size } from "./api/og/route";

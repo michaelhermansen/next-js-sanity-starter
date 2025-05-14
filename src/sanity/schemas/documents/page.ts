@@ -44,11 +44,8 @@ export default defineType({
         { type: "section-header" },
         { type: "split-row" },
         { type: "grid-row" },
-        { type: "carousel-1" },
         { type: "timeline-row" },
         { type: "cta-1" },
-        { type: "logo-cloud-1" },
-        { type: "form-newsletter" },
         { type: "all-posts" },
       ],
       options: {
@@ -58,11 +55,6 @@ export default defineType({
               name: "hero",
               title: "Hero",
               of: ["hero-1", "hero-2"],
-            },
-            {
-              name: "logo-cloud",
-              title: "Logo Cloud",
-              of: ["logo-cloud-1"],
             },
             {
               name: "section-header",
@@ -80,11 +72,6 @@ export default defineType({
               of: ["split-row"],
             },
             {
-              name: "carousel",
-              title: "Carousel",
-              of: ["carousel-1"],
-            },
-            {
               name: "timeline",
               title: "Timeline",
               of: ["timeline-row"],
@@ -93,11 +80,6 @@ export default defineType({
               name: "cta",
               title: "CTA",
               of: ["cta-1"],
-            },
-            {
-              name: "forms",
-              title: "Forms",
-              of: ["form-newsletter"],
             },
             {
               name: "all-posts",

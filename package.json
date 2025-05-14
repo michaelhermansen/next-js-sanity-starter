@@ -9,7 +9,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "typegen": "sanity schema extract && sanity typegen generate",
-    "typegen:watch": "concurrently \"chokidar 'src/sanity/queries/**/*' -c 'sanity typegen generate'\" \"chokidar 'src/sanity/schemas/**/*' -c 'pnpm typegen'\""
+    "typegen:watch": "pnpm typegen && \"chokidar 'src/sanity/queries/**/*' -c 'sanity typegen generate'\" \"chokidar 'src/sanity/schemas/**/*' -c 'pnpm typegen'\""
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
