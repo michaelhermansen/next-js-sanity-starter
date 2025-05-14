@@ -25,14 +25,14 @@ export function ThemeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          Automatisk
+        </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("light")}>
           Lyst
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
           Mørkt
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          Automatisk
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
