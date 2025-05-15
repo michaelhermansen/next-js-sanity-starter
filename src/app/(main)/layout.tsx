@@ -1,6 +1,6 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { DisableDraftMode } from "@/components/disable-draft-mode";
+import { DisableDraftMode } from "@/features/draft-mode/disable-draft-mode";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 import { SanityLive } from "@/sanity/lib/live";

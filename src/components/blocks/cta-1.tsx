@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import SectionContainer from "@/components/ui/section-container";
 import { stegaClean } from "next-sanity";
 import Link from "next/link";
-import PortableTextRenderer from "@/components/portable-text-renderer";
+import PortableTextRenderer from "@/features/portable-text/portable-text-renderer";
 import { PAGE_QUERYResult } from "@/sanity/sanity.types";
 
 type Cta1Props = Extract<

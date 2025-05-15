@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Breadcrumbs, { BreadcrumbLinkType } from "@/components/ui/breadcrumbs";
 import ArticleHero from "@/components/article-hero";
-import PortableTextRenderer from "@/components/portable-text-renderer";
+import PortableTextRenderer from "@/features/portable-text/portable-text-renderer";
 import {
   fetchSanityArticleBySlug,
   fetchSanityArticlesStaticParams,

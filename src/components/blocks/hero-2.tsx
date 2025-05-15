@@ -1,4 +1,4 @@
-import PortableTextRenderer from "@/components/portable-text-renderer";
+import PortableTextRenderer from "@/features/portable-text/portable-text-renderer";
 import { Button } from "@/components/ui/button";
 import { PAGE_QUERYResult } from "@/sanity/sanity.types";
 import { stegaClean } from "next-sanity";
