@@ -1,12 +1,9 @@
 import { groq } from "next-sanity";
-import { hero1Query } from "./hero/hero-1";
-import { hero2Query } from "./hero/hero-2";
-import { sectionHeaderQuery } from "./section-header";
-import { splitRowQuery } from "./split/split-row";
-import { gridRowQuery } from "./grid/grid-row";
-import { timelineQuery } from "./timeline";
-import { cta1Query } from "./cta/cta-1";
-import { allPostsQuery } from "./all-posts";
+import { hero1Query } from "./fragments/hero-1";
+import { hero2Query } from "./fragments/hero-2";
+import { sectionHeaderQuery } from "./fragments/section-header";
+import { cta1Query } from "./fragments/cta-1";
+import { allPostsQuery } from "./fragments/all-posts";
 
 export const PAGE_QUERY = groq`
   *[_type == "page" && slug.current == $slug][0]{
@@ -14,9 +11,6 @@ export const PAGE_QUERY = groq`
       ${hero1Query},
       ${hero2Query},
       ${sectionHeaderQuery},
-      ${splitRowQuery},
-      ${gridRowQuery},
-      ${timelineQuery},
       ${cta1Query},
       ${allPostsQuery},
     },

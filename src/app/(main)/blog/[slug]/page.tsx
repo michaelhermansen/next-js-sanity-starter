@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Breadcrumbs, { BreadcrumbLinkType } from "@/components/ui/breadcrumbs";
-import PostHero from "@/components/blocks/post-hero";
+import PostHero from "@/components/post-hero";
 import PortableTextRenderer from "@/components/portable-text-renderer";
 import {
   fetchSanityPostBySlug,

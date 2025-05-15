@@ -1,14 +1,9 @@
 import { groq } from "next-sanity";
 
-// @sanity-typegen-ignore
-export const cta1Query = groq`
-  _type == "cta-1" => {
+export const hero2Query = groq`
+  _type == "hero-2" => {
     _type,
     _key,
-    padding,
-    colorVariant,
-    sectionWidth,
-    stackAlign,
     tagLine,
     title,
     body[]{

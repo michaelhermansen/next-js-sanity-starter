@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { stegaClean } from "next-sanity";
 import PortableTextRenderer from "@/components/portable-text-renderer";
-import { PAGE_QUERYResult } from "../../../sanity/sanity.types";
+import { PAGE_QUERYResult } from "@/sanity/sanity.types";
 
 type Hero2Props = Extract<
   NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number],

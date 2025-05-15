@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Mail } from "lucide-react";
 import { urlFor } from "@/sanity/lib/image";
-import { POST_QUERYResult } from "../../sanity/sanity.types";
 import { formatDate } from "@/lib/utils";
-import { CmsImage } from "../cms-image";
+import { CmsImage } from "./cms-image";
+import { POST_QUERYResult } from "@/sanity/sanity.types";
 
 type PostHeroProps = NonNullable<POST_QUERYResult>;
 

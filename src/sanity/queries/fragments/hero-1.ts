@@ -1,13 +1,9 @@
 import { groq } from "next-sanity";
 
-// @sanity-typegen-ignore
-export const splitContentQuery = groq`
-  _type == "split-content" => {
+export const hero1Query = groq`
+  _type == "hero-1" => {
     _type,
     _key,
-    sticky,
-    padding,
-    colorVariant,
     tagLine,
     title,
     body[]{
@@ -28,6 +24,22 @@ export const splitContentQuery = groq`
         }
       }
     },
-    link,
+    image{
+      ...,
+      asset->{
+        _id,
+        url,
+        mimeType,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+      alt
+    },
+    links,
   }
 `;

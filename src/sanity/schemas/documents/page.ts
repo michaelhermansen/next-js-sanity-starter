@@ -42,9 +42,6 @@ export default defineType({
         { type: "hero-1" },
         { type: "hero-2" },
         { type: "section-header" },
-        { type: "split-row" },
-        { type: "grid-row" },
-        { type: "timeline-row" },
         { type: "cta-1" },
         { type: "all-posts" },
       ],
@@ -52,38 +49,18 @@ export default defineType({
         insertMenu: {
           groups: [
             {
-              name: "hero",
-              title: "Hero",
-              of: ["hero-1", "hero-2"],
-            },
-            {
-              name: "section-header",
-              title: "Section Header",
-              of: ["section-header"],
-            },
-            {
-              name: "grid",
-              title: "Grid",
-              of: ["grid-row"],
-            },
-            {
-              name: "split",
-              title: "Split",
-              of: ["split-row"],
-            },
-            {
-              name: "timeline",
-              title: "Timeline",
-              of: ["timeline-row"],
+              name: "headers",
+              title: "Bannere",
+              of: ["hero-1", "hero-2", "section-header"],
             },
             {
               name: "cta",
-              title: "CTA",
+              title: "Call to action",
               of: ["cta-1"],
             },
             {
-              name: "all-posts",
-              title: "All Posts",
+              name: "document-lists",
+              title: "Dokumentlister",
               of: ["all-posts"],
             },
           ],

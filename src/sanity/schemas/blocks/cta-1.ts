@@ -1,6 +1,6 @@
 import { EnvelopeIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { SECTION_WIDTH, STACK_ALIGN } from "../shared/layout-variants";
+import { SECTION_WIDTH, STACK_ALIGN } from "./shared/layout-variants";
 
 export default defineType({
   name: "cta-1",
