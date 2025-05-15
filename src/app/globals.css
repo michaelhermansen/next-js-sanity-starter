@@ -65,7 +65,7 @@
   --chart-3: hsl(197 37% 24%);
   --chart-4: hsl(43 74% 66%);
   --chart-5: hsl(27 87% 67%);
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 }
 .dark {
   --background: hsl(224 71.4% 4.1%);
@@ -120,10 +120,15 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xs: calc(var(--radius) - 0.5rem);
+  --radius-sm: calc(var(--radius) - 0.25rem);
+  --radius: var(--radius);
+  --radius-md: calc(var(--radius) + 0.25rem);
+  --radius-lg: calc(var(--radius) + 0.5rem);
+  --radius-xl: calc(var(--radius) + 0.75rem);
+  --radius-2xl: calc(var(--radius) + 1rem);
+  --radius-3xl: calc(var(--radius) + 1.5rem);
+  --radius-4xl: calc(var(--radius) + 2rem);
 }
 
 @utility container {
