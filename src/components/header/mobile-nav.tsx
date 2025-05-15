@@ -14,7 +14,7 @@ import { AlignRight } from "lucide-react";
 import { config } from "@/lib/config";
 import { NavItem } from "./types";
 
-export default function MobileNav({ navItems }: { navItems: NavItem[] }) {
+export default function MobileNav(props: { navItems: NavItem[] }) {
   const [open, setOpen] = useState(false);
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -39,7 +39,7 @@ export default function MobileNav({ navItems }: { navItems: NavItem[] }) {
           <div className="container">
             <ul className="list-none space-y-3 text-center">
               <>
-                {navItems.map((navItem) => (
+                {props.navItems.map((navItem) => (
                   <li key={navItem.label}>
                     <Link
                       onClick={() => setOpen(false)}

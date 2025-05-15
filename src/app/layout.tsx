@@ -36,11 +36,7 @@ const fontSans = Inter({
   variable: "--font-sans",
 });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <link rel="icon" href="/favicon.ico" />
@@ -56,7 +52,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          {props.children}
         </ThemeProvider>
         <Toaster position="top-center" richColors />
       </body>

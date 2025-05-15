@@ -11,22 +11,13 @@ type Cta1Props = Extract<
   { _type: "cta-1" }
 >;
 
-export default function Cta1({
-  padding,
-  colorVariant,
-  sectionWidth = "default",
-  stackAlign = "left",
-  tagLine,
-  title,
-  body,
-  links,
-}: Cta1Props) {
-  const isNarrow = stegaClean(sectionWidth) === "narrow";
-  const align = stegaClean(stackAlign);
-  const color = stegaClean(colorVariant);
+export default function Cta1(props: Cta1Props) {
+  const isNarrow = stegaClean(props.sectionWidth) === "narrow";
+  const align = stegaClean(props.stackAlign);
+  const color = stegaClean(props.colorVariant);
 
   return (
-    <SectionContainer color={color} padding={padding}>
+    <SectionContainer color={color} padding={props.padding}>
       <div
         className={cn(
           align === "center" ? "mx-auto max-w-[48rem] text-center" : undefined,
@@ -36,24 +27,24 @@ export default function Cta1({
         <div
           className={cn(color === "primary" ? "text-background" : undefined)}
         >
-          {tagLine && (
+          {props.tagLine && (
             <h1 className="mb-4 leading-[0]">
-              <span className="text-base font-semibold">{tagLine}</span>
+              <span className="text-base font-semibold">{props.tagLine}</span>
             </h1>
           )}
-          <h2 className="mb-4">{title}</h2>
-          {body && <PortableTextRenderer value={body} />}
+          <h2 className="mb-4">{props.title}</h2>
+          {props.body && <PortableTextRenderer value={props.body} />}
         </div>
-        {links && links.length > 0 && (
+        {props.links && props.links.length > 0 && (
           <div
             className={cn(
               "mt-10 flex flex-wrap gap-4",
               align === "center" ? "justify-center" : undefined,
             )}
           >
-            {links &&
-              links.length > 0 &&
-              links.map((link) => (
+            {props.links &&
+              props.links.length > 0 &&
+              props.links.map((link) => (
                 <Button
                   key={link.title}
                   variant={stegaClean(link?.buttonVariant)}

@@ -160,9 +160,9 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
-  h1 {
+  /* h1 {
     font-family: var(--font-sans);
     font-size: 2.5rem;
     line-height: 1.2;
@@ -216,5 +216,5 @@
     @media (width >= theme(--breakpoint-md)) {
       font-size: 1rem;
     }
-  }
+  } */
 }

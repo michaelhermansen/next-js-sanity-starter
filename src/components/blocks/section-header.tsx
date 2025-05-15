@@ -8,21 +8,15 @@ type SectionHeaderProps = Extract<
   { _type: "section-header" }
 >;
 
-export default function SectionHeader({
-  padding,
-  colorVariant,
-  sectionWidth = "default",
-  stackAlign = "left",
-  tagLine,
-  title,
-  description,
-}: SectionHeaderProps) {
+export default function SectionHeader(props: SectionHeaderProps) {
+  const { sectionWidth = "default", stackAlign = "left" } = props;
+
   const isNarrow = stegaClean(sectionWidth) === "narrow";
   const align = stegaClean(stackAlign);
-  const color = stegaClean(colorVariant);
+  const color = stegaClean(props.colorVariant);
 
   return (
-    <SectionContainer color={color} padding={padding}>
+    <SectionContainer color={color} padding={props.padding}>
       <div
         className={cn(
           align === "center" ? "mx-auto max-w-[48rem] text-center" : undefined,
@@ -32,14 +26,14 @@ export default function SectionHeader({
         <div
           className={cn(color === "primary" ? "text-background" : undefined)}
         >
-          {tagLine && (
+          {props.tagLine && (
             <h1 className="mb-4 leading-[0]">
-              <span className="text-base font-semibold">{tagLine}</span>
+              <span className="text-base font-semibold">{props.tagLine}</span>
             </h1>
           )}
-          <h2 className="mb-4 text-3xl md:text-5xl">{title}</h2>
+          <h2 className="mb-4 text-3xl md:text-5xl">{props.title}</h2>
         </div>
-        <p>{description}</p>
+        <p>{props.description}</p>
       </div>
     </SectionContainer>
   );

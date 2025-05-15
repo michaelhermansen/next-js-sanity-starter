@@ -17,10 +17,10 @@ const componentMap: {
   "all-posts": AllPosts,
 };
 
-export default function Blocks({ blocks }: { blocks: Block[] }) {
+export default function Blocks(props: { blocks: Block[] }) {
   return (
     <>
-      {blocks?.map((block) => {
+      {props.blocks?.map((block) => {
         const Component = componentMap[block._type];
         if (!Component) {
           // Fallback for development/debugging of new component types

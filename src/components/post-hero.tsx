@@ -7,22 +7,18 @@ import { POST_QUERYResult } from "@/sanity/sanity.types";
 
 type PostHeroProps = NonNullable<POST_QUERYResult>;
 
-export default function PostHero({
-  title,
-  author,
-  image,
-  slug,
-  _createdAt,
-}: PostHeroProps) {
+export default function PostHero(props: PostHeroProps) {
   return (
     <>
-      {title && <h1 className="mb-4 text-3xl md:mb-6 lg:text-5xl">{title}</h1>}
-      {image && image.asset?._id && (
+      {props.title && (
+        <h1 className="mb-4 text-3xl md:mb-6 lg:text-5xl">{props.title}</h1>
+      )}
+      {props.image && props.image.asset?._id && (
         <div className="my-4 overflow-hidden rounded-2xl md:my-6">
           <CmsImage
             className="w-full"
-            image={image}
-            alt={image.alt || ""}
+            image={props.image}
+            alt={props.image.alt || ""}
             width={1200}
             height={800}
             loading="eager"
@@ -32,35 +28,39 @@ export default function PostHero({
       <div className="flex items-center justify-between gap-2 md:text-base">
         <div className="flex flex-col gap-2 md:flex-row md:items-center">
           <div className="flex items-center gap-2">
-            {author?.image && author.image.asset?._id && (
+            {props.author?.image && props.author.image.asset?._id && (
               <div className="relative h-6 w-6 md:h-10 md:w-10">
                 <Image
-                  src={urlFor(author.image).url()}
-                  alt={author.image.alt ? author.image.alt : ""}
+                  src={urlFor(props.author.image).url()}
+                  alt={props.author.image.alt ? props.author.image.alt : ""}
                   fill
                   style={{
                     objectFit: "cover",
                   }}
                   placeholder={
-                    author.image.asset?.metadata?.lqip ? "blur" : undefined
+                    props.author.image.asset?.metadata?.lqip
+                      ? "blur"
+                      : undefined
                   }
-                  blurDataURL={author.image.asset?.metadata?.lqip || undefined}
+                  blurDataURL={
+                    props.author.image.asset?.metadata?.lqip || undefined
+                  }
                   sizes="40px"
                   className="mr-2 h-10 w-10 rounded-full"
                 />
               </div>
             )}
-            {author?.name && <div>{author.name}</div>}
+            {props.author?.name && <div>{props.author.name}</div>}
             <div className="hidden md:block">•</div>
           </div>
-          <div>{formatDate(_createdAt)}</div>
+          <div>{formatDate(props._createdAt)}</div>
         </div>
         <div className="flex flex-col gap-2 md:flex-row">
           <div>Share this post</div>
           <div className="flex gap-2">
             <a
               className="hover:opacity-70"
-              href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug?.current}`}
+              href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_SITE_URL}/blog/${props.slug?.current}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Share on Facebook"
@@ -81,7 +81,7 @@ export default function PostHero({
             </a>
             <a
               className="hover:opacity-70"
-              href={`mailto:?subject=${title}&body=${title}%0A%0A${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug?.current}`}
+              href={`mailto:?subject=${props.title}&body=${props.title}%0A%0A${process.env.NEXT_PUBLIC_SITE_URL}/blog/${props.slug?.current}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Share via email"

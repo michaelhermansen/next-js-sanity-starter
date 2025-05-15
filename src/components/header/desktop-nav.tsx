@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { NavItem } from "./types";
 
-export default function DesktopNav({ navItems }: { navItems: NavItem[] }) {
+export default function DesktopNav(props: { navItems: NavItem[] }) {
   return (
     <div className="text-primary hidden items-center gap-7 xl:flex">
-      {navItems.map((navItem) => (
+      {props.navItems.map((navItem) => (
         <Link
           key={navItem.label}
           href={navItem.href}

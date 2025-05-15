@@ -10,15 +10,12 @@ type AllPostsProps = Extract<
   { _type: "all-posts" }
 >;
 
-export default async function AllPosts({
-  padding,
-  colorVariant,
-}: AllPostsProps) {
-  const color = stegaClean(colorVariant);
+export default async function AllPosts(props: AllPostsProps) {
+  const color = stegaClean(props.colorVariant);
   const posts = await fetchSanityPosts();
 
   return (
-    <SectionContainer color={color} padding={padding}>
+    <SectionContainer color={color} padding={props.padding}>
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {posts.map((post) => (
           <Link

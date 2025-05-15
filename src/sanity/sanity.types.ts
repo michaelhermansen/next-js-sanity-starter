@@ -218,8 +218,6 @@ export type Hero2 = {
 
 export type Hero1 = {
   _type: "hero-1";
-  tagLine?: string;
-  title?: string;
   body?: Array<
     | {
         children?: Array<{
@@ -701,8 +699,8 @@ export type PAGE_QUERYResult = {
     | {
         _type: "hero-1";
         _key: string;
-        tagLine: string | null;
-        title: string | null;
+        tagLine: null;
+        title: null;
         body: Array<
           | {
               children?: Array<{

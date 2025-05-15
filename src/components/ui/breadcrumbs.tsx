@@ -13,40 +13,34 @@ export type BreadcrumbLinkType = {
   href: string;
 };
 
-const BreadcrumbCustomItem = ({
-  label,
-  href,
-  isCurrent,
-}: BreadcrumbLinkType & { isCurrent?: boolean }) => {
+function BreadcrumbCustomItem(
+  props: BreadcrumbLinkType & { isCurrent?: boolean },
+) {
   return (
     <>
       <BreadcrumbItem className="text-primary font-bold">
-        {!isCurrent ? (
+        {!props.isCurrent ? (
           <BreadcrumbLink className="hover:text-primary/70" asChild>
-            <Link href={href}>{label}</Link>
+            <Link href={props.href}>{props.label}</Link>
           </BreadcrumbLink>
         ) : (
-          <BreadcrumbPage>{label}</BreadcrumbPage>
+          <BreadcrumbPage>{props.label}</BreadcrumbPage>
         )}
       </BreadcrumbItem>
-      {!isCurrent && <BreadcrumbSeparator className="text-primary" />}
+      {!props.isCurrent && <BreadcrumbSeparator className="text-primary" />}
     </>
   );
-};
+}
 
-export default function Breadcrumbs({
-  links,
-}: {
-  links: BreadcrumbLinkType[];
-}) {
+export default function Breadcrumbs(props: { links: BreadcrumbLinkType[] }) {
   return (
     <Breadcrumb className="mb-3 lg:mb-6">
       <BreadcrumbList>
-        {links.map((link, index) => (
+        {props.links.map((link, index) => (
           <BreadcrumbCustomItem
             key={link.label}
             {...link}
-            isCurrent={index === links.length - 1}
+            isCurrent={index === props.links.length - 1}
           />
         ))}
       </BreadcrumbList>

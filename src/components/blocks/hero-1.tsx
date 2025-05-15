@@ -11,35 +11,19 @@ type Hero1Props = Extract<
   { _type: "hero-1" }
 >;
 
-export default function Hero1({
-  tagLine,
-  title,
-  body,
-  image,
-  links,
-}: Hero1Props) {
+export default function Hero1(props: Hero1Props) {
   return (
-    <div className="dark:bg-background container py-20 lg:pt-40">
+    <div className="container bg-red-100 py-20 dark:bg-red-950">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
         <div className="flex flex-col justify-center">
-          {tagLine && (
-            <h1 className="animate-fade-up font-sans leading-[0] opacity-0 [animation-delay:100ms]">
-              <span className="text-base font-semibold">{tagLine}</span>
-            </h1>
-          )}
-          {title && (
-            <h2 className="animate-fade-up mt-6 text-4xl leading-[1.1] font-bold opacity-0 [animation-delay:200ms] md:text-5xl lg:text-6xl">
-              {title}
-            </h2>
-          )}
-          {body && (
+          {props.body && (
             <div className="animate-fade-up mt-6 text-lg opacity-0 [animation-delay:300ms]">
-              <PortableTextRenderer value={body} />
+              <PortableTextRenderer value={props.body} />
             </div>
           )}
-          {links && links.length > 0 && (
+          {props.links && props.links.length > 0 && (
             <div className="animate-fade-up mt-10 flex flex-wrap gap-4 opacity-0 [animation-delay:400ms]">
-              {links.map((link) => (
+              {props.links.map((link) => (
                 <Button
                   key={link.title}
                   variant={stegaClean(link?.buttonVariant)}
@@ -58,15 +42,17 @@ export default function Hero1({
           )}
         </div>
         <div className="flex flex-col justify-center">
-          {image && image.asset?._id && (
+          {props.image && props.image.asset?._id && (
             <Image
               className="animate-fade-up rounded-xl opacity-0 [animation-delay:500ms]"
-              src={urlFor(image).url()}
-              alt={image.alt || ""}
-              width={image.asset?.metadata?.dimensions?.width || 800}
-              height={image.asset?.metadata?.dimensions?.height || 800}
-              placeholder={image?.asset?.metadata?.lqip ? "blur" : undefined}
-              blurDataURL={image?.asset?.metadata?.lqip || ""}
+              src={urlFor(props.image).url()}
+              alt={props.image.alt || ""}
+              width={props.image.asset?.metadata?.dimensions?.width || 800}
+              height={props.image.asset?.metadata?.dimensions?.height || 800}
+              placeholder={
+                props.image?.asset?.metadata?.lqip ? "blur" : undefined
+              }
+              blurDataURL={props.image?.asset?.metadata?.lqip || ""}
               quality={100}
             />
           )}

@@ -8,16 +8,9 @@ export default defineType({
   icon: ThLargeIcon,
   fields: [
     defineField({
-      name: "tagLine",
-      type: "string",
-    }),
-    defineField({
-      name: "title",
-      type: "string",
-    }),
-    defineField({
       name: "body",
       type: "block-content",
+      title: "Innhold",
     }),
     defineField({
       name: "image",

@@ -1,36 +1,25 @@
 import { PortableText, PortableTextProps } from "@portabletext/react";
-import Image from "next/image";
 import Link from "next/link";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { Highlight, themes } from "prism-react-renderer";
 import { CopyButton } from "@/components/ui/copy-button";
+import { CmsImage } from "./cms-image";
 
 const portableTextComponents: PortableTextProps["components"] = {
   types: {
     image: ({ value }) => {
-      const { url, metadata } = value.asset;
-      const { lqip, dimensions } = metadata;
       return (
-        <Image
-          src={url}
-          alt={value.alt || "Image"}
-          width={dimensions.width}
-          height={dimensions.height}
-          placeholder={lqip ? "blur" : undefined}
-          blurDataURL={lqip || undefined}
-          style={{
-            borderRadius: "1rem",
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}
-          quality={100}
+        <CmsImage
+          image={value}
+          alt={value.alt || ""}
+          className="mx-auto rounded-md"
         />
       );
     },
     youtube: ({ value }) => {
       const { videoId } = value;
       return (
-        <div className="mb-4 aspect-video max-w-[45rem] overflow-hidden rounded-xl">
+        <div className="mb-4 aspect-video max-w-[45rem] overflow-hidden rounded-md">
           <YouTubeEmbed videoid={videoId} params="rel=0" />
         </div>
       );
@@ -51,13 +40,8 @@ const portableTextComponents: PortableTextProps["components"] = {
           >
             {({ style, tokens, getLineProps, getTokenProps }) => (
               <pre
-                style={{
-                  ...style,
-                  padding: "1.5rem",
-                  margin: 0,
-                  overflow: "auto",
-                  backgroundColor: "transparent",
-                }}
+                className="m-0 overflow-auto bg-transparent p-6"
+                style={style}
               >
                 {tokens.map((line, i) => (
                   <div key={i} {...getLineProps({ line })}>
@@ -74,23 +58,18 @@ const portableTextComponents: PortableTextProps["components"] = {
     },
   },
   block: {
-    normal: ({ children }) => (
-      <p style={{ marginBottom: "1rem" }}>{children}</p>
-    ),
+    normal: ({ children }) => <p className="mb-4 text-xl">{children}</p>,
     h1: ({ children }) => (
-      <h1 style={{ marginBottom: "1rem", marginTop: "1rem" }}>{children}</h1>
+      <h1 className="py-4 text-5xl font-semibold">{children}</h1>
     ),
     h2: ({ children }) => (
-      <h2 style={{ marginBottom: "1rem", marginTop: "1rem" }}>{children}</h2>
+      <h2 className="py-4 text-4xl font-semibold">{children}</h2>
     ),
     h3: ({ children }) => (
-      <h3 style={{ marginBottom: "1rem", marginTop: "1rem" }}>{children}</h3>
+      <h3 className="py-4 text-3xl font-semibold">{children}</h3>
     ),
     h4: ({ children }) => (
-      <h4 style={{ marginBottom: "1rem", marginTop: "1rem" }}>{children}</h4>
-    ),
-    h5: ({ children }) => (
-      <h5 style={{ marginBottom: "1rem", marginTop: "1rem" }}>{children}</h5>
+      <h4 className="py-4 text-2xl font-semibold">{children}</h4>
     ),
   },
   marks: {
@@ -99,13 +78,15 @@ const portableTextComponents: PortableTextProps["components"] = {
         (value?.href || "").startsWith("http") ||
         (value?.href || "").startsWith("https") ||
         (value?.href || "").startsWith("mailto");
+
       const target = isExternal ? "_blank" : undefined;
+
       return (
         <Link
           href={value?.href}
           target={target}
           rel={target ? "noopener" : undefined}
-          style={{ textDecoration: "underline" }}
+          className="underline hover:no-underline"
         >
           {children}
         </Link>
@@ -114,46 +95,22 @@ const portableTextComponents: PortableTextProps["components"] = {
   },
   list: {
     bullet: ({ children }) => (
-      <ul
-        style={{
-          paddingLeft: "1.5rem",
-          marginBottom: "1rem",
-          listStyleType: "disc",
-          listStylePosition: "inside",
-        }}
-      >
-        {children}
-      </ul>
+      <ul className="mb-4 list-inside list-disc pl-6">{children}</ul>
     ),
     number: ({ children }) => (
-      <ol
-        style={{
-          paddingLeft: "1.5rem",
-          marginBottom: "1rem",
-          listStyleType: "decimal",
-          listStylePosition: "inside",
-        }}
-      >
-        {children}
-      </ol>
+      <ol className="mb-4 list-inside list-decimal pl-6">{children}</ol>
     ),
   },
   listItem: {
-    bullet: ({ children }) => (
-      <li style={{ marginBottom: "0.5rem" }}>{children}</li>
-    ),
-    number: ({ children }) => (
-      <li style={{ marginBottom: "0.5rem" }}>{children}</li>
-    ),
+    bullet: ({ children }) => <li className="mb-2">{children}</li>,
+    number: ({ children }) => <li className="mb-2">{children}</li>,
   },
 };
 
-const PortableTextRenderer = ({
-  value,
-}: {
-  value: PortableTextProps["value"];
-}) => {
-  return <PortableText value={value} components={portableTextComponents} />;
-};
+function PortableTextRenderer(props: { value: PortableTextProps["value"] }) {
+  return (
+    <PortableText value={props.value} components={portableTextComponents} />
+  );
+}
 
 export default PortableTextRenderer;

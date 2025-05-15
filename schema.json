@@ -1306,20 +1306,6 @@
             "value": "hero-1"
           }
         },
-        "tagLine": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
-        "title": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
         "body": {
           "type": "objectAttribute",
           "value": {
