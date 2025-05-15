@@ -19,11 +19,7 @@ export default function MobileNav(props: { navItems: NavItem[] }) {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button
-          aria-label="Open Menu"
-          variant="ghost"
-          className="w-10 p-5 focus-visible:ring-1 focus-visible:ring-offset-1"
-        >
+        <Button aria-label="Open Menu" variant="ghost" size="icon">
           <AlignRight className="dark:text-white" />
         </Button>
       </SheetTrigger>

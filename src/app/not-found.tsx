@@ -12,7 +12,7 @@ export default function NotFoundPage() {
   return (
     <MainLayout>
       <div className="container max-w-xl py-[20lvh] text-center">
-        <h1 className="pb-4 text-4xl">Siden finnes ikke</h1>
+        <h1 className="pb-4 text-4xl font-semibold">Siden finnes ikke</h1>
 
         <p className="text-xl text-balance">
           Vi kunne ikke finne siden du leter etter. Den kan ha blitt fjernet
@@ -22,7 +22,7 @@ export default function NotFoundPage() {
           <Button asChild size="lg">
             <Link href="/">
               <ArrowLeft />
-              <span>Tilbake til forsiden</span>
+              Tilbake til forsiden
             </Link>
           </Button>
         </div>

@@ -3,7 +3,7 @@ import { ThLargeIcon } from "@sanity/icons";
 
 export default defineType({
   name: "hero-1",
-  title: "Hero 1",
+  title: "Toppbanner",
   type: "object",
   icon: ThLargeIcon,
   fields: [

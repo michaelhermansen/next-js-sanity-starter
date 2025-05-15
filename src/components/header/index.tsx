@@ -30,7 +30,7 @@ export default function Header() {
           <DesktopNav navItems={navItems} />
           <ThemeToggle />
         </div>
-        <div className="flex items-center xl:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <ThemeToggle />
           <MobileNav navItems={navItems} />
         </div>
