@@ -1,5 +1,5 @@
 import { PAGE_QUERYResult } from "../../sanity/sanity.types";
-import AllPosts from "./all-posts";
+import AllArticles from "./all-articles";
 import Cta1 from "./cta-1";
 import Hero1 from "./hero-1";
 import Hero2 from "./hero-2";
@@ -14,7 +14,7 @@ const componentMap: {
   "hero-2": Hero2,
   "section-header": SectionHeader,
   "cta-1": Cta1,
-  "all-posts": AllPosts,
+  "all-articles": AllArticles,
 };
 
 export default function Blocks(props: { blocks: Block[] }) {

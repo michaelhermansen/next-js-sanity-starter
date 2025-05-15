@@ -2,10 +2,9 @@ import { DocumentTextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "all-posts",
+  name: "all-articles",
   type: "object",
-  title: "All Posts",
-  description: "A list of all posts",
+  title: "Alle artikler",
   icon: DocumentTextIcon,
   fields: [
     defineField({
@@ -22,7 +21,7 @@ export default defineType({
   preview: {
     prepare() {
       return {
-        title: "All Posts",
+        title: "All Articles",
       };
     },
   },

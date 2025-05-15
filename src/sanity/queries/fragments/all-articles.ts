@@ -1,7 +1,7 @@
 import { groq } from "next-sanity";
 
-export const allPostsQuery = groq`
-  _type == "all-posts" => {
+export const allArticlesQuery = groq`
+  _type == "all-articles" => {
     _type,
     _key,
     padding,

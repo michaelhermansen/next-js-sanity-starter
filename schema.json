@@ -326,7 +326,7 @@
     }
   },
   {
-    "name": "all-posts",
+    "name": "all-articles",
     "type": "type",
     "value": {
       "type": "object",
@@ -335,7 +335,7 @@
           "type": "objectAttribute",
           "value": {
             "type": "string",
-            "value": "all-posts"
+            "value": "all-articles"
           }
         },
         "padding": {
@@ -2212,7 +2212,7 @@
     }
   },
   {
-    "name": "post",
+    "name": "article",
     "type": "document",
     "attributes": {
       "_id": {
@@ -2225,7 +2225,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "post"
+          "value": "article"
         }
       },
       "_createdAt": {
@@ -2782,7 +2782,7 @@
                 },
                 "rest": {
                   "type": "inline",
-                  "name": "all-posts"
+                  "name": "all-articles"
                 }
               }
             ]

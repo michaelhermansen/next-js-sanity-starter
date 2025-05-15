@@ -4,7 +4,7 @@ import { BookIcon } from "@sanity/icons";
 
 export default defineType({
   name: "category",
-  title: "Category",
+  title: "Kategori",
   type: "document",
   icon: BookIcon,
   fields: [

@@ -3,7 +3,7 @@ import { hero1Query } from "./fragments/hero-1";
 import { hero2Query } from "./fragments/hero-2";
 import { sectionHeaderQuery } from "./fragments/section-header";
 import { cta1Query } from "./fragments/cta-1";
-import { allPostsQuery } from "./fragments/all-posts";
+import { allArticlesQuery } from "./fragments/all-articles";
 
 export const PAGE_QUERY = groq`
   *[_type == "page" && slug.current == $slug][0]{
@@ -12,7 +12,7 @@ export const PAGE_QUERY = groq`
       ${hero2Query},
       ${sectionHeaderQuery},
       ${cta1Query},
-      ${allPostsQuery},
+      ${allArticlesQuery},
     },
     meta_title,
     meta_description,

@@ -43,7 +43,7 @@ export default defineType({
         { type: "hero-2" },
         { type: "section-header" },
         { type: "cta-1" },
-        { type: "all-posts" },
+        { type: "all-articles" },
       ],
       options: {
         insertMenu: {
@@ -61,7 +61,7 @@ export default defineType({
             {
               name: "document-lists",
               title: "Dokumentlister",
-              of: ["all-posts"],
+              of: ["all-articles"],
             },
           ],
           views: [

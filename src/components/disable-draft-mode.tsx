@@ -14,7 +14,7 @@ export function DisableDraftMode() {
   return (
     <Button asChild>
       <a href="/api/draft-mode/disable" className="fixed right-4 bottom-4">
-        Disable Draft Mode
+        Avslutt redigering
       </a>
     </Button>
   );

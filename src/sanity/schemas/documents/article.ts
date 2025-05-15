@@ -2,8 +2,8 @@ import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "post",
-  title: "Post",
+  name: "article",
+  title: "Artikkel",
   type: "document",
   icon: DocumentIcon,
   groups: [
@@ -47,7 +47,7 @@ export default defineType({
     }),
     defineField({
       name: "author",
-      title: "Author",
+      title: "Forfatter",
       type: "reference",
       group: "settings",
       to: { type: "author" },
@@ -70,7 +70,7 @@ export default defineType({
     }),
     defineField({
       name: "categories",
-      title: "Categories",
+      title: "Kategorier",
       type: "array",
       group: "settings",
       of: [{ type: "reference", to: { type: "category" } }],

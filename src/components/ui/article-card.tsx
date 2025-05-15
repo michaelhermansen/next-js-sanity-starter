@@ -2,20 +2,20 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { ChevronRight } from "lucide-react";
-import { POSTS_QUERYResult } from "../../sanity/sanity.types";
+import { ARTICLES_QUERYResult } from "../../sanity/sanity.types";
 
-type PostCard = NonNullable<POSTS_QUERYResult[number]>;
+type ArticleCard = NonNullable<ARTICLES_QUERYResult[number]>;
 
-interface PostCardProps extends Omit<PostCard, "slug"> {
+interface ArticleCardProps extends Omit<ArticleCard, "slug"> {
   className?: string;
 }
 
-export default function PostCard({
+export default function ArticleCard({
   className,
   title,
   excerpt,
   image,
-}: PostCardProps) {
+}: ArticleCardProps) {
   return (
     <div
       className={cn(

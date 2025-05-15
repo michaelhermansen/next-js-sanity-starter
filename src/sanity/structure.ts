@@ -8,30 +8,30 @@ export const structure: StructureResolver = (S, context) =>
     .items([
       orderableDocumentListDeskItem({
         type: "page",
-        title: "Pages",
+        title: "Sider",
         icon: DocumentsIcon,
         S,
         context,
       }),
       S.listItem()
-        .title("Posts")
-        .schemaType("post")
+        .title("Artikler")
+        .schemaType("article")
         .icon(DocumentsIcon)
         .child(
-          S.documentTypeList("post")
-            .title("Post")
+          S.documentTypeList("article")
+            .title("article")
             .defaultOrdering([{ field: "_createdAt", direction: "desc" }]), // Default ordering
         ),
       orderableDocumentListDeskItem({
         type: "category",
-        title: "Categories",
+        title: "Kategorier",
         icon: TagsIcon,
         S,
         context,
       }),
       orderableDocumentListDeskItem({
         type: "author",
-        title: "Authors",
+        title: "Forfattere",
         icon: UsersIcon,
         S,
         context,

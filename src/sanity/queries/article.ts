@@ -1,6 +1,6 @@
 import { groq } from "next-sanity";
 
-export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
+export const ARTICLE_QUERY = groq`*[_type == "article" && slug.current == $slug][0]{
     title,
     slug,
     image{
@@ -75,7 +75,7 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
     }
 }`;
 
-export const POSTS_QUERY = groq`*[_type == "post" && defined(slug)] | order(_createdAt desc){
+export const ARTICLES_QUERY = groq`*[_type == "article" && defined(slug)] | order(_createdAt desc){
     title,
     slug,
     excerpt,
@@ -96,4 +96,4 @@ export const POSTS_QUERY = groq`*[_type == "post" && defined(slug)] | order(_cre
     },
 }`;
 
-export const POSTS_SLUGS_QUERY = groq`*[_type == "post" && defined(slug)]{slug}`;
+export const ARTICLES_SLUGS_QUERY = groq`*[_type == "article" && defined(slug)]{slug}`;

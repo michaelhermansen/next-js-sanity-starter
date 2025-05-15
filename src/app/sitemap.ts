@@ -25,9 +25,9 @@ async function getPagesSitemap(): Promise<MetadataRoute.Sitemap[]> {
   return data;
 }
 
-async function getPostsSitemap(): Promise<MetadataRoute.Sitemap[]> {
-  const postsQuery = groq`
-    *[_type == 'post'] | order(_updatedAt desc) {
+async function getArticleSitemap(): Promise<MetadataRoute.Sitemap[]> {
+  const articleQuery = groq`
+    *[_type == 'article'] | order(_updatedAt desc) {
       'url': $baseUrl + '/blog/' + slug.current,
       'lastModified': _updatedAt,
       'changeFrequency': 'weekly',
@@ -36,7 +36,7 @@ async function getPostsSitemap(): Promise<MetadataRoute.Sitemap[]> {
   `;
 
   const { data } = await sanityFetch({
-    query: postsQuery,
+    query: articleQuery,
     params: {
       baseUrl: process.env.NEXT_PUBLIC_SITE_URL,
     },
@@ -46,10 +46,10 @@ async function getPostsSitemap(): Promise<MetadataRoute.Sitemap[]> {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap[]> {
-  const [pages, posts] = await Promise.all([
+  const [pages, articles] = await Promise.all([
     getPagesSitemap(),
-    getPostsSitemap(),
+    getArticleSitemap(),
   ]);
 
-  return [...pages, ...posts];
+  return [...pages, ...articles];
 }

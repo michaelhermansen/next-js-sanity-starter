@@ -3,7 +3,7 @@ import { orderRankField } from "@sanity/orderable-document-list";
 
 export default defineType({
   name: "author",
-  title: "Author",
+  title: "Forfatter",
   type: "document",
   fields: [
     defineField({

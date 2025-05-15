@@ -3,11 +3,11 @@ import { Mail } from "lucide-react";
 import { urlFor } from "@/sanity/lib/image";
 import { formatDate } from "@/lib/utils";
 import { CmsImage } from "./cms-image";
-import { POST_QUERYResult } from "@/sanity/sanity.types";
+import { ARTICLE_QUERYResult } from "@/sanity/sanity.types";
 
-type PostHeroProps = NonNullable<POST_QUERYResult>;
+type ArticleHeroProps = NonNullable<ARTICLE_QUERYResult>;
 
-export default function PostHero(props: PostHeroProps) {
+export default function ArticleHero(props: ArticleHeroProps) {
   return (
     <>
       {props.title && (
@@ -56,7 +56,7 @@ export default function PostHero(props: PostHeroProps) {
           <div>{formatDate(props._createdAt)}</div>
         </div>
         <div className="flex flex-col gap-2 md:flex-row">
-          <div>Share this post</div>
+          <div>Share this article</div>
           <div className="flex gap-2">
             <a
               className="hover:opacity-70"

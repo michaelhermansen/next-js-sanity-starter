@@ -68,8 +68,8 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllPosts = {
-  _type: "all-posts";
+export type AllArticles = {
+  _type: "all-articles";
   padding?: SectionPadding;
   colorVariant?:
     | "background"
@@ -364,9 +364,9 @@ export type Category = {
   orderRank?: string;
 };
 
-export type Post = {
+export type Article = {
   _id: string;
-  _type: "post";
+  _type: "article";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -464,7 +464,7 @@ export type Page = {
       } & Cta1)
     | ({
         _key: string;
-      } & AllPosts)
+      } & AllArticles)
   >;
   meta_title?: string;
   meta_description?: string;
@@ -561,7 +561,7 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
-  | AllPosts
+  | AllArticles
   | Cta1
   | SectionHeader
   | Hero2
@@ -572,7 +572,7 @@ export type AllSanitySchemaTypes =
   | Link
   | BlockContent
   | Category
-  | Post
+  | Article
   | Author
   | Page
   | SanityImageCrop
@@ -592,22 +592,168 @@ export type PagesQueryResult = Array<{
   changeFrequency: "daily";
   priority: 0.5 | 1;
 }>;
-// Variable: postsQuery
-// Query: *[_type == 'post'] | order(_updatedAt desc) {      'url': $baseUrl + '/blog/' + slug.current,      'lastModified': _updatedAt,      'changeFrequency': 'weekly',      'priority': 0.7    }
-export type PostsQueryResult = Array<{
+// Variable: articleQuery
+// Query: *[_type == 'article'] | order(_updatedAt desc) {      'url': $baseUrl + '/blog/' + slug.current,      'lastModified': _updatedAt,      'changeFrequency': 'weekly',      'priority': 0.7    }
+export type ArticleQueryResult = Array<{
   url: unknown;
   lastModified: string;
   changeFrequency: "weekly";
   priority: 0.7;
 }>;
 
+// Source: src/sanity/queries/article.ts
+// Variable: ARTICLE_QUERY
+// Query: *[_type == "article" && slug.current == $slug][0]{    title,    slug,    image{      ...,      asset->{        _id,        url,        mimeType,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        }      }    },    author->{      name,      image {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        },        alt      }    },    _createdAt,    _updatedAt,    meta_title,    meta_description,    noindex,    ogImage {      asset->{        _id,        url,        metadata {          dimensions {            width,            height          }        }      },    }}
+export type ARTICLE_QUERYResult = {
+  title: string | null;
+  slug: Slug | null;
+  image: {
+    asset: {
+      _id: string;
+      url: string | null;
+      mimeType: string | null;
+      metadata: {
+        lqip: string | null;
+        dimensions: {
+          width: number | null;
+          height: number | null;
+        } | null;
+      } | null;
+    } | null;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt: string | null;
+    _type: "image";
+  } | null;
+  body: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        _key: string;
+        _type: "code";
+        language?: string;
+        filename?: string;
+        code?: string;
+        highlightedLines?: Array<number>;
+      }
+    | {
+        asset: {
+          _id: string;
+          url: string | null;
+          mimeType: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+    | {
+        videoId?: string;
+        _type: "youtube";
+        _key: string;
+      }
+  > | null;
+  author: {
+    name: string | null;
+    image: {
+      asset: {
+        _id: string;
+        url: string | null;
+        mimeType: string | null;
+        metadata: {
+          lqip: string | null;
+          dimensions: {
+            width: number | null;
+            height: number | null;
+          } | null;
+        } | null;
+      } | null;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt: string | null;
+      _type: "image";
+    } | null;
+  } | null;
+  _createdAt: string;
+  _updatedAt: string;
+  meta_title: string | null;
+  meta_description: string | null;
+  noindex: boolean | null;
+  ogImage: {
+    asset: {
+      _id: string;
+      url: string | null;
+      metadata: {
+        dimensions: {
+          width: number | null;
+          height: number | null;
+        } | null;
+      } | null;
+    } | null;
+  } | null;
+} | null;
+// Variable: ARTICLES_QUERY
+// Query: *[_type == "article" && defined(slug)] | order(_createdAt desc){    title,    slug,    excerpt,    image{      asset->{        _id,        url,        mimeType,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },}
+export type ARTICLES_QUERYResult = Array<{
+  title: string | null;
+  slug: Slug | null;
+  excerpt: string | null;
+  image: {
+    asset: {
+      _id: string;
+      url: string | null;
+      mimeType: string | null;
+      metadata: {
+        lqip: string | null;
+        dimensions: {
+          width: number | null;
+          height: number | null;
+        } | null;
+      } | null;
+    } | null;
+    alt: string | null;
+  } | null;
+}>;
+// Variable: ARTICLES_SLUGS_QUERY
+// Query: *[_type == "article" && defined(slug)]{slug}
+export type ARTICLES_SLUGS_QUERYResult = Array<{
+  slug: Slug | null;
+}>;
+
 // Source: src/sanity/queries/page.ts
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{    blocks[]{        _type == "hero-1" => {    _type,    _key,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          metadata {            dimensions {              width,              height            }          }        }      }    },    image{      ...,      asset->{        _id,        metadata {          dimensions {            width,            height          }        }      },      alt    },    links,  },        _type == "hero-2" => {    _type,    _key,    tagLine,    title,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        }      }    },    links,  },        _type == "section-header" => {    _type,    _key,    padding,    colorVariant,    sectionWidth,    stackAlign,    tagLine,    title,    description,    link,  },        _type == "cta-1" => {    _type,    _key,    padding,    colorVariant,    sectionWidth,    stackAlign,    tagLine,    title,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        }      }    },    links,  },        _type == "all-posts" => {    _type,    _key,    padding,    colorVariant,  },    },    meta_title,    meta_description,    noindex,    ogImage {      asset->{        _id,        url,        metadata {          dimensions {            width,            height          }        }      },    }  }
+// Query: *[_type == "page" && slug.current == $slug][0]{    blocks[]{        _type == "hero-1" => {    _type,    _key,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          metadata {            dimensions {              width,              height            }          }        }      }    },    image{      ...,      asset->{        _id,        metadata {          dimensions {            width,            height          }        }      },      alt    },    links,  },        _type == "hero-2" => {    _type,    _key,    tagLine,    title,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        }      }    },    links,  },        _type == "section-header" => {    _type,    _key,    padding,    colorVariant,    sectionWidth,    stackAlign,    tagLine,    title,    description,    link,  },        _type == "cta-1" => {    _type,    _key,    padding,    colorVariant,    sectionWidth,    stackAlign,    tagLine,    title,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        }      }    },    links,  },        _type == "all-articles" => {    _type,    _key,    padding,    colorVariant,  },    },    meta_title,    meta_description,    noindex,    ogImage {      asset->{        _id,        url,        metadata {          dimensions {            width,            height          }        }      },    }  }
 export type PAGE_QUERYResult = {
   blocks: Array<
     | {
-        _type: "all-posts";
+        _type: "all-articles";
         _key: string;
         padding: SectionPadding | null;
         colorVariant:
@@ -878,162 +1024,16 @@ export type PAGES_SLUGS_QUERYResult = Array<{
   slug: Slug | null;
 }>;
 
-// Source: src/sanity/queries/post.ts
-// Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{    title,    slug,    image{      ...,      asset->{        _id,        url,        mimeType,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        }      }    },    author->{      name,      image {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        },        alt      }    },    _createdAt,    _updatedAt,    meta_title,    meta_description,    noindex,    ogImage {      asset->{        _id,        url,        metadata {          dimensions {            width,            height          }        }      },    }}
-export type POST_QUERYResult = {
-  title: string | null;
-  slug: Slug | null;
-  image: {
-    asset: {
-      _id: string;
-      url: string | null;
-      mimeType: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt: string | null;
-    _type: "image";
-  } | null;
-  body: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      }
-    | {
-        _key: string;
-        _type: "code";
-        language?: string;
-        filename?: string;
-        code?: string;
-        highlightedLines?: Array<number>;
-      }
-    | {
-        asset: {
-          _id: string;
-          url: string | null;
-          mimeType: string | null;
-          metadata: {
-            lqip: string | null;
-            dimensions: {
-              width: number | null;
-              height: number | null;
-            } | null;
-          } | null;
-        } | null;
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        _type: "image";
-        _key: string;
-      }
-    | {
-        videoId?: string;
-        _type: "youtube";
-        _key: string;
-      }
-  > | null;
-  author: {
-    name: string | null;
-    image: {
-      asset: {
-        _id: string;
-        url: string | null;
-        mimeType: string | null;
-        metadata: {
-          lqip: string | null;
-          dimensions: {
-            width: number | null;
-            height: number | null;
-          } | null;
-        } | null;
-      } | null;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt: string | null;
-      _type: "image";
-    } | null;
-  } | null;
-  _createdAt: string;
-  _updatedAt: string;
-  meta_title: string | null;
-  meta_description: string | null;
-  noindex: boolean | null;
-  ogImage: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-  } | null;
-} | null;
-// Variable: POSTS_QUERY
-// Query: *[_type == "post" && defined(slug)] | order(_createdAt desc){    title,    slug,    excerpt,    image{      asset->{        _id,        url,        mimeType,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },}
-export type POSTS_QUERYResult = Array<{
-  title: string | null;
-  slug: Slug | null;
-  excerpt: string | null;
-  image: {
-    asset: {
-      _id: string;
-      url: string | null;
-      mimeType: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-    alt: string | null;
-  } | null;
-}>;
-// Variable: POSTS_SLUGS_QUERY
-// Query: *[_type == "post" && defined(slug)]{slug}
-export type POSTS_SLUGS_QUERYResult = Array<{
-  slug: Slug | null;
-}>;
-
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n    *[_type == 'page'] | order(slug.current) {\n      'url': $baseUrl + select(slug.current == 'index' => '', '/' + slug.current),\n      'lastModified': _updatedAt,\n      'changeFrequency': 'daily',\n      'priority': select(\n        slug.current == 'index' => 1,\n        0.5\n      )\n    }\n  ": PagesQueryResult;
-    "\n    *[_type == 'post'] | order(_updatedAt desc) {\n      'url': $baseUrl + '/blog/' + slug.current,\n      'lastModified': _updatedAt,\n      'changeFrequency': 'weekly',\n      'priority': 0.7\n    }\n  ": PostsQueryResult;
-    '\n  *[_type == "page" && slug.current == $slug][0]{\n    blocks[]{\n      \n  _type == "hero-1" => {\n    _type,\n    _key,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    links,\n  }\n,\n      \n  _type == "hero-2" => {\n    _type,\n    _key,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == "section-header" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    description,\n    link,\n  }\n,\n      \n  _type == "cta-1" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == "all-posts" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n  }\n,\n    },\n    meta_title,\n    meta_description,\n    noindex,\n    ogImage {\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n  }\n': PAGE_QUERYResult;
+    "\n    *[_type == 'article'] | order(_updatedAt desc) {\n      'url': $baseUrl + '/blog/' + slug.current,\n      'lastModified': _updatedAt,\n      'changeFrequency': 'weekly',\n      'priority': 0.7\n    }\n  ": ArticleQueryResult;
+    '*[_type == "article" && slug.current == $slug][0]{\n    title,\n    slug,\n    image{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    author->{\n      name,\n      image {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        },\n        alt\n      }\n    },\n    _createdAt,\n    _updatedAt,\n    meta_title,\n    meta_description,\n    noindex,\n    ogImage {\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n}': ARTICLE_QUERYResult;
+    '*[_type == "article" && defined(slug)] | order(_createdAt desc){\n    title,\n    slug,\n    excerpt,\n    image{\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n}': ARTICLES_QUERYResult;
+    '*[_type == "article" && defined(slug)]{slug}': ARTICLES_SLUGS_QUERYResult;
+    '\n  *[_type == "page" && slug.current == $slug][0]{\n    blocks[]{\n      \n  _type == "hero-1" => {\n    _type,\n    _key,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    links,\n  }\n,\n      \n  _type == "hero-2" => {\n    _type,\n    _key,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == "section-header" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    description,\n    link,\n  }\n,\n      \n  _type == "cta-1" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == "all-articles" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n  }\n,\n    },\n    meta_title,\n    meta_description,\n    noindex,\n    ogImage {\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n  }\n': PAGE_QUERYResult;
     '*[_type == "page" && defined(slug)]{slug}': PAGES_SLUGS_QUERYResult;
-    '*[_type == "post" && slug.current == $slug][0]{\n    title,\n    slug,\n    image{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    author->{\n      name,\n      image {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        },\n        alt\n      }\n    },\n    _createdAt,\n    _updatedAt,\n    meta_title,\n    meta_description,\n    noindex,\n    ogImage {\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n}': POST_QUERYResult;
-    '*[_type == "post" && defined(slug)] | order(_createdAt desc){\n    title,\n    slug,\n    excerpt,\n    image{\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n}': POSTS_QUERYResult;
-    '*[_type == "post" && defined(slug)]{slug}': POSTS_SLUGS_QUERYResult;
   }
 }

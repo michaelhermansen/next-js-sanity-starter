@@ -6,8 +6,8 @@ import {
 
 export const resolve: PresentationPluginOptions["resolve"] = {
   locations: {
-    // Add more locations for other post types
-    post: defineLocations({
+    // Add more locations for other types
+    article: defineLocations({
       select: {
         title: "title",
         slug: "slug.current",
@@ -34,7 +34,7 @@ export const resolve: PresentationPluginOptions["resolve"] = {
     },
     {
       route: "/blog/:slug",
-      filter: `_type == 'post' && slug.current == $slug`,
+      filter: `_type == 'article' && slug.current == $slug`,
     },
   ]),
 };
