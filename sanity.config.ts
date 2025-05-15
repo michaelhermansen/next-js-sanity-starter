@@ -5,6 +5,7 @@
  */
 
 import { visionTool } from "@sanity/vision";
+import { nbNOLocale } from "@sanity/locale-nb-no";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { presentationTool } from "sanity/presentation";
@@ -38,5 +39,6 @@ export default defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: env.NEXT_PUBLIC_SANITY_API_VERSION }),
     codeInput(),
+    nbNOLocale(),
   ],
 });
