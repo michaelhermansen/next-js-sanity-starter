@@ -7,10 +7,7 @@ export const ARTICLE_QUERY = groq`*[_type == "article" && slug.current == $slug]
       ...,
       asset->{
         _id,
-        url,
-        mimeType,
         metadata {
-          lqip,
           dimensions {
             width,
             height
@@ -25,10 +22,7 @@ export const ARTICLE_QUERY = groq`*[_type == "article" && slug.current == $slug]
         ...,
         asset->{
           _id,
-          url,
-          mimeType,
           metadata {
-            lqip,
             dimensions {
               width,
               height
@@ -43,10 +37,7 @@ export const ARTICLE_QUERY = groq`*[_type == "article" && slug.current == $slug]
         ...,
         asset->{
           _id,
-          url,
-          mimeType,
           metadata {
-            lqip,
             dimensions {
               width,
               height
@@ -64,7 +55,6 @@ export const ARTICLE_QUERY = groq`*[_type == "article" && slug.current == $slug]
     ogImage {
       asset->{
         _id,
-        url,
         metadata {
           dimensions {
             width,
@@ -82,10 +72,7 @@ export const ARTICLES_QUERY = groq`*[_type == "article" && defined(slug)] | orde
     image{
       asset->{
         _id,
-        url,
-        mimeType,
         metadata {
-          lqip,
           dimensions {
             width,
             height
@@ -95,5 +82,3 @@ export const ARTICLES_QUERY = groq`*[_type == "article" && defined(slug)] | orde
       alt
     },
 }`;
-
-export const ARTICLES_SLUGS_QUERY = groq`*[_type == "article" && defined(slug)]{slug}`;

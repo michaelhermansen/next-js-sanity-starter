@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 
 export async function generateMetadata() {
   const page = await fetchSanityPageBySlug({ slug: "index" });
-
   return generatePageMetadata({ page, slug: "index" });
 }
 

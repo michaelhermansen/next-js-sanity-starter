@@ -2,19 +2,8 @@ import { notFound } from "next/navigation";
 import Breadcrumbs, { BreadcrumbLinkType } from "@/components/ui/breadcrumbs";
 import ArticleHero from "@/components/article-hero";
 import PortableTextRenderer from "@/features/portable-text/portable-text-renderer";
-import {
-  fetchSanityArticleBySlug,
-  fetchSanityArticlesStaticParams,
-} from "@/sanity/lib/fetch";
+import { fetchSanityArticleBySlug } from "@/sanity/lib/fetch";
 import { generatePageMetadata } from "@/sanity/lib/metadata";
-
-export async function generateStaticParams() {
-  const articles = await fetchSanityArticlesStaticParams();
-
-  return articles.map((article) => ({
-    slug: article.slug?.current,
-  }));
-}
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;

@@ -31,5 +31,3 @@ export const PAGE_QUERY = groq`
     }
   }
 `;
-
-export const PAGES_SLUGS_QUERY = groq`*[_type == "page" && defined(slug)]{slug}`;

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { Highlight, themes } from "prism-react-renderer";
 import { CopyButton } from "@/components/ui/copy-button";
-import { CmsImage } from "./cms-image";
+import { CmsImage } from "@/components/cms-image";
 
 const portableTextComponents: PortableTextProps["components"] = {
   types: {
