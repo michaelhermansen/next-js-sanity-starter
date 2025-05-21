@@ -16,19 +16,15 @@ export default async function AllArticles(props: AllArticlesProps) {
 
   return (
     <SectionContainer color={color} padding={props.padding}>
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {articles.map((article) => (
-          <Link
-            key={article?.slug?.current}
-            className="ring-offset-background focus-visible:ring-ring flex w-full rounded-3xl focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden"
-            href={`/artikler/${article?.slug?.current}`}
-          >
-            <ArticleCard
-              title={article?.title ?? ""}
-              excerpt={article?.excerpt ?? ""}
-              image={article?.image ?? null}
-            />
-          </Link>
+          <ArticleCard
+            key={article._id}
+            title={article?.title}
+            excerpt={article?.excerpt}
+            image={article?.image}
+            slug={article?.slug?.current || ""}
+          />
         ))}
       </div>
     </SectionContainer>

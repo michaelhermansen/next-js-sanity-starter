@@ -2,6 +2,7 @@ import { env } from "@/lib/env";
 import { DeepNullable } from "@/lib/utility-types";
 import { SanityImage, SanityImageProps } from "sanity-image";
 import { shake } from "radash";
+import { cn } from "@/lib/utils";
 
 type SimpleImageMetadata = DeepNullable<{
   dimensions?: { width?: number; height?: number };
@@ -48,6 +49,7 @@ export function CmsImage(props: CmsImageProps) {
       baseUrl={baseUrl}
       loading="lazy" // Set default to lazy loading
       mode="cover" // Set default fitting mode to "cover"
+      className={cn("object-cover", props.className)}
       {...restProps}
     />
   );

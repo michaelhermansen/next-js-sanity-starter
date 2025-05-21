@@ -42,7 +42,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
       <link rel="icon" href="/favicon.ico" />
       <body
         className={cn(
-          "bg-background min-h-screen overscroll-none font-sans antialiased",
+          "bg-background min-h-screen font-sans antialiased",
           fontSans.variable,
         )}
       >

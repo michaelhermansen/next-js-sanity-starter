@@ -1,49 +1,55 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import { cn } from "@/lib/utils";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { type ComponentProps } from "react";
 
-export type BreadcrumbLinkType = {
-  label: string;
-  href: string;
-};
-
-function BreadcrumbCustomItem(
-  props: BreadcrumbLinkType & { isCurrent?: boolean },
-) {
+export function Breadcrumbs({ children, ...props }: ComponentProps<"nav">) {
   return (
-    <>
-      <BreadcrumbItem className="text-primary font-bold">
-        {!props.isCurrent ? (
-          <BreadcrumbLink className="hover:text-primary/70" asChild>
-            <Link href={props.href}>{props.label}</Link>
-          </BreadcrumbLink>
-        ) : (
-          <BreadcrumbPage>{props.label}</BreadcrumbPage>
-        )}
-      </BreadcrumbItem>
-      {!props.isCurrent && <BreadcrumbSeparator className="text-primary" />}
-    </>
+    <nav aria-label="Brødsmuler" {...props}>
+      <ol className="flex flex-wrap items-center gap-1 break-words sm:gap-2">
+        {children}
+      </ol>
+    </nav>
   );
 }
 
-export default function Breadcrumbs(props: { links: BreadcrumbLinkType[] }) {
+export function BreadcrumbsHomeLink() {
   return (
-    <Breadcrumb className="mb-3 lg:mb-6">
-      <BreadcrumbList>
-        {props.links.map((link, index) => (
-          <BreadcrumbCustomItem
-            key={link.label}
-            {...link}
-            isCurrent={index === props.links.length - 1}
-          />
-        ))}
-      </BreadcrumbList>
-    </Breadcrumb>
+    <li>
+      <Link href="/" className="underline hover:no-underline">
+        Forside
+      </Link>
+    </li>
+  );
+}
+
+export function BreadcrumbsSeparator(props: ComponentProps<"li">) {
+  return (
+    <li role="presentation" aria-hidden="true" {...props}>
+      <ChevronRight size="1em" />
+    </li>
+  );
+}
+
+export function BreadcrumbsLink(props: { href: string; children: string }) {
+  return (
+    <li>
+      <Link className="underline hover:no-underline" {...props} />
+    </li>
+  );
+}
+
+export function BreadcrumbsCurrentPage({
+  className,
+  ...props
+}: ComponentProps<"span">) {
+  return (
+    <span
+      role="link"
+      aria-disabled="true"
+      aria-current="page"
+      className={cn("font-semibold", className)}
+      {...props}
+    />
   );
 }

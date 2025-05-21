@@ -1,9 +1,15 @@
 import { notFound } from "next/navigation";
-import Breadcrumbs, { BreadcrumbLinkType } from "@/components/ui/breadcrumbs";
 import ArticleHero from "@/components/article-hero";
 import PortableTextRenderer from "@/features/portable-text/portable-text-renderer";
 import { fetchSanityArticleBySlug } from "@/sanity/lib/fetch";
 import { generatePageMetadata } from "@/sanity/lib/metadata";
+import {
+  Breadcrumbs,
+  BreadcrumbsCurrentPage,
+  BreadcrumbsHomeLink,
+  BreadcrumbsLink,
+  BreadcrumbsSeparator,
+} from "@/components/ui/breadcrumbs";
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
@@ -31,32 +37,19 @@ export default async function ArticlePage(props: {
     notFound();
   }
 
-  const links: BreadcrumbLinkType[] = article
-    ? [
-        {
-          label: "Home",
-          href: "/",
-        },
-        {
-          label: "Artikler",
-          href: "/artikler",
-        },
-        {
-          label: article.title as string,
-          href: "#",
-        },
-      ]
-    : [];
-
   return (
-    <section>
-      <div className="container py-16 xl:py-20">
-        <article className="mx-auto max-w-3xl">
-          <Breadcrumbs links={links} />
-          <ArticleHero {...article} />
-          {article.body && <PortableTextRenderer value={article.body} />}
-        </article>
+    <article className="container py-6 lg:py-12">
+      <Breadcrumbs className="mb-6 lg:mb-12">
+        <BreadcrumbsHomeLink />
+        <BreadcrumbsSeparator />
+        <BreadcrumbsLink href="/artikler">Artikler</BreadcrumbsLink>
+        <BreadcrumbsSeparator />
+        <BreadcrumbsCurrentPage>{article.title}</BreadcrumbsCurrentPage>
+      </Breadcrumbs>
+      <ArticleHero {...article} />
+      <div className="max-w-3xl">
+        {article.body && <PortableTextRenderer value={article.body} />}
       </div>
-    </section>
+    </article>
   );
 }

@@ -66,6 +66,7 @@ export const ARTICLE_QUERY = groq`*[_type == "article" && slug.current == $slug]
 }`;
 
 export const ARTICLES_QUERY = groq`*[_type == "article" && defined(slug)] | order(_createdAt desc){
+    _id,
     title,
     slug,
     excerpt,
