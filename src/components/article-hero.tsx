@@ -37,14 +37,6 @@ export default function ArticleHero(props: ArticleHeroProps) {
                   style={{
                     objectFit: "cover",
                   }}
-                  placeholder={
-                    props.author.image.asset?.metadata?.lqip
-                      ? "blur"
-                      : undefined
-                  }
-                  blurDataURL={
-                    props.author.image.asset?.metadata?.lqip || undefined
-                  }
                   sizes="40px"
                   className="mr-2 h-10 w-10 rounded-full"
                 />
@@ -60,7 +52,7 @@ export default function ArticleHero(props: ArticleHeroProps) {
           <div className="flex gap-2">
             <a
               className="hover:opacity-70"
-              href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_SITE_URL}/blog/${props.slug?.current}`}
+              href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_SITE_URL}/artikler/${props.slug?.current}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Share on Facebook"
@@ -81,7 +73,7 @@ export default function ArticleHero(props: ArticleHeroProps) {
             </a>
             <a
               className="hover:opacity-70"
-              href={`mailto:?subject=${props.title}&body=${props.title}%0A%0A${process.env.NEXT_PUBLIC_SITE_URL}/blog/${props.slug?.current}`}
+              href={`mailto:?subject=${props.title}&body=${props.title}%0A%0A${process.env.NEXT_PUBLIC_SITE_URL}/artikler/${props.slug?.current}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Share via email"

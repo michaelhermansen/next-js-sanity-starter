@@ -21,7 +21,7 @@ export default async function AllArticles(props: AllArticlesProps) {
           <Link
             key={article?.slug?.current}
             className="ring-offset-background focus-visible:ring-ring flex w-full rounded-3xl focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden"
-            href={`/blog/${article?.slug?.current}`}
+            href={`/artikler/${article?.slug?.current}`}
           >
             <ArticleCard
               title={article?.title ?? ""}

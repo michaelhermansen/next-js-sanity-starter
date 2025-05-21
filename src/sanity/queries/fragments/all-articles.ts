@@ -1,10 +1,8 @@
-import { groq } from "next-sanity";
-
-export const allArticlesQuery = groq`
+export const allArticlesQuery = `
   _type == "all-articles" => {
     _type,
     _key,
     padding,
-    colorVariant,
+    colorVariant
   }
 `;

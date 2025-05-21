@@ -1,6 +1,4 @@
-import { groq } from "next-sanity";
-
-export const sectionHeaderQuery = groq`
+export const sectionHeaderQuery = `
   _type == "section-header" => {
     _type,
     _key,

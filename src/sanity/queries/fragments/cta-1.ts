@@ -1,6 +1,4 @@
-import { groq } from "next-sanity";
-
-export const cta1Query = groq`
+export const cta1Query = `
   _type == "cta-1" => {
     _type,
     _key,

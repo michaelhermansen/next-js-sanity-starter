@@ -1,6 +1,4 @@
-import { groq } from "next-sanity";
-
-export const hero2Query = groq`
+export const hero2Query = `
   _type == "hero-2" => {
     _type,
     _key,
@@ -12,10 +10,7 @@ export const hero2Query = groq`
         ...,
         asset->{
           _id,
-          url,
-          mimeType,
           metadata {
-            lqip,
             dimensions {
               width,
               height

@@ -6,16 +6,12 @@ import Link from "next/link";
 
 const navItems = [
   {
-    label: "Side 1",
-    href: "/side-1",
+    label: "Artikler",
+    href: "/artikler",
   },
   {
-    label: "Side 2",
-    href: "/side-2",
-  },
-  {
-    label: "Side 3",
-    href: "/side-3",
+    label: "Eksempelside",
+    href: "/eksempelside",
   },
 ];
 

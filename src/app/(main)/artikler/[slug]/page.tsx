@@ -15,7 +15,10 @@ export async function generateMetadata(props: {
     notFound();
   }
 
-  return generatePageMetadata({ page: article, slug: `/blog/${params.slug}` });
+  return generatePageMetadata({
+    page: article,
+    slug: `/artikler/${params.slug}`,
+  });
 }
 
 export default async function ArticlePage(props: {
@@ -35,8 +38,8 @@ export default async function ArticlePage(props: {
           href: "/",
         },
         {
-          label: "Blog",
-          href: "/blog",
+          label: "Artikler",
+          href: "/artikler",
         },
         {
           label: article.title as string,
