@@ -1,5 +1,6 @@
 import DesktopNav from "@/components/header/desktop-nav";
 import MobileNav from "@/components/header/mobile-nav";
+import { SearchField } from "@/features/search";
 import { ThemeToggle } from "@/features/theme/theme-toggle";
 import { config } from "@/lib/config";
 import Link from "next/link";
@@ -22,9 +23,12 @@ export default function Header() {
         <Link href="/" aria-label="Hjem" className="font-semibold">
           {config.siteName}
         </Link>
-        <div className="hidden items-center justify-between gap-7 xl:flex">
+        <div className="hidden items-center justify-between gap-8 xl:flex">
           <DesktopNav navItems={navItems} />
-          <ThemeToggle />
+          <div className="flex gap-2">
+            <SearchField resultPathname="/sok" />
+            <ThemeToggle />
+          </div>
         </div>
         <div className="flex items-center gap-2 xl:hidden">
           <ThemeToggle />

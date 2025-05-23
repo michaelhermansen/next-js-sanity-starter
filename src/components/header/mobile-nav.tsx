@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -7,11 +8,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
+import { config } from "@/lib/config";
+import { AlignRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { AlignRight } from "lucide-react";
-import { config } from "@/lib/config";
 import { NavItem } from "./types";
 
 export default function MobileNav(props: { navItems: NavItem[] }) {

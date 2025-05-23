@@ -134,9 +134,6 @@ export type Cta1 = {
         _type: "youtube";
         _key: string;
       }
-    | ({
-        _key: string;
-      } & Code)
   >;
   links?: Array<
     {
@@ -205,9 +202,6 @@ export type Hero2 = {
         _type: "youtube";
         _key: string;
       }
-    | ({
-        _key: string;
-      } & Code)
   >;
   links?: Array<
     {
@@ -256,9 +250,6 @@ export type Hero1 = {
         _type: "youtube";
         _key: string;
       }
-    | ({
-        _key: string;
-      } & Code)
   >;
   image?: {
     asset?: {
@@ -349,9 +340,6 @@ export type BlockContent = Array<
       _type: "youtube";
       _key: string;
     }
-  | ({
-      _key: string;
-    } & Code)
 >;
 
 export type Category = {
@@ -547,14 +535,6 @@ export type Slug = {
   source?: string;
 };
 
-export type Code = {
-  _type: "code";
-  language?: string;
-  filename?: string;
-  code?: string;
-  highlightedLines?: Array<number>;
-};
-
 export type AllSanitySchemaTypes =
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -580,8 +560,7 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
-  | Slug
-  | Code;
+  | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: src/app/sitemap.ts
 // Variable: pagesQuery
@@ -641,14 +620,6 @@ export type ARTICLE_QUERYResult = {
         level?: number;
         _type: "block";
         _key: string;
-      }
-    | {
-        _key: string;
-        _type: "code";
-        language?: string;
-        filename?: string;
-        code?: string;
-        highlightedLines?: Array<number>;
       }
     | {
         asset: {
@@ -786,14 +757,6 @@ export type PAGE_QUERYResult = {
               _key: string;
             }
           | {
-              _key: string;
-              _type: "code";
-              language?: string;
-              filename?: string;
-              code?: string;
-              highlightedLines?: Array<number>;
-            }
-          | {
               asset: {
                 _id: string;
                 url: string | null;
@@ -846,14 +809,6 @@ export type PAGE_QUERYResult = {
               level?: number;
               _type: "block";
               _key: string;
-            }
-          | {
-              _key: string;
-              _type: "code";
-              language?: string;
-              filename?: string;
-              code?: string;
-              highlightedLines?: Array<number>;
             }
           | {
               asset: {
@@ -925,14 +880,6 @@ export type PAGE_QUERYResult = {
               _key: string;
             }
           | {
-              _key: string;
-              _type: "code";
-              language?: string;
-              filename?: string;
-              code?: string;
-              highlightedLines?: Array<number>;
-            }
-          | {
               asset: {
                 _id: string;
                 metadata: {
@@ -999,6 +946,54 @@ export type PAGE_QUERYResult = {
   } | null;
 } | null;
 
+// Source: src/sanity/queries/search-results.ts
+// Variable: SEARCH_RESULT_QUERY
+// Query: *[_id in $documentIds]{    _id,    _type,    title,    slug,    excerpt,  }
+export type SEARCH_RESULT_QUERYResult = Array<
+  | {
+      _id: string;
+      _type: "article";
+      title: string | null;
+      slug: Slug | null;
+      excerpt: string | null;
+    }
+  | {
+      _id: string;
+      _type: "author";
+      title: null;
+      slug: Slug | null;
+      excerpt: null;
+    }
+  | {
+      _id: string;
+      _type: "category";
+      title: string | null;
+      slug: null;
+      excerpt: null;
+    }
+  | {
+      _id: string;
+      _type: "page";
+      title: string | null;
+      slug: Slug | null;
+      excerpt: null;
+    }
+  | {
+      _id: string;
+      _type: "sanity.fileAsset";
+      title: string | null;
+      slug: null;
+      excerpt: null;
+    }
+  | {
+      _id: string;
+      _type: "sanity.imageAsset";
+      title: string | null;
+      slug: null;
+      excerpt: null;
+    }
+>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -1008,5 +1003,6 @@ declare module "@sanity/client" {
     '*[_type == "article" && slug.current == $slug][0]{\n    title,\n    slug,\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    author->{\n      name,\n      image {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        },\n        alt\n      }\n    },\n    _createdAt,\n    _updatedAt,\n    meta_title,\n    meta_description,\n    noindex,\n    ogImage {\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n}': ARTICLE_QUERYResult;
     '*[_type == "article" && defined(slug)] | order(_createdAt desc){\n    _id,\n    title,\n    slug,\n    excerpt,\n    image{\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n}': ARTICLES_QUERYResult;
     '\n  *[_type == "page" && slug.current == $slug][0]{\n    blocks[]{\n      \n  _type == "hero-1" => {\n    _type,\n    _key,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    links,\n  }\n,\n      \n  _type == "hero-2" => {\n    _type,\n    _key,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == "section-header" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    description,\n    link,\n  }\n,\n      \n  _type == "cta-1" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == "all-articles" => {\n    _type,\n    _key,\n    padding,\n    colorVariant\n  }\n,\n    },\n    meta_title,\n    meta_description,\n    noindex,\n    ogImage {\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n  }\n': PAGE_QUERYResult;
+    "*[_id in $documentIds]{\n    _id,\n    _type,\n    title,\n    slug,\n    excerpt,\n  }": SEARCH_RESULT_QUERYResult;
   }
 }

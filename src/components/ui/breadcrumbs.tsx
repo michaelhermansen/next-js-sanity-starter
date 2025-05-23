@@ -17,7 +17,7 @@ export function BreadcrumbsHomeLink() {
   return (
     <li>
       <Link href="/" className="underline hover:no-underline">
-        Forside
+        Hjem
       </Link>
     </li>
   );

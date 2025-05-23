@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/features/theme/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { config } from "@/lib/config";
 import { size } from "./api/og/route";
+import { QueryProvider } from "@/features/tanstack-query/client";
 
 const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";
 
@@ -38,22 +39,24 @@ const fontSans = Inter({
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="no-NB" suppressHydrationWarning>
       <link rel="icon" href="/favicon.ico" />
       <body
         className={cn(
-          "bg-background min-h-screen font-sans antialiased",
+          "bg-background min-h-screen font-sans underline-offset-2 antialiased",
           fontSans.variable,
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {props.children}
-        </ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {props.children}
+          </ThemeProvider>
+        </QueryProvider>
         <Toaster position="top-center" richColors />
       </body>
     </html>

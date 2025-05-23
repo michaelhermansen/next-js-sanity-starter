@@ -4,7 +4,7 @@ import { StructureResolver } from "sanity/structure";
 
 export const structure: StructureResolver = (S, context) =>
   S.list()
-    .title("Content")
+    .title("Innhold")
     .items([
       orderableDocumentListDeskItem({
         type: "page",

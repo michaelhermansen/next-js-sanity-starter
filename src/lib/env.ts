@@ -4,6 +4,7 @@ import { z } from "zod";
 export const env = createEnv({
   server: {
     SANITY_API_READ_TOKEN: z.string(),
+    SANITY_API_EDITOR_TOKEN: z.string(),
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.string().url(),
