@@ -1,4 +1,5 @@
 import { SearchResults } from "@/features/search";
+import { Suspense } from "react";
 
 export default async function Page(props: {
   searchParams: Promise<{ q: string }>;
@@ -12,7 +13,9 @@ export default async function Page(props: {
         Søkeresultater for <q>{query}</q>
       </h1>
 
-      <SearchResults maxResults={10} types={["article"]} />
+      <Suspense key={query} fallback={<p>Laster ...</p>}>
+        <SearchResults query={query} maxResults={10} types={["article"]} />
+      </Suspense>
     </div>
   );
 }

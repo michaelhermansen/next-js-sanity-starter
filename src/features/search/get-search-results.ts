@@ -1,5 +1,3 @@
-"use server";
-
 import { env } from "@/lib/env";
 import { sanityFetch } from "@/sanity/lib/live";
 import { SEARCH_RESULT_QUERY } from "@/sanity/queries/search-results";

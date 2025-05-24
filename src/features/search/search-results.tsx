@@ -1,31 +1,17 @@
-"use client";
-
-import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useRef } from "react";
 import { DocumentType, getSearchResults } from "./get-search-results";
+import { SearchResultItem } from "./search-result-item";
 
-export function SearchResults(props: {
+export async function SearchResults(props: {
+  query: string;
   maxResults: number;
   types?: DocumentType[];
 }) {
-  const searchParams = useSearchParams();
-  const query = searchParams.get("q") || "";
-
-  const { data, isPending, isError } = useQuery({
-    queryKey: ["getSearchResults", query, props.maxResults],
-    queryFn: async () => {
-      return getSearchResults({
-        query,
-        maxResults: props.maxResults,
-        types: props.types,
-      });
-    },
+  const data = await getSearchResults({
+    query: props.query,
+    maxResults: props.maxResults,
+    types: props.types,
   });
 
-  if (isPending) return <p>Laster ...</p>;
-  if (isError) return <p>Noe gikk galt</p>;
   if (!data.length) return <p>Ingen resultater</p>;
 
   return (
@@ -43,31 +29,5 @@ export function SearchResults(props: {
         );
       })}
     </ul>
-  );
-}
-
-function SearchResultItem(props: {
-  href: string;
-  title: string;
-  excerpt?: string;
-}) {
-  const linkRef = useRef<HTMLAnchorElement | null>(null);
-
-  return (
-    <li
-      className="group cursor-pointer space-y-1 py-4"
-      onClick={() => linkRef.current?.click()}
-    >
-      <Link
-        href={props.href}
-        className="flex items-center gap-2 text-xl font-medium group-hover:underline"
-        ref={linkRef}
-      >
-        {props.title}
-      </Link>
-      {props.excerpt && (
-        <p className="text-muted-foreground line-clamp-1">{props.excerpt}</p>
-      )}
-    </li>
   );
 }
