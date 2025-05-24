@@ -12,8 +12,8 @@ type Hero1Props = Extract<
 
 export default function Hero1(props: Hero1Props) {
   return (
-    <header className="bg-muted dark:bg-muted">
-      <div className="container py-16">
+    <header className="bg-muted border-b">
+      <div className="container py-8">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           <div className="flex flex-col justify-center pb-12">
             {props.body && (
@@ -49,7 +49,7 @@ export default function Hero1(props: Hero1Props) {
                 alt={props.image.alt || ""}
                 width={600}
                 height={500}
-                className="rounded-xl"
+                className="h-[500px] w-full rounded"
               />
             )}
           </div>

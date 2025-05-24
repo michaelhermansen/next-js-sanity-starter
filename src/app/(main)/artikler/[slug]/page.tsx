@@ -49,11 +49,11 @@ export default async function ArticlePage(props: {
         <div className="container grid grid-cols-3 gap-24 py-16">
           {headings && (
             <aside className="sticky col-span-1 col-start-3 row-start-1">
-              <TableOfContents headings={headings} className="sticky top-12" />
+              <TableOfContents headings={headings} className="sticky top-16" />
             </aside>
           )}
 
-          <div className="col-span-2 col-start-1 row-start-1 max-w-3xl">
+          <div className="col-span-2 col-start-1 row-start-1">
             {article.body && <PortableTextRenderer value={article.body} />}
           </div>
         </div>

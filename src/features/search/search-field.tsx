@@ -19,7 +19,7 @@ export function SearchField(props: { resultPathname: string }) {
         <input
           name="query"
           type="search"
-          className="bg-background h-9 w-full rounded rounded-r-none border pr-2 pl-3 shadow-xs"
+          className="bg-background border-input focus:bg-card h-9 w-full rounded-sm rounded-r-none border border-r-0 pr-2 pl-3 shadow-xs transition-colors"
           placeholder="Søk"
           defaultValue={defaultValue}
         />
@@ -28,7 +28,7 @@ export function SearchField(props: { resultPathname: string }) {
         size="icon"
         variant="outline"
         type="submit"
-        className="rounded-l-none border-l-0"
+        className="rounded-l-none"
       >
         <AccessibleIcon label="Søk">
           <Search size="1rem" />

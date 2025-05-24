@@ -1,18 +1,31 @@
-import Link from "next/link";
-import { NavItem } from "./types";
+"use client";
 
-export default function DesktopNav(props: { navItems: NavItem[] }) {
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { NavItemProps } from "./types";
+import { cn } from "@/lib/utils";
+
+export default function DesktopNav(props: { navItems: NavItemProps[] }) {
   return (
     <div className="text-primary hidden items-center gap-7 xl:flex">
       {props.navItems.map((navItem) => (
-        <Link
-          key={navItem.label}
-          href={navItem.href}
-          className="hover:underline"
-        >
-          {navItem.label}
-        </Link>
+        <NavItem key={navItem.href} label={navItem.label} href={navItem.href} />
       ))}
     </div>
+  );
+}
+
+function NavItem(props: NavItemProps) {
+  const pathname = usePathname();
+  const isActive = pathname.startsWith(props.href);
+
+  return (
+    <Link
+      key={props.label}
+      href={props.href}
+      className={cn("hover:underline", { underline: isActive })}
+    >
+      {props.label}
+    </Link>
   );
 }

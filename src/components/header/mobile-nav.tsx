@@ -12,9 +12,9 @@ import { config } from "@/lib/config";
 import { AlignRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { NavItem } from "./types";
+import { NavItemProps } from "./types";
 
-export default function MobileNav(props: { navItems: NavItem[] }) {
+export default function MobileNav(props: { navItems: NavItemProps[] }) {
   const [open, setOpen] = useState(false);
   return (
     <Sheet open={open} onOpenChange={setOpen}>

@@ -6,7 +6,7 @@ type ArticleHeroProps = NonNullable<ARTICLE_QUERYResult>;
 
 export default function ArticleHero(props: ArticleHeroProps) {
   return (
-    <div className="bg-accent text-accent-foreground border-b pb-4 xl:py-8">
+    <div className="bg-muted border-b pb-4 xl:py-8">
       <div className="grid grid-cols-1 gap-6 sm:container sm:gap-8 md:gap-0 xl:grid-cols-2 xl:gap-16">
         <div className="flex flex-col justify-between gap-8 px-4 pb-6 sm:gap-10 sm:px-0 md:gap-12 md:py-8 lg:py-10 xl:gap-14 xl:py-16 2xl:py-20">
           <div className="space-y-3 md:space-y-6">
@@ -31,7 +31,7 @@ export default function ArticleHero(props: ArticleHeroProps) {
             )}
             <div>
               <p className="font-medium">{props.author?.name}</p>
-              <p className="text-sm sm:text-base">
+              <p className="text-muted-foreground text-sm sm:text-base">
                 {formatDate(props._createdAt)}
               </p>
             </div>

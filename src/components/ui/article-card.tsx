@@ -17,7 +17,7 @@ export default function ArticleCard(props: ArticleCardProps) {
   return (
     <div
       className={cn(
-        "group hover:border-primary focus-within:border-primary cursor-pointer overflow-clip rounded border transition-colors",
+        "group hover:border-primary bg-card focus-within:border-primary cursor-pointer overflow-clip rounded border transition-colors",
         props.className,
       )}
       onClick={() => linkRef.current?.click()}
