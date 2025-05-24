@@ -2,6 +2,7 @@ import Blocks from "@/components/blocks";
 import { fetchSanityPageBySlug } from "@/sanity/lib/fetch";
 import { notFound } from "next/navigation";
 import { generatePageMetadata } from "@/sanity/lib/metadata";
+import { PageBreadcrumbs } from "@/components/page-breadcrumbs";
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
@@ -26,5 +27,13 @@ export default async function Page(props: {
     notFound();
   }
 
-  return <Blocks blocks={page?.blocks ?? []} />;
+  return (
+    <>
+      <PageBreadcrumbs
+        links={[]}
+        currentPageTitle={page.title || ""}
+      ></PageBreadcrumbs>
+      <Blocks blocks={page?.blocks ?? []} />
+    </>
+  );
 }

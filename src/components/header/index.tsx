@@ -18,7 +18,7 @@ const navItems = [
 
 export default function Header() {
   return (
-    <header className="border-b">
+    <header className="bg-background sticky top-0 z-50 border-b">
       <div className="container flex h-20 items-center justify-between">
         <Link href="/" aria-label="Hjem" className="font-semibold">
           {config.siteName}

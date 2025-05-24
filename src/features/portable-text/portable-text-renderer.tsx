@@ -25,9 +25,7 @@ const portableTextComponents: PortableTextProps["components"] = {
     },
   },
   block: {
-    normal: ({ children }) => (
-      <p className="mb-4 max-w-[65ch] text-xl">{children}</p>
-    ),
+    normal: ({ children }) => <p className="mb-4 text-xl">{children}</p>,
     h1: ({ children }) => (
       <h1 className="mt-6 mb-4 text-5xl font-semibold first:mt-0">
         {children}

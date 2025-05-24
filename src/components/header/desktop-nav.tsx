@@ -8,7 +8,7 @@ export default function DesktopNav(props: { navItems: NavItem[] }) {
         <Link
           key={navItem.label}
           href={navItem.href}
-          className="text-foreground/60 hover:text-foreground/80 transition-colors"
+          className="hover:underline"
         >
           {navItem.label}
         </Link>

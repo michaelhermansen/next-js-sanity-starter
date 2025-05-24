@@ -15,6 +15,7 @@ export const PAGE_QUERY = defineQuery(`
       ${allArticlesQuery},
     },
     meta_title,
+    title,
     meta_description,
     noindex,
     ogImage {
