@@ -2,6 +2,7 @@ import { groq } from "next-sanity";
 
 export const ARTICLE_QUERY = groq`*[_type == "article" && slug.current == $slug][0]{
     title,
+    excerpt,
     slug,
     image{
       ...,
@@ -68,6 +69,7 @@ export const ARTICLE_QUERY = groq`*[_type == "article" && slug.current == $slug]
 
 export const ARTICLES_QUERY = groq`*[_type == "article" && defined(slug)] | order(_createdAt desc){
     _id,
+    _createdAt,
     title,
     slug,
     excerpt,

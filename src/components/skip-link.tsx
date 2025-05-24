@@ -2,16 +2,16 @@
 
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 export function SkipLink() {
   return (
-    <Link
-      href={"#hovedinnhold"}
-      className={cn(
-        "bg-primary text-primary-foreground pointer-events-none absolute top-2 left-2 block max-w-max -translate-y-4 rounded-sm px-4 py-2 opacity-0 transition-all focus:pointer-events-auto focus:translate-y-0 focus:opacity-100",
-      )}
+    <Button
+      asChild
+      size="lg"
+      className="pointer-events-none absolute top-2 left-2 -translate-y-2 opacity-0 transition-all focus:pointer-events-auto focus:translate-y-0 focus:opacity-100"
     >
-      Hopp til hovedinnhold
-    </Link>
+      <Link href={"#hovedinnhold"}>Hopp til hovedinnhold</Link>
+    </Button>
   );
 }

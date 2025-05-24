@@ -1,7 +1,9 @@
 import { CmsImage } from "@/components/cms-image";
 import { VideoPlayer } from "@/components/video-player";
-import { PortableText, PortableTextProps } from "@portabletext/react";
+import { PortableText, PortableTextProps } from "next-sanity";
+
 import Link from "next/link";
+import { getHeadingId } from "./headings";
 
 const portableTextComponents: PortableTextProps["components"] = {
   types: {
@@ -16,25 +18,36 @@ const portableTextComponents: PortableTextProps["components"] = {
     },
     video: ({ value }) => {
       return (
-        <div className="my-6 aspect-video overflow-clip rounded-md">
+        <div className="my-8 aspect-video overflow-clip rounded-md">
           <VideoPlayer url={value.videoUrl} />
         </div>
       );
     },
   },
   block: {
-    normal: ({ children }) => <p className="mb-4 text-xl">{children}</p>,
+    normal: ({ children }) => (
+      <p className="mb-4 max-w-[65ch] text-xl">{children}</p>
+    ),
     h1: ({ children }) => (
-      <h1 className="mt-6 mb-4 text-5xl font-semibold">{children}</h1>
+      <h1 className="mt-6 mb-4 text-5xl font-semibold first:mt-0">
+        {children}
+      </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="mt-6 mb-4 text-4xl font-semibold">{children}</h2>
+      <h2
+        id={getHeadingId(children)}
+        className="mt-6 mb-4 text-4xl font-semibold first:mt-0"
+      >
+        {children}
+      </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="mt-6 mb-4 text-3xl font-semibold">{children}</h3>
-    ),
-    h4: ({ children }) => (
-      <h4 className="mt-6 mb-4 text-2xl font-semibold">{children}</h4>
+      <h3
+        id={getHeadingId(children)}
+        className="mt-6 mb-4 text-3xl font-semibold first:mt-0"
+      >
+        {children}
+      </h3>
     ),
   },
   marks: {
