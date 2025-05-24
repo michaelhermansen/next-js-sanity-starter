@@ -18,6 +18,7 @@ export const PAGE_QUERY = defineQuery(`
     meta_description,
     noindex,
     ogImage {
+      ...,
       asset->{
         _id,
         url,

@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
-import { STACK_ALIGN, SECTION_WIDTH } from "./shared/layout-variants";
 import { BlockContentIcon } from "@sanity/icons";
+import { SECTION_WIDTH, STACK_ALIGN } from "../partials/layout-variants";
 
 export default defineType({
   name: "section-header",

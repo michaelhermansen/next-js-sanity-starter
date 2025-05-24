@@ -1,5 +1,6 @@
 import { urlFor } from "@/sanity/lib/image";
 import { PAGE_QUERYResult, ARTICLE_QUERYResult } from "../sanity.types";
+import { config } from "@/lib/config";
 const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";
 
 export function generatePageMetadata({
@@ -24,13 +25,13 @@ export function generatePageMetadata({
       images: [
         {
           url: page?.ogImage
-            ? urlFor(page?.ogImage).quality(100).url()
+            ? urlFor(page?.ogImage).quality(100).width(1200).height(630).url()
             : generatedOgUrl.toString(),
-          width: page?.ogImage?.asset?.metadata?.dimensions?.width || 1200,
-          height: page?.ogImage?.asset?.metadata?.dimensions?.height || 630,
+          width: 1200,
+          height: 630,
         },
       ],
-      locale: "nb_NO",
+      locale: config.locales[0],
       type: "website",
     },
     robots: !isProduction

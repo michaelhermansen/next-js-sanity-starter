@@ -9,7 +9,7 @@ export default defineType({
   groups: [
     {
       name: "content",
-      title: "Content",
+      title: "Innhold",
     },
     {
       name: "seo",
@@ -17,7 +17,7 @@ export default defineType({
     },
     {
       name: "settings",
-      title: "Settings",
+      title: "Innstillinger",
     },
   ],
   fields: [
@@ -102,8 +102,11 @@ export default defineType({
     }),
     defineField({
       name: "ogImage",
-      title: "Open Graph Image - [1200x630]",
+      title: "Open Graph Image",
       type: "image",
+      options: {
+        hotspot: true,
+      },
       group: "seo",
     }),
   ],

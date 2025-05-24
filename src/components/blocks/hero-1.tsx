@@ -12,8 +12,8 @@ type Hero1Props = Extract<
 
 export default function Hero1(props: Hero1Props) {
   return (
-    <header className="bg-muted dark:bg-muted/10">
-      <div className="container py-20">
+    <header className="bg-muted dark:bg-muted">
+      <div className="container py-16">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           <div className="flex flex-col justify-center pb-12">
             {props.body && (

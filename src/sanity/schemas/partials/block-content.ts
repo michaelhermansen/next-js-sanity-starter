@@ -1,5 +1,5 @@
 import { defineType, defineArrayMember } from "sanity";
-import { YouTubePreview } from "@/sanity/schemas/previews/youtube-preview";
+import { VideoPreview } from "@/sanity/schemas/previews/video-preview";
 import { VideoIcon } from "@sanity/icons";
 
 export default defineType({
@@ -60,25 +60,25 @@ export default defineType({
       ],
     }),
     defineArrayMember({
-      name: "youtube",
+      name: "video",
       type: "object",
-      title: "YouTube",
+      title: "Video",
       icon: VideoIcon,
       fields: [
         {
-          name: "videoId",
-          title: "Video ID",
+          name: "videoUrl",
+          title: "Video-URL",
           type: "string",
-          description: "YouTube Video ID",
+          description: "Lim inn en video-URL",
         },
       ],
       preview: {
         select: {
-          title: "videoId",
+          title: "videoUrl",
         },
       },
       components: {
-        preview: YouTubePreview,
+        preview: VideoPreview,
       },
     }),
   ],

@@ -749,7 +749,7 @@
                 {
                   "type": "object",
                   "attributes": {
-                    "videoId": {
+                    "videoUrl": {
                       "type": "objectAttribute",
                       "value": {
                         "type": "string"
@@ -760,7 +760,7 @@
                       "type": "objectAttribute",
                       "value": {
                         "type": "string",
-                        "value": "youtube"
+                        "value": "video"
                       }
                     }
                   },
@@ -1206,7 +1206,7 @@
                 {
                   "type": "object",
                   "attributes": {
-                    "videoId": {
+                    "videoUrl": {
                       "type": "objectAttribute",
                       "value": {
                         "type": "string"
@@ -1217,7 +1217,7 @@
                       "type": "objectAttribute",
                       "value": {
                         "type": "string",
-                        "value": "youtube"
+                        "value": "video"
                       }
                     }
                   },
@@ -1533,7 +1533,7 @@
                 {
                   "type": "object",
                   "attributes": {
-                    "videoId": {
+                    "videoUrl": {
                       "type": "objectAttribute",
                       "value": {
                         "type": "string"
@@ -1544,7 +1544,7 @@
                       "type": "objectAttribute",
                       "value": {
                         "type": "string",
-                        "value": "youtube"
+                        "value": "video"
                       }
                     }
                   },
@@ -2069,7 +2069,7 @@
           {
             "type": "object",
             "attributes": {
-              "videoId": {
+              "videoUrl": {
                 "type": "objectAttribute",
                 "value": {
                   "type": "string"
@@ -2080,7 +2080,7 @@
                 "type": "objectAttribute",
                 "value": {
                   "type": "string",
-                  "value": "youtube"
+                  "value": "video"
                 }
               }
             },
@@ -2139,6 +2139,14 @@
         "type": "objectAttribute",
         "value": {
           "type": "string"
+        },
+        "optional": true
+      },
+      "slug": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "slug"
         },
         "optional": true
       },

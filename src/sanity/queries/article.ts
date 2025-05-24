@@ -11,7 +11,7 @@ export const ARTICLE_QUERY = groq`*[_type == "article" && slug.current == $slug]
           dimensions {
             width,
             height
-          }
+          },
         }
       },
       alt
@@ -53,6 +53,7 @@ export const ARTICLE_QUERY = groq`*[_type == "article" && slug.current == $slug]
     meta_description,
     noindex,
     ogImage {
+      ...,
       asset->{
         _id,
         metadata {
@@ -71,6 +72,7 @@ export const ARTICLES_QUERY = groq`*[_type == "article" && defined(slug)] | orde
     slug,
     excerpt,
     image{
+      ...,
       asset->{
         _id,
         metadata {

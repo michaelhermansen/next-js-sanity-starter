@@ -39,7 +39,7 @@ const fontSans = Inter({
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="no-NB" suppressHydrationWarning>
+    <html lang={config.locales[0]} suppressHydrationWarning>
       <link rel="icon" href="/favicon.ico" />
       <body
         className={cn(

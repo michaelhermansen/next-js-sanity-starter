@@ -17,12 +17,13 @@ const embeddingsIndexResultSchema = z.array(
 );
 
 export type DocumentType = SEARCH_RESULT_QUERYResult[number]["_type"];
-
-export async function getSearchResults(options: {
+export type GetSearchResultsOptions = {
   query: string;
   maxResults: number;
   types?: DocumentType[];
-}) {
+};
+
+export async function getSearchResults(options: GetSearchResultsOptions) {
   if (!options.query) return [];
 
   const response = await fetch(endpoint, {

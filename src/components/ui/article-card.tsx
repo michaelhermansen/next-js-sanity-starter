@@ -19,7 +19,7 @@ export default function ArticleCard(props: ArticleCardProps) {
   return (
     <div
       className={cn(
-        "group hover:border-primary focus-within:border-primary cursor-pointer overflow-clip rounded-lg border transition-colors",
+        "group hover:border-primary focus-within:border-primary cursor-pointer overflow-clip rounded border transition-colors",
         props.className,
       )}
       onClick={() => linkRef.current?.click()}
@@ -43,7 +43,7 @@ export default function ArticleCard(props: ArticleCardProps) {
             href={`/artikler/${props.slug}`}
             className="focus:outline-0"
           >
-            <h3 className="text-2xl leading-normal font-semibold">
+            <h3 className="text-2xl leading-normal font-medium">
               {props.title}
             </h3>
           </Link>
