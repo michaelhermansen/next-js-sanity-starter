@@ -4,7 +4,7 @@ import { stegaClean } from "next-sanity";
 import { PAGE_QUERYResult } from "@/sanity/sanity.types";
 
 type SectionHeaderProps = Extract<
-  NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number],
+  NonNullable<NonNullable<PAGE_QUERYResult>["modules"]>[number],
   { _type: "section-header" }
 >;
 

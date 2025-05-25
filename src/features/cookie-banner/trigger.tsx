@@ -6,7 +6,6 @@ import { toast } from "sonner";
 export default function CookieBannerTrigger() {
   function triggerCookieBanner() {
     try {
-      //@ts-expect-error CookieScript is of type any
       window.CookieScript.instance.show();
     } catch (error) {
       toast("Noe gikk galt", {

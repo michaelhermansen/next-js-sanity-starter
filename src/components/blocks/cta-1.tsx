@@ -7,7 +7,7 @@ import { PortableTextRenderer } from "@/features/portable-text/portable-text-ren
 import { PAGE_QUERYResult } from "@/sanity/sanity.types";
 
 type Cta1Props = Extract<
-  NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number],
+  NonNullable<NonNullable<PAGE_QUERYResult>["modules"]>[number],
   { _type: "cta-1" }
 >;
 
