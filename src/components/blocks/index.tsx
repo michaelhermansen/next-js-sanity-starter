@@ -1,35 +1,34 @@
+import { ComponentType } from "react";
 import { PAGE_QUERYResult } from "../../sanity/sanity.types";
-import AllArticles from "./all-articles";
-import Cta1 from "./cta-1";
-import Hero1 from "./hero-1";
-import Hero2 from "./hero-2";
-import SectionHeader from "./section-header";
+import { AllArticles } from "./all-articles";
+import { Cta1 } from "./cta-1";
+import { Hero1 } from "./hero-1";
+import { SectionHeader } from "./section-header";
 
-type Block = NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number];
+type Module = NonNullable<NonNullable<PAGE_QUERYResult>["modules"]>[number];
 
 const componentMap: {
-  [K in Block["_type"]]: React.ComponentType<Extract<Block, { _type: K }>>;
+  [K in Module["_type"]]: ComponentType<Extract<Module, { _type: K }>>;
 } = {
   "hero-1": Hero1,
-  "hero-2": Hero2,
   "section-header": SectionHeader,
   "cta-1": Cta1,
   "all-articles": AllArticles,
 };
 
-export default function Blocks(props: { blocks: Block[] }) {
+export function ModuleRenderer(props: { modules: Module[] }) {
   return (
     <>
-      {props.blocks?.map((block) => {
-        const Component = componentMap[block._type];
+      {props.modules?.map((module) => {
+        const Component = componentMap[module._type];
         if (!Component) {
           // Fallback for development/debugging of new component types
           console.warn(
-            `No component implemented for block type: ${block._type}`,
+            `No component implemented for module type: ${module._type}`,
           );
-          return <div data-type={block._type} key={block._key} />;
+          return <div data-type={module._type} key={module._key} />;
         }
-        return <Component {...(block as any)} key={block._key} />;
+        return <Component {...(module as any)} key={module._key} />;
       })}
     </>
   );

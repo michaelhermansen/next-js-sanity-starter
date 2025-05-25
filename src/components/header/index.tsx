@@ -1,8 +1,7 @@
-import DesktopNav from "@/components/header/desktop-nav";
-import MobileNav from "@/components/header/mobile-nav";
+import { DesktopNav } from "@/components/header/desktop-nav";
+import { MobileNav } from "@/components/header/mobile-nav";
 import { SearchField } from "@/features/search";
-import { ThemeToggle } from "@/features/theme/theme-toggle";
-import { config } from "@/lib/config";
+import { siteConfig } from "@/lib/site-config";
 import Link from "next/link";
 
 const navItems = [
@@ -16,12 +15,12 @@ const navItems = [
   },
 ];
 
-export default function Header() {
+export function Header() {
   return (
     <header className="bg-background border-b">
       <div className="container flex h-20 items-center justify-between">
         <Link href="/" aria-label="Hjem" className="text-xl font-medium">
-          {config.siteName}
+          {siteConfig.name}
         </Link>
         <div className="hidden items-center justify-between gap-8 xl:flex">
           <DesktopNav navItems={navItems} />

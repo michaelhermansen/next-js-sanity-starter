@@ -1,6 +1,6 @@
-import Blocks from "@/components/blocks";
+import { ModuleRenderer } from "@/components/blocks";
 import { fetchSanityPageBySlug } from "@/sanity/lib/fetch";
-import { generatePageMetadata } from "@/sanity/lib/metadata";
+import { generatePageMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata() {
@@ -10,8 +10,7 @@ export async function generateMetadata() {
 
 export default async function IndexPage() {
   const page = await fetchSanityPageBySlug({ slug: "index" });
-
   if (!page) notFound();
 
-  return <Blocks blocks={page?.blocks ?? []} />;
+  return <ModuleRenderer modules={page.modules ?? []} />;
 }

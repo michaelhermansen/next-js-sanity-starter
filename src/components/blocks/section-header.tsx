@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import SectionContainer from "@/components/ui/section-container";
+import { SectionContainer } from "@/components/ui/section-container";
 import { stegaClean } from "next-sanity";
 import { PAGE_QUERYResult } from "@/sanity/sanity.types";
 
@@ -8,7 +8,7 @@ type SectionHeaderProps = Extract<
   { _type: "section-header" }
 >;
 
-export default function SectionHeader(props: SectionHeaderProps) {
+export function SectionHeader(props: SectionHeaderProps) {
   const { sectionWidth = "default", stackAlign = "left" } = props;
 
   const isNarrow = stegaClean(sectionWidth) === "narrow";

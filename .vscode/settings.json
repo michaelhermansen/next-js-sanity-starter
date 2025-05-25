@@ -1,4 +1,5 @@
 {
   "cSpell.words": ["lqip", "lucide", "radash", "Sonner", "videoid"],
+  "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.tsserver.experimental.enableProjectDiagnostics": false
 }

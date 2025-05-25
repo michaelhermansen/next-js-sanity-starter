@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import SectionContainer from "@/components/ui/section-container";
+import { SectionContainer } from "@/components/ui/section-container";
 import { stegaClean } from "next-sanity";
 import Link from "next/link";
-import PortableTextRenderer from "@/features/portable-text/portable-text-renderer";
+import { PortableTextRenderer } from "@/features/portable-text/portable-text-renderer";
 import { PAGE_QUERYResult } from "@/sanity/sanity.types";
 
 type Cta1Props = Extract<
@@ -11,7 +11,7 @@ type Cta1Props = Extract<
   { _type: "cta-1" }
 >;
 
-export default function Cta1(props: Cta1Props) {
+export function Cta1(props: Cta1Props) {
   const isNarrow = stegaClean(props.sectionWidth) === "narrow";
   const align = stegaClean(props.stackAlign);
   const color = stegaClean(props.colorVariant);

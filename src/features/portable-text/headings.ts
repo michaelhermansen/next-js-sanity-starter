@@ -1,5 +1,5 @@
-import { isArray, isObject, isString, sift } from "radash";
 import { PortableTextProps } from "next-sanity";
+import { isArray, isObject, isString, sift } from "radash";
 import slugify from "slugify";
 
 export function getHeading(headingChildren: unknown) {

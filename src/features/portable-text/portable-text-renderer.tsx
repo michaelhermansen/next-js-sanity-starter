@@ -26,17 +26,17 @@ const portableTextComponents: PortableTextProps["components"] = {
   },
   block: {
     normal: ({ children }) => (
-      <p className="mb-4 text-xl last:mb-0">{children}</p>
+      <p className="mb-4 text-lg last:mb-0 sm:text-xl">{children}</p>
     ),
     h1: ({ children }) => (
-      <h1 className="mt-6 mb-4 text-5xl font-semibold first:mt-0 last:mb-0">
+      <h1 className="mt-6 mb-4 text-4xl leading-tight font-semibold first:mt-0 last:mb-0 sm:text-6xl">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
       <h2
         id={getHeadingId(children)}
-        className="mt-6 mb-4 text-4xl font-semibold first:mt-0 last:mb-0"
+        className="mt-6 mb-4 text-3xl leading-tight font-semibold first:mt-0 last:mb-0 sm:text-4xl"
       >
         {children}
       </h2>
@@ -44,7 +44,7 @@ const portableTextComponents: PortableTextProps["components"] = {
     h3: ({ children }) => (
       <h3
         id={getHeadingId(children)}
-        className="mt-6 mb-4 text-3xl font-semibold first:mt-0 last:mb-0"
+        className="mt-6 mb-4 text-2xl leading-tight font-semibold first:mt-0 last:mb-0 sm:text-3xl"
       >
         {children}
       </h3>
@@ -85,10 +85,10 @@ const portableTextComponents: PortableTextProps["components"] = {
   },
 };
 
-function PortableTextRenderer(props: { value: PortableTextProps["value"] }) {
+export function PortableTextRenderer(props: {
+  value: PortableTextProps["value"];
+}) {
   return (
     <PortableText value={props.value} components={portableTextComponents} />
   );
 }
-
-export default PortableTextRenderer;

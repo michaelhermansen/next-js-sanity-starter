@@ -23,7 +23,7 @@ export function SearchField(props: { resultPathname: string }) {
           required
           name="query"
           type="search"
-          className="bg-background border-input focus:bg-card h-9 w-full rounded-sm rounded-r-none border border-r-0 pr-2 pl-3 shadow-xs transition-colors focus:ring-0 focus:ring-offset-0"
+          className="bg-background border-input focus:bg-card h-9 w-full rounded-sm rounded-r-none border border-r-0 pr-2 pl-0 indent-3 shadow-xs transition-colors focus:ring-0 focus:ring-offset-0"
           placeholder="Søk"
           defaultValue={defaultValue}
         />

@@ -2,22 +2,34 @@ import { defineField, defineType } from "sanity";
 import { ThLargeIcon } from "@sanity/icons";
 
 export default defineType({
-  name: "hero-2",
-  title: "Hero 2",
+  name: "hero-1",
+  title: "Toppbanner",
   type: "object",
   icon: ThLargeIcon,
   fields: [
     defineField({
-      name: "tagLine",
-      type: "string",
-    }),
-    defineField({
-      name: "title",
-      type: "string",
-    }),
-    defineField({
       name: "body",
       type: "block-content",
+      title: "Innhold",
+    }),
+    defineField({
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative Text",
+        },
+        {
+          name: "contain",
+          title: "Ikke beskjær",
+          type: "boolean",
+          initialValue: false,
+        },
+      ],
     }),
     defineField({
       name: "links",
@@ -32,7 +44,7 @@ export default defineType({
     },
     prepare({ title }) {
       return {
-        title: "Hero 2",
+        title: "Hero 1",
         subtitle: title,
       };
     },

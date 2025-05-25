@@ -1,22 +1,20 @@
-import ArticleHero from "@/components/article-hero";
+import { ArticleHero } from "@/components/article-hero";
 import { PageBreadcrumbs } from "@/components/page-breadcrumbs";
-import TableOfContents from "@/components/table-of-contents";
+import { TableOfContents } from "@/components/table-of-contents";
 import { getHeadings } from "@/features/portable-text/headings";
-import PortableTextRenderer from "@/features/portable-text/portable-text-renderer";
+import { PortableTextRenderer } from "@/features/portable-text/portable-text-renderer";
 import { fetchSanityArticleBySlug } from "@/sanity/lib/fetch";
-import { generatePageMetadata } from "@/sanity/lib/metadata";
-
+import { generatePageMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
+
+export const dynamic = "force-static";
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
 }) {
   const params = await props.params;
   const article = await fetchSanityArticleBySlug({ slug: params.slug });
-
-  if (!article) {
-    notFound();
-  }
+  if (!article) notFound();
 
   return generatePageMetadata({
     page: article,
@@ -29,10 +27,7 @@ export default async function ArticlePage(props: {
 }) {
   const params = await props.params;
   const article = await fetchSanityArticleBySlug(params);
-
-  if (!article) {
-    notFound();
-  }
+  if (!article) notFound();
 
   const headings = article.body && getHeadings(article.body);
 
@@ -44,20 +39,17 @@ export default async function ArticlePage(props: {
       />
 
       <article>
-        <ArticleHero {...article} />
+        <ArticleHero article={article} />
 
-        <div className="container py-10 lg:py-16">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-12 2xl:gap-24">
+        <div className="container">
+          <div className="grid grid-cols-1 items-start lg:grid-cols-3 lg:gap-12 2xl:gap-24">
             {headings && (
-              <aside className="border-b pb-10 lg:sticky lg:top-16 lg:order-last lg:col-span-1 lg:mb-0 lg:self-start lg:border-b-0">
-                <TableOfContents
-                  headings={headings}
-                  className="lg:sticky lg:top-16"
-                />
+              <aside className="section-padding border-b lg:sticky lg:top-0 lg:border-b-0">
+                <TableOfContents headings={headings} />
               </aside>
             )}
 
-            <div className="lg:order-first lg:col-span-2">
+            <div className="section-padding lg:order-first lg:col-span-2">
               {article.body && <PortableTextRenderer value={article.body} />}
             </div>
           </div>

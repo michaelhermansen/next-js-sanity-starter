@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { NavItemProps } from "./types";
 import { cn } from "@/lib/utils";
 
-export default function DesktopNav(props: { navItems: NavItemProps[] }) {
+export function DesktopNav(props: { navItems: NavItemProps[] }) {
   return (
     <div className="text-primary hidden items-center gap-7 xl:flex">
       {props.navItems.map((navItem) => (

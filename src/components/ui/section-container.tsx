@@ -8,7 +8,7 @@ interface SectionContainerProps {
   className?: string;
 }
 
-export default function SectionContainer({
+export function SectionContainer({
   color = "background",
   padding,
   children,

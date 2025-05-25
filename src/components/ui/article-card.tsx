@@ -11,7 +11,7 @@ interface ArticleCardProps {
   className?: string;
 }
 
-export default function ArticleCard(props: ArticleCardProps) {
+export function ArticleCard(props: ArticleCardProps) {
   const linkRef = useRef<HTMLAnchorElement | null>(null);
 
   return (

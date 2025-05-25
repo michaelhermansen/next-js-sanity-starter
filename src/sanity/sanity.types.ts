@@ -160,56 +160,6 @@ export type SectionHeader = {
   description?: string;
 };
 
-export type Hero2 = {
-  _type: "hero-2";
-  tagLine?: string;
-  title?: string;
-  body?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      }
-    | {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        _type: "image";
-        _key: string;
-      }
-    | {
-        videoUrl?: string;
-        _type: "video";
-        _key: string;
-      }
-  >;
-  links?: Array<
-    {
-      _key: string;
-    } & Link
-  >;
-};
-
 export type Hero1 = {
   _type: "hero-1";
   body?: Array<
@@ -262,6 +212,7 @@ export type Hero1 = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    contain?: boolean;
     _type: "image";
   };
   links?: Array<
@@ -340,6 +291,21 @@ export type BlockContent = Array<
       _type: "video";
       _key: string;
     }
+>;
+
+export type Modules = Array<
+  | ({
+      _key: string;
+    } & Hero1)
+  | ({
+      _key: string;
+    } & SectionHeader)
+  | ({
+      _key: string;
+    } & Cta1)
+  | ({
+      _key: string;
+    } & AllArticles)
 >;
 
 export type Category = {
@@ -438,23 +404,7 @@ export type Page = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  blocks?: Array<
-    | ({
-        _key: string;
-      } & Hero1)
-    | ({
-        _key: string;
-      } & Hero2)
-    | ({
-        _key: string;
-      } & SectionHeader)
-    | ({
-        _key: string;
-      } & Cta1)
-    | ({
-        _key: string;
-      } & AllArticles)
-  >;
+  modules?: Modules;
   meta_title?: string;
   meta_description?: string;
   noindex?: boolean;
@@ -545,13 +495,13 @@ export type AllSanitySchemaTypes =
   | AllArticles
   | Cta1
   | SectionHeader
-  | Hero2
   | Hero1
   | SectionPadding
   | ButtonVariant
   | ColorVariant
   | Link
   | BlockContent
+  | Modules
   | Category
   | Article
   | Author
@@ -714,9 +664,9 @@ export type ARTICLES_QUERYResult = Array<{
 
 // Source: src/sanity/queries/page.ts
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{    blocks[]{        _type == "hero-1" => {    _type,    _key,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          metadata {            dimensions {              width,              height            }          }        }      }    },    image{      ...,      asset->{        _id,        metadata {          dimensions {            width,            height          }        }      },      alt    },    links,  },        _type == "hero-2" => {    _type,    _key,    tagLine,    title,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          metadata {            dimensions {              width,              height            }          }        }      }    },    links,  },        _type == "section-header" => {    _type,    _key,    padding,    colorVariant,    sectionWidth,    stackAlign,    tagLine,    title,    description,    link,  },        _type == "cta-1" => {    _type,    _key,    padding,    colorVariant,    sectionWidth,    stackAlign,    tagLine,    title,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        }      }    },    links,  },        _type == "all-articles" => {    _type,    _key,    padding,    colorVariant  },    },    meta_title,    title,    meta_description,    noindex,    ogImage {      ...,      asset->{        _id,        url,        metadata {          dimensions {            width,            height          }        }      },    }  }
+// Query: *[_type == "page" && slug.current == $slug][0]{    modules[]{        _type == "hero-1" => {    _type,    _key,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          metadata {            dimensions {              width,              height            }          }        }      }    },    image{      ...,      asset->{        _id,        metadata {          dimensions {            width,            height          }        }      },      alt    },    links,  },        _type == "section-header" => {    _type,    _key,    padding,    colorVariant,    sectionWidth,    stackAlign,    tagLine,    title,    description,    link,  },        _type == "cta-1" => {    _type,    _key,    padding,    colorVariant,    sectionWidth,    stackAlign,    tagLine,    title,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          url,          mimeType,          metadata {            lqip,            dimensions {              width,              height            }          }        }      }    },    links,  },        _type == "all-articles" => {    _type,    _key,    padding,    colorVariant  },    },    meta_title,    title,    meta_description,    noindex,    ogImage {      ...,      asset->{        _id,        url,        metadata {          dimensions {            width,            height          }        }      },    }  }
 export type PAGE_QUERYResult = {
-  blocks: Array<
+  modules: Array<
     | {
         _type: "all-articles";
         _key: string;
@@ -858,61 +808,9 @@ export type PAGE_QUERYResult = {
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           alt: string | null;
+          contain?: boolean;
           _type: "image";
         } | null;
-        links: Array<
-          {
-            _key: string;
-          } & Link
-        > | null;
-      }
-    | {
-        _type: "hero-2";
-        _key: string;
-        tagLine: string | null;
-        title: string | null;
-        body: Array<
-          | {
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-              listItem?: "bullet" | "number";
-              markDefs?: Array<{
-                href?: string;
-                _type: "link";
-                _key: string;
-              }>;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }
-          | {
-              asset: {
-                _id: string;
-                metadata: {
-                  dimensions: {
-                    width: number | null;
-                    height: number | null;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-              _key: string;
-            }
-          | {
-              videoUrl?: string;
-              _type: "video";
-              _key: string;
-            }
-        > | null;
         links: Array<
           {
             _key: string;
@@ -1018,7 +916,7 @@ declare module "@sanity/client" {
     "\n    *[_type == 'article'] | order(_updatedAt desc) {\n      'url': $baseUrl + '/artikler/' + slug.current,\n      'lastModified': _updatedAt,\n      'changeFrequency': 'weekly',\n      'priority': 0.7\n    }\n  ": ArticleQueryResult;
     '*[_type == "article" && slug.current == $slug][0]{\n    title,\n    excerpt,\n    slug,\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          },\n        }\n      },\n      alt\n    },\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    author->{\n      name,\n      image {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        },\n        alt\n      }\n    },\n    _createdAt,\n    _updatedAt,\n    meta_title,\n    meta_description,\n    noindex,\n    ogImage {\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n}': ARTICLE_QUERYResult;
     '*[_type == "article" && defined(slug)] | order(_createdAt desc){\n    _id,\n    _createdAt,\n    title,\n    slug,\n    excerpt,\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n}': ARTICLES_QUERYResult;
-    '\n  *[_type == "page" && slug.current == $slug][0]{\n    blocks[]{\n      \n  _type == "hero-1" => {\n    _type,\n    _key,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    links,\n  }\n,\n      \n  _type == "hero-2" => {\n    _type,\n    _key,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == "section-header" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    description,\n    link,\n  }\n,\n      \n  _type == "cta-1" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == "all-articles" => {\n    _type,\n    _key,\n    padding,\n    colorVariant\n  }\n,\n    },\n    meta_title,\n    title,\n    meta_description,\n    noindex,\n    ogImage {\n      ...,\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n  }\n': PAGE_QUERYResult;
+    '\n  *[_type == "page" && slug.current == $slug][0]{\n    modules[]{\n      \n  _type == "hero-1" => {\n    _type,\n    _key,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    links,\n  }\n,\n      \n  _type == "section-header" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    description,\n    link,\n  }\n,\n      \n  _type == "cta-1" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == "all-articles" => {\n    _type,\n    _key,\n    padding,\n    colorVariant\n  }\n,\n    },\n    meta_title,\n    title,\n    meta_description,\n    noindex,\n    ogImage {\n      ...,\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n  }\n': PAGE_QUERYResult;
     "*[_id in $documentIds]{\n    _id,\n    _type,\n    title,\n    slug,\n    excerpt,\n  }": SEARCH_RESULT_QUERYResult;
   }
 }

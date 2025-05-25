@@ -1,11 +1,10 @@
-import { config } from "@/lib/config";
+import { siteConfig } from "@/lib/site-config";
 import { ImageResponse } from "next/og";
 import { NextRequest } from "next/server";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 // Image metadata
-export const alt = "About Acme";
 export const size = {
   width: 1200,
   height: 630,
@@ -20,7 +19,7 @@ export async function GET(req: NextRequest) {
   );
 
   const params = req.nextUrl.searchParams;
-  const title = params.get("title") || config.siteName;
+  const title = params.get("title") || siteConfig.name;
 
   return new ImageResponse(
     (

@@ -4,21 +4,21 @@ import { SanityImage, SanityImageProps } from "sanity-image";
 import { shake } from "radash";
 import { cn } from "@/lib/utils";
 
-type SimpleImageMetadata = DeepNullable<{
+type BasicCmsImageMetadata = DeepNullable<{
   dimensions?: { width?: number; height?: number };
 }>;
 
-type SimpleImage = DeepNullable<{
+type BasicCmsImage = DeepNullable<{
   asset:
-    | { _ref: string; _id?: string; metadata?: SimpleImageMetadata }
-    | { _ref?: string; _id: string; metadata?: SimpleImageMetadata };
+    | { _ref: string; _id?: string; metadata?: BasicCmsImageMetadata }
+    | { _ref?: string; _id: string; metadata?: BasicCmsImageMetadata };
   hotspot?: { x?: number; y?: number };
   crop?: { top?: number; left?: number; bottom?: number; right?: number };
 }>;
 
 export interface CmsImageProps
   extends Omit<SanityImageProps<"img">, "id" | "hotspot" | "crop" | "baseUrl"> {
-  image: SimpleImage;
+  image: BasicCmsImage;
   alt: string;
 }
 
@@ -49,7 +49,7 @@ export function CmsImage(props: CmsImageProps) {
       baseUrl={baseUrl}
       loading="lazy" // Set default to lazy loading
       mode="cover" // Set default fitting mode to "cover"
-      className={cn("object-cover", props.className)}
+      className={props.className}
       {...restProps}
     />
   );

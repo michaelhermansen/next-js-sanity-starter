@@ -9,7 +9,7 @@ import { embeddingsIndexDashboard } from "@sanity/embeddings-index-ui";
 import { schema } from "@/sanity/schema";
 import { structure } from "@/sanity/structure";
 import { env } from "@/lib/env";
-import { config } from "@/lib/config";
+import { siteConfig } from "@/lib/site-config";
 
 const isDevelopment = env.NEXT_PUBLIC_SITE_ENV === "development";
 
@@ -20,7 +20,7 @@ const developmentPlugins = [
 
 export default defineConfig({
   basePath: "/studio",
-  title: config.siteName,
+  title: siteConfig.name,
   projectId: env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: env.NEXT_PUBLIC_SANITY_DATASET,
   schema,

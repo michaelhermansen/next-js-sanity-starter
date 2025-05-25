@@ -65,8 +65,10 @@
   --chart-3: hsl(213, 100%, 62%);
   --chart-4: hsl(126, 64%, 33%);
   --chart-5: hsl(248, 44%, 35%);
-  /* --radius: 0.75rem; */
-  --radius: 0.75rem;
+
+  --radius: calc(theme(--spacing) * 3);
+  --section-padding: calc(theme(--spacing) * 10);
+  --section-padding-lg: calc(theme(--spacing) * 16);
 }
 .dark {
   --background: hsl(0, 0%, 0%);
@@ -132,6 +134,18 @@
   --radius-4xl: calc(var(--radius) + 2rem);
 }
 
+@utility section-padding-top {
+  @apply pt-[var(--section-padding)] lg:pt-[var(--section-padding-lg)];
+}
+
+@utility section-padding-bottom {
+  @apply pb-[var(--section-padding)] lg:pb-[var(--section-padding-lg)];
+}
+
+@utility section-padding {
+  @apply section-padding-top section-padding-bottom;
+}
+
 @utility container {
   width: 100%;
   margin-left: auto;
@@ -163,7 +177,7 @@
 
 @layer base {
   :root {
-    @apply scroll-pt-16 scroll-smooth;
+    @apply scroll-pt-[var(--section-padding)] scroll-smooth lg:scroll-pt-[var(--section-padding-lg)];
   }
 
   * {
@@ -171,13 +185,10 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans leading-normal underline-offset-2 antialiased;
   }
 
-  p {
-    @apply leading-relaxed;
-  }
-
+  /* override the default "X" icon in html search inputs  */
   [type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     appearance: none;

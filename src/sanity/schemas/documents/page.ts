@@ -22,10 +22,17 @@ export default defineType({
     },
   ],
   fields: [
-    defineField({ name: "title", type: "string", group: "content" }),
+    defineField({
+      name: "title",
+      title: "Tittel",
+      type: "string",
+      group: "content",
+      validation: (Rule) => Rule.required(),
+    }),
     defineField({
       name: "slug",
       title: "Slug",
+      description: "En URL-vennlig versjon av tittelen",
       type: "slug",
       group: "settings",
       options: {
@@ -35,60 +42,29 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "blocks",
-      type: "array",
+      name: "modules",
+      title: "Moduler",
+      type: "modules",
       group: "content",
-      of: [
-        { type: "hero-1" },
-        { type: "hero-2" },
-        { type: "section-header" },
-        { type: "cta-1" },
-        { type: "all-articles" },
-      ],
-      options: {
-        insertMenu: {
-          groups: [
-            {
-              name: "headers",
-              title: "Bannere",
-              of: ["hero-1", "hero-2", "section-header"],
-            },
-            {
-              name: "cta",
-              title: "Call to action",
-              of: ["cta-1"],
-            },
-            {
-              name: "document-lists",
-              title: "Dokumentlister",
-              of: ["all-articles"],
-            },
-          ],
-          views: [
-            {
-              name: "grid",
-              previewImageUrl: (block) => `/sanity/preview/${block}.jpg`,
-            },
-            { name: "list" },
-          ],
-        },
-      },
     }),
     defineField({
       name: "meta_title",
-      title: "Meta Title",
+      title: "Meta-tittel",
+      description: "Tittelen som vises av søkemotorer.",
       type: "string",
       group: "seo",
     }),
     defineField({
       name: "meta_description",
-      title: "Meta Description",
+      title: "Meta-beskrivelse",
+      description: "Beskrivelsen som vises av søkemotorer.",
       type: "text",
       group: "seo",
     }),
     defineField({
       name: "noindex",
-      title: "No Index",
+      title: "Ikke indekser",
+      description: "Be søkemotorer om å ikke indeksere denne siden.",
       type: "boolean",
       initialValue: false,
       group: "seo",
@@ -96,10 +72,9 @@ export default defineType({
     defineField({
       name: "ogImage",
       title: "Open Graph Image",
+      description: "Bildet som vises når siden blir delt på sosiale medier.",
       type: "image",
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
       group: "seo",
     }),
     orderRankField({ type: "page" }),

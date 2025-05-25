@@ -9,7 +9,7 @@ type NestedLinks = (
   | { text: string; id: string }[]
 )[];
 
-export default function TableOfContents(props: {
+export function TableOfContents(props: {
   headings: ResolvedHeading[];
   className?: string;
 }) {

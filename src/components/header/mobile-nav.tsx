@@ -8,13 +8,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { config } from "@/lib/config";
+import { siteConfig } from "@/lib/site-config";
 import { AlignRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { NavItemProps } from "./types";
 
-export default function MobileNav(props: { navItems: NavItemProps[] }) {
+export function MobileNav(props: { navItems: NavItemProps[] }) {
   const [open, setOpen] = useState(false);
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -25,7 +25,7 @@ export default function MobileNav(props: { navItems: NavItemProps[] }) {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <div className="mx-auto font-semibold">{config.siteName}</div>
+          <div className="mx-auto font-semibold">{siteConfig.name}</div>
           <div className="sr-only">
             <SheetTitle>Main Navigation</SheetTitle>
             <SheetDescription>Navigate to the website pages</SheetDescription>

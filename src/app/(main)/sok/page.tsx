@@ -8,12 +8,12 @@ export default async function Page(props: {
   const query = searchParams.q;
 
   return (
-    <div className="container py-12">
-      <h1 className="mb-10 text-4xl font-semibold">
+    <div className="section-padding container">
+      <h1 className="mb-8 text-4xl font-semibold">
         Søkeresultater for <q>{query}</q>
       </h1>
 
-      <Suspense key={query} fallback={<p>Laster ...</p>}>
+      <Suspense key={query} fallback={<p>Søker ...</p>}>
         <SearchResults query={query} maxResults={10} types={["article"]} />
       </Suspense>
     </div>

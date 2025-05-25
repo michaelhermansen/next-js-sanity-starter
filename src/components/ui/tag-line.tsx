@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export default function TagLine({
+export function TagLine({
   title,
   element = "div",
   className,

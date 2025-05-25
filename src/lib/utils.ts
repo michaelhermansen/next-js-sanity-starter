@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { env } from "@/lib/env";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -36,3 +37,30 @@ export const extractPlainText = (blocks: BlockContent): string | null => {
     })
     .join(" ");
 };
+
+function isExternalUrl(url: string | undefined): boolean {
+  if (!url) return false;
+
+  // Check if it's an absolute URL (http://, https://, //, mailto:, tel:, etc.)
+  const isAbsolute =
+    url.startsWith("http://") ||
+    url.startsWith("https://") ||
+    url.startsWith("//") ||
+    url.startsWith("mailto:") ||
+    url.startsWith("tel:");
+
+  if (isAbsolute) {
+    // If it's an absolute URL, check if it belongs to our domain
+    try {
+      const baseUrlHost = new URL(env.NEXT_PUBLIC_SITE_URL).hostname;
+      const urlHost = new URL(url, env.NEXT_PUBLIC_SITE_URL).hostname;
+      return baseUrlHost !== urlHost;
+    } catch {
+      // If there's any parsing error, assume it's external
+      return true;
+    }
+  }
+
+  // URL is relative, so it's internal
+  return false;
+}
