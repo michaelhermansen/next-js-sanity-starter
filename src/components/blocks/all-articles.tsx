@@ -18,7 +18,11 @@ export default async function AllArticles(props: AllArticlesProps) {
     <SectionContainer color={color} padding={props.padding}>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {articles.map((article) => (
-          <ArticleCard key={article._id} article={article} />
+          <ArticleCard
+            key={article._id}
+            article={article}
+            className="first:col-span-2"
+          />
         ))}
       </div>
     </SectionContainer>

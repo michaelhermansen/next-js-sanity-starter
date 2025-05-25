@@ -15,7 +15,7 @@ export function SearchField(props: { resultPathname: string }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="ring-ring ring-offset-background flex w-full rounded-sm ring-offset-2 focus-within:ring-2"
+      className="flex w-full rounded-sm ring-offset-2 focus-within:ring-2"
     >
       <label className="flex-1">
         <span className="sr-only">Søk</span>

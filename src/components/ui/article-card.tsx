@@ -17,7 +17,7 @@ export default function ArticleCard(props: ArticleCardProps) {
   return (
     <div
       className={cn(
-        "group hover:border-primary bg-card focus-within:border-primary cursor-pointer overflow-clip rounded border transition-colors",
+        "group bg-card cursor-pointer overflow-clip rounded border transition-all focus-within:ring-2 focus-within:ring-offset-2 hover:-translate-y-0.5 hover:shadow",
         props.className,
       )}
       onClick={() => linkRef.current?.click()}
@@ -27,8 +27,8 @@ export default function ArticleCard(props: ArticleCardProps) {
           <CmsImage
             image={props.article.image}
             alt={props.article.image.alt || ""}
-            width={400}
-            height={250}
+            width={600}
+            height={350}
             className="w-full transition-transform duration-700 ease-out group-focus-within:scale-105 group-hover:scale-105"
           />
         </div>
@@ -39,7 +39,7 @@ export default function ArticleCard(props: ArticleCardProps) {
           <Link
             ref={linkRef}
             href={`/artikler/${props.article.slug?.current}`}
-            className="focus:outline-0"
+            className="group-hover:underline focus:ring-0 focus:ring-offset-0"
           >
             <h3 className="text-2xl leading-normal font-medium">
               {props.article.title}

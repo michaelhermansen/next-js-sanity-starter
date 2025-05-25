@@ -17,7 +17,7 @@ export default function Footer() {
           <div className="flex gap-3">
             <ThemeToggle />
             <Button asChild variant="ghost">
-              <Link href="#">Informasjonskapsler</Link>
+              <Link href="#">Cookie-valg</Link>
             </Button>
           </div>
 

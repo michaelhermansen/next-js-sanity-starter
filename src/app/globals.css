@@ -163,11 +163,11 @@
 
 @layer base {
   :root {
-    @apply scroll-smooth;
+    @apply scroll-pt-16 scroll-smooth;
   }
 
   * {
-    @apply border-border ring-offset-background focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none;
+    @apply border-border ring-offset-background ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none;
   }
 
   body {
