@@ -2,13 +2,18 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { SkipLink } from "@/components/skip-link";
 import { DisableDraftMode } from "@/features/draft-mode/disable-draft-mode";
+import { env } from "@/lib/env";
 import { SanityLive } from "@/sanity/lib/live";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
+
+const gtmId = env.NEXT_PUBLIC_GTM_ID;
 
 export default async function MainLayout(props: { children: React.ReactNode }) {
   return (
     <>
+      {gtmId && <GoogleTagManager gtmId={gtmId} />}
       <SkipLink />
 
       <div className="flex min-h-lvh flex-col">

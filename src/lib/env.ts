@@ -12,6 +12,7 @@ export const env = createEnv({
     NEXT_PUBLIC_SANITY_API_VERSION: z.string().date(),
     NEXT_PUBLIC_SANITY_PROJECT_ID: z.string().length(8),
     NEXT_PUBLIC_SANITY_DATASET: z.enum(["production", "development"]),
+    NEXT_PUBLIC_GTM_ID: z.string().optional(),
   },
   /*
    * For Next.js >= 13.4.4, you can use the experimental__runtimeEnv option and
@@ -23,5 +24,6 @@ export const env = createEnv({
     NEXT_PUBLIC_SANITY_API_VERSION: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
   },
 });
