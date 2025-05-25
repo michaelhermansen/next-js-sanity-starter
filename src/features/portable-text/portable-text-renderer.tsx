@@ -25,16 +25,18 @@ const portableTextComponents: PortableTextProps["components"] = {
     },
   },
   block: {
-    normal: ({ children }) => <p className="mb-4 text-xl">{children}</p>,
+    normal: ({ children }) => (
+      <p className="mb-4 text-xl last:mb-0">{children}</p>
+    ),
     h1: ({ children }) => (
-      <h1 className="mt-6 mb-4 text-5xl font-semibold first:mt-0">
+      <h1 className="mt-6 mb-4 text-5xl font-semibold first:mt-0 last:mb-0">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
       <h2
         id={getHeadingId(children)}
-        className="mt-6 mb-4 text-4xl font-semibold first:mt-0"
+        className="mt-6 mb-4 text-4xl font-semibold first:mt-0 last:mb-0"
       >
         {children}
       </h2>
@@ -42,7 +44,7 @@ const portableTextComponents: PortableTextProps["components"] = {
     h3: ({ children }) => (
       <h3
         id={getHeadingId(children)}
-        className="mt-6 mb-4 text-3xl font-semibold first:mt-0"
+        className="mt-6 mb-4 text-3xl font-semibold first:mt-0 last:mb-0"
       >
         {children}
       </h3>

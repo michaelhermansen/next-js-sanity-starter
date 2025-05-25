@@ -1,9 +1,9 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import { AccessibleIcon } from "@radix-ui/react-accessible-icon";
 import { Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FormEvent } from "react";
 
 export function SearchField(props: { resultPathname: string }) {
@@ -13,13 +13,17 @@ export function SearchField(props: { resultPathname: string }) {
   });
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full">
+    <form
+      onSubmit={handleSubmit}
+      className="ring-ring ring-offset-background flex w-full rounded-sm ring-offset-2 focus-within:ring-2"
+    >
       <label className="flex-1">
         <span className="sr-only">Søk</span>
         <input
+          required
           name="query"
           type="search"
-          className="bg-background border-input focus:bg-card h-9 w-full rounded-sm rounded-r-none border border-r-0 pr-2 pl-3 shadow-xs transition-colors"
+          className="bg-background border-input focus:bg-card h-9 w-full rounded-sm rounded-r-none border border-r-0 pr-2 pl-3 shadow-xs transition-colors focus:ring-0 focus:ring-offset-0"
           placeholder="Søk"
           defaultValue={defaultValue}
         />
@@ -29,6 +33,7 @@ export function SearchField(props: { resultPathname: string }) {
         variant="outline"
         type="submit"
         className="rounded-l-none"
+        tabIndex={-1}
       >
         <AccessibleIcon label="Søk">
           <Search size="1rem" />

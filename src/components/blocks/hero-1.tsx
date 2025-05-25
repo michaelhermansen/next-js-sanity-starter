@@ -13,11 +13,11 @@ type Hero1Props = Extract<
 export default function Hero1(props: Hero1Props) {
   return (
     <header className="bg-muted border-b">
-      <div className="container py-8">
+      <div className="container py-16">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          <div className="flex flex-col justify-center pb-12">
+          <div className="flex flex-col justify-center">
             {props.body && (
-              <div className="mt-6 text-lg">
+              <div className="text-lg">
                 <PortableTextRenderer value={props.body} />
               </div>
             )}

@@ -20,18 +20,14 @@ export default function Header() {
   return (
     <header className="bg-background border-b">
       <div className="container flex h-20 items-center justify-between">
-        <Link href="/" aria-label="Hjem" className="font-semibold">
+        <Link href="/" aria-label="Hjem" className="text-xl font-medium">
           {config.siteName}
         </Link>
         <div className="hidden items-center justify-between gap-8 xl:flex">
           <DesktopNav navItems={navItems} />
-          <div className="flex gap-2">
-            <SearchField resultPathname="/sok" />
-            <ThemeToggle />
-          </div>
+          <SearchField resultPathname="/sok" />
         </div>
         <div className="flex items-center gap-2 xl:hidden">
-          <ThemeToggle />
           <MobileNav navItems={navItems} />
         </div>
       </div>
