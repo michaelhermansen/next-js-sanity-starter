@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { env } from "@/lib/env";
+import { isArray } from "radash";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -16,21 +17,18 @@ export const formatDate = (date: string): string => {
   return dateObj.toLocaleDateString("no-NB", options);
 };
 
-// Define the types for block content and children
 type Block = {
   _type: string;
   children?: Array<{ text: string }>;
 };
 
-type BlockContent = Block[] | null;
-
 // Helper function to extract plain text from block content
-export const extractPlainText = (blocks: BlockContent): string | null => {
-  if (!blocks || !Array.isArray(blocks)) return null;
+export const extractPlainText = (blocks: Block[] | null): string | null => {
+  if (!blocks || !isArray(blocks)) return null;
 
   return blocks
     .map((block) => {
-      if (block._type === "block" && Array.isArray(block.children)) {
+      if (block._type === "block" && isArray(block.children)) {
         return block.children.map((child) => child.text).join("");
       }
       return "";
@@ -38,7 +36,7 @@ export const extractPlainText = (blocks: BlockContent): string | null => {
     .join(" ");
 };
 
-function isExternalUrl(url: string | undefined): boolean {
+export function isExternalUrl(url: string | undefined): boolean {
   if (!url) return false;
 
   // Check if it's an absolute URL (http://, https://, //, mailto:, tel:, etc.)
@@ -49,8 +47,8 @@ function isExternalUrl(url: string | undefined): boolean {
     url.startsWith("mailto:") ||
     url.startsWith("tel:");
 
+  // If it's an absolute URL, check if it belongs to our domain
   if (isAbsolute) {
-    // If it's an absolute URL, check if it belongs to our domain
     try {
       const baseUrlHost = new URL(env.NEXT_PUBLIC_SITE_URL).hostname;
       const urlHost = new URL(url, env.NEXT_PUBLIC_SITE_URL).hostname;
