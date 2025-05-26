@@ -1,6 +1,6 @@
 import { type SchemaTypeDefinition } from "sanity";
 import allArticles from "./schemas/modules/all-articles";
-import hero1 from "./schemas/modules/hero-1";
+import pageHero from "./schemas/modules/page-hero";
 import sectionHeader from "./schemas/modules/section-header";
 import blockContent from "./schemas/partials/block-content";
 import { buttonVariant } from "./schemas/partials/button-variant";
@@ -29,7 +29,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     buttonVariant,
     sectionPadding,
     // modules
-    hero1,
+    pageHero,
     sectionHeader,
     cta1,
     allArticles,

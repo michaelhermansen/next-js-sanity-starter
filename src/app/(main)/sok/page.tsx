@@ -1,4 +1,4 @@
-import { SearchResults } from "@/features/search";
+import { SearchResults, SearchResultsSkeleton } from "@/features/search";
 import { Suspense } from "react";
 
 export default async function Page(props: {
@@ -13,7 +13,10 @@ export default async function Page(props: {
         Søkeresultater for <q>{query}</q>
       </h1>
 
-      <Suspense key={query} fallback={<p>Søker ...</p>}>
+      <Suspense
+        key={query}
+        fallback={<SearchResultsSkeleton maxResults={10} />}
+      >
         <SearchResults query={query} maxResults={10} types={["article"]} />
       </Suspense>
     </div>

@@ -1,5 +1,5 @@
 import { defineQuery } from "next-sanity";
-import { hero1Query } from "./fragments/hero-1";
+import { pageHeroQuery } from "./fragments/page-hero";
 import { sectionHeaderQuery } from "./fragments/section-header";
 import { cta1Query } from "./fragments/cta-1";
 import { allArticlesQuery } from "./fragments/all-articles";
@@ -7,7 +7,7 @@ import { allArticlesQuery } from "./fragments/all-articles";
 export const PAGE_QUERY = defineQuery(`
   *[_type == "page" && slug.current == $slug][0]{
     modules[]{
-      ${hero1Query},
+      ${pageHeroQuery},
       ${sectionHeaderQuery},
       ${cta1Query},
       ${allArticlesQuery},

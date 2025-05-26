@@ -1,5 +1,5 @@
-export const hero1Query = `
-  _type == "hero-1" => {
+export const pageHeroQuery = `
+  _type == "page-hero" => {
     _type,
     _key,
     body[]{

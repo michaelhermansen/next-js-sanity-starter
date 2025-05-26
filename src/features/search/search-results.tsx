@@ -1,5 +1,7 @@
 import { DocumentType, getSearchResults } from "./get-search-results";
 import { SearchResultItem } from "./search-result-item";
+import { Skeleton } from "@/components/ui/skeleton";
+import { range } from "radash";
 
 export async function SearchResults(props: {
   query: string;
@@ -29,5 +31,18 @@ export async function SearchResults(props: {
         );
       })}
     </ul>
+  );
+}
+
+export function SearchResultsSkeleton(props: { maxResults: number }) {
+  return (
+    <div className="max-w-4xl divide-y">
+      {[...range(1, props.maxResults)].map((i) => (
+        <div key={i} className="group space-y-3 py-4" style={{ opacity: 1 }}>
+          <Skeleton className="h-6 w-40 group-nth-of-type-[2n]:min-w-64 group-nth-of-type-[3n]:w-28" />
+          <Skeleton className="h-5 w-full" />
+        </div>
+      ))}
+    </div>
   );
 }

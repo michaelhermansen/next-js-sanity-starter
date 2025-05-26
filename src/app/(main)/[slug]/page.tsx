@@ -1,4 +1,4 @@
-import { ModuleRenderer } from "@/components/blocks";
+import { ModulesRenderer } from "@/components/modules";
 import { fetchSanityPageBySlug } from "@/sanity/lib/fetch";
 import { generatePageMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
@@ -22,5 +22,5 @@ export default async function Page(props: {
   const page = await fetchSanityPageBySlug({ slug: params.slug });
   if (!page) notFound();
 
-  return <ModuleRenderer modules={page.modules ?? []} />;
+  return <ModulesRenderer modules={page.modules ?? []} />;
 }

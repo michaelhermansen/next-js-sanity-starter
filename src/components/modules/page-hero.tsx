@@ -7,12 +7,12 @@ import { CmsImage } from "../cms-image";
 import { cn } from "@/lib/utils";
 import { ArrowRight, SquareArrowOutUpRight } from "lucide-react";
 
-type Hero1Props = Extract<
+type PageHeroProps = Extract<
   NonNullable<NonNullable<PAGE_QUERYResult>["modules"]>[number],
-  { _type: "hero-1" }
+  { _type: "page-hero" }
 >;
 
-export function Hero1(props: Hero1Props) {
+export function PageHero(props: PageHeroProps) {
   return (
     <header className="border-b">
       <div className="py-section container">

@@ -1,7 +1,12 @@
 import { CmsImage } from "@/components/cms-image";
+import {
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyP,
+} from "@/components/typography";
 import { VideoPlayer } from "@/components/video-player";
 import { PortableText, PortableTextProps } from "next-sanity";
-
 import Link from "next/link";
 import { getHeadingId } from "./headings";
 
@@ -25,29 +30,13 @@ const portableTextComponents: PortableTextProps["components"] = {
     },
   },
   block: {
-    normal: ({ children }) => (
-      <p className="mb-4 text-lg last:mb-0 sm:text-xl">{children}</p>
-    ),
-    h1: ({ children }) => (
-      <h1 className="mt-6 mb-4 font-serif text-5xl leading-[1.1] font-medium first:mt-0 last:mb-0 sm:text-6xl md:text-7xl">
-        {children}
-      </h1>
-    ),
+    normal: ({ children }) => <TypographyP>{children}</TypographyP>,
+    h1: ({ children }) => <TypographyH1>{children}</TypographyH1>,
     h2: ({ children }) => (
-      <h2
-        id={getHeadingId(children)}
-        className="mt-6 mb-4 text-3xl leading-tight font-semibold first:mt-0 last:mb-0 sm:text-4xl"
-      >
-        {children}
-      </h2>
+      <TypographyH2 id={getHeadingId(children)}>{children}</TypographyH2>
     ),
     h3: ({ children }) => (
-      <h3
-        id={getHeadingId(children)}
-        className="mt-6 mb-4 text-xl leading-tight font-semibold first:mt-0 last:mb-0 sm:text-2xl"
-      >
-        {children}
-      </h3>
+      <TypographyH3 id={getHeadingId(children)}>{children}</TypographyH3>
     ),
   },
   marks: {

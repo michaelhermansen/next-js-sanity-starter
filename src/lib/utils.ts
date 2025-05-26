@@ -2,11 +2,19 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { env } from "@/lib/env";
 import { isArray } from "radash";
+import { siteConfig } from "./site-config";
 
+/** Manage multiple class names */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+/** Async sleep */
+export async function sleep(duration: number) {
+  await new Promise((res) => setTimeout(res, duration));
+}
+
+/** Convert date string to locale date string. */
 export const formatDate = (date: string): string => {
   const dateObj = new Date(date);
   const options: Intl.DateTimeFormatOptions = {
@@ -14,7 +22,7 @@ export const formatDate = (date: string): string => {
     month: "long",
     day: "numeric",
   };
-  return dateObj.toLocaleDateString("no-NB", options);
+  return dateObj.toLocaleDateString(siteConfig.locales[0], options);
 };
 
 type Block = {
@@ -22,7 +30,7 @@ type Block = {
   children?: Array<{ text: string }>;
 };
 
-// Helper function to extract plain text from block content
+/** Extract plain text from block content. */
 export const extractPlainText = (blocks: Block[] | null): string | null => {
   if (!blocks || !isArray(blocks)) return null;
 
@@ -36,6 +44,7 @@ export const extractPlainText = (blocks: Block[] | null): string | null => {
     .join(" ");
 };
 
+/** Check if a URL is external. */
 export function isExternalUrl(url: string | undefined): boolean {
   if (!url) return false;
 

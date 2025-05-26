@@ -5,7 +5,7 @@ export default defineType({
   title: "Moduler",
   type: "array",
   of: [
-    { type: "hero-1" },
+    { type: "page-hero" },
     { type: "section-header" },
     { type: "cta-1" },
     { type: "all-articles" },
@@ -16,7 +16,7 @@ export default defineType({
         {
           name: "headers",
           title: "Bannere",
-          of: ["hero-1", "hero-2", "section-header"],
+          of: ["page-hero", "hero-2", "section-header"],
         },
         {
           name: "cta",

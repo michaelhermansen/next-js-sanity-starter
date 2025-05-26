@@ -923,7 +923,7 @@
     }
   },
   {
-    "name": "hero-1",
+    "name": "page-hero",
     "type": "type",
     "value": {
       "type": "object",
@@ -932,7 +932,7 @@
           "type": "objectAttribute",
           "value": {
             "type": "string",
-            "value": "hero-1"
+            "value": "page-hero"
           }
         },
         "body": {
@@ -1786,7 +1786,7 @@
             },
             "rest": {
               "type": "inline",
-              "name": "hero-1"
+              "name": "page-hero"
             }
           },
           {

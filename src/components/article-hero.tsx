@@ -1,6 +1,7 @@
 import { formatDate } from "@/lib/utils";
 import { ARTICLE_QUERYResult } from "@/sanity/sanity.types";
 import { CmsImage } from "./cms-image";
+import { TypographyH1, TypographyP } from "./typography";
 import { Avatar } from "./ui/avatar";
 
 type ArticleHeroProps = {
@@ -18,21 +19,18 @@ export function ArticleHero(props: ArticleHeroProps) {
   };
 
   return (
-    <div className="py-section border-b">
-      <div className="grid grid-cols-1 gap-6 sm:container sm:gap-8 md:gap-0 xl:grid-cols-2 xl:gap-16">
-        <div className="flex flex-col justify-between gap-8 px-4 py-8 sm:gap-10 sm:px-0 md:gap-12 xl:gap-14">
-          <div className="space-y-3 md:space-y-2">
-            <h1 className="animate-fade-up font-serif text-4xl leading-tight font-medium sm:text-5xl lg:text-6xl">
-              {title}
-            </h1>
-            {excerpt && (
-              <p className="animate-fade-up text-lg opacity-0 delay-100 sm:text-xl lg:text-2xl">
-                {excerpt}
-              </p>
-            )}
-          </div>
+    <div className="pt-section sm:pb-section border-b">
+      <div className="container">
+        <div className="max-w-4xl pb-8 lg:pb-10">
+          <TypographyH1 className="animate-fade-up">{title}</TypographyH1>
 
-          <div className="flex items-center gap-3">
+          {excerpt && (
+            <TypographyP className="animate-fade-up font-serif text-xl opacity-0 delay-100 sm:text-2xl">
+              {excerpt}
+            </TypographyP>
+          )}
+
+          <div className="flex items-center gap-3 pt-8 lg:pt-10">
             {author.name && (
               <Avatar name={author.name}>
                 {author.image && (
@@ -49,26 +47,29 @@ export function ArticleHero(props: ArticleHeroProps) {
             <div>
               {author.name && <p className="font-medium">{author.name}</p>}
               {createdAt && (
-                <p className="text-muted-foreground text-sm sm:text-base">
+                <time
+                  dateTime={createdAt}
+                  className="text-muted-foreground text-sm sm:text-base"
+                >
                   {formatDate(createdAt)}
-                </p>
+                </time>
               )}
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="order-first xl:order-last">
-          {image?.asset?._id && (
-            <CmsImage
-              className="h-[300px] w-full object-cover sm:h-[350px] sm:rounded-b md:h-[400px] lg:h-full xl:rounded"
-              image={image}
-              alt={image.alt || ""}
-              width={800}
-              height={500}
-              loading="eager"
-            />
-          )}
-        </div>
+      <div className="sm:container">
+        {image?.asset?._id && (
+          <CmsImage
+            className="aspect-[4/3] w-full object-cover sm:aspect-video sm:rounded lg:aspect-[2/1]"
+            image={image}
+            alt={image.alt || ""}
+            width={1000}
+            height={600}
+            loading="eager"
+          />
+        )}
       </div>
     </div>
   );

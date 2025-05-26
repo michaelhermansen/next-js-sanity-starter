@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 import { ThLargeIcon } from "@sanity/icons";
 
 export default defineType({
-  name: "hero-1",
+  name: "page-hero",
   title: "Toppbanner",
   type: "object",
   icon: ThLargeIcon,
@@ -44,7 +44,7 @@ export default defineType({
     },
     prepare({ title }) {
       return {
-        title: "Hero 1",
+        title: "Toppbanner",
         subtitle: title,
       };
     },

@@ -49,6 +49,7 @@ export function CmsImage(props: CmsImageProps) {
       baseUrl={baseUrl}
       loading="lazy" // Set default to lazy loading
       mode="cover" // Set default fitting mode to "cover"
+      sizes="90vw"
       className={props.className}
       {...restProps}
     />
