@@ -18,15 +18,17 @@ export function ArticleHero(props: ArticleHeroProps) {
   };
 
   return (
-    <div className="border-b pb-4 xl:py-8">
+    <div className="py-section border-b">
       <div className="grid grid-cols-1 gap-6 sm:container sm:gap-8 md:gap-0 xl:grid-cols-2 xl:gap-16">
-        <div className="flex flex-col justify-between gap-8 px-4 pb-6 sm:gap-10 sm:px-0 md:gap-12 md:py-8 lg:py-10 xl:gap-14 xl:py-16 2xl:py-20">
-          <div className="space-y-3 md:space-y-6">
-            <h1 className="text-3xl leading-tight font-semibold sm:text-4xl lg:text-5xl">
+        <div className="flex flex-col justify-between gap-8 px-4 py-8 sm:gap-10 sm:px-0 md:gap-12 xl:gap-14">
+          <div className="space-y-3 md:space-y-2">
+            <h1 className="animate-fade-up font-serif text-4xl leading-tight font-medium sm:text-5xl lg:text-6xl">
               {title}
             </h1>
             {excerpt && (
-              <p className="text-lg sm:text-xl lg:text-2xl">{excerpt}</p>
+              <p className="animate-fade-up text-lg opacity-0 delay-100 sm:text-xl lg:text-2xl">
+                {excerpt}
+              </p>
             )}
           </div>
 

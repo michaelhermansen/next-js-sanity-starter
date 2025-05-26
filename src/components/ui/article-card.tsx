@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import { ARTICLES_QUERYResult } from "../../sanity/sanity.types";
 import { CmsImage } from "../cms-image";
+import { isEmpty } from "radash";
 
 interface ArticleCardProps {
   article: ARTICLES_QUERYResult[number];
@@ -17,7 +18,7 @@ export function ArticleCard(props: ArticleCardProps) {
   return (
     <div
       className={cn(
-        "group bg-card cursor-pointer overflow-clip rounded border transition-all focus-within:ring-2 focus-within:ring-offset-2 hover:-translate-y-0.5",
+        "group bg-card flex cursor-pointer flex-col overflow-clip rounded border transition-all focus-within:ring-2 focus-within:ring-offset-2 hover:-translate-y-0.5",
         props.className,
       )}
       onClick={() => linkRef.current?.click()}
@@ -34,22 +35,38 @@ export function ArticleCard(props: ArticleCardProps) {
         </div>
       )}
 
-      <div className="flex flex-col gap-1 p-4">
-        {props.article.title && (
-          <Link
-            ref={linkRef}
-            href={`/artikler/${props.article.slug?.current}`}
-            className="group-hover:underline focus:ring-0 focus:ring-offset-0"
-          >
-            <h3 className="text-2xl font-medium">{props.article.title}</h3>
-          </Link>
+      <div className="flex flex-1 flex-col gap-8 p-4">
+        <div>
+          {props.article.title && (
+            <Link
+              ref={linkRef}
+              href={`/artikler/${props.article.slug?.current}`}
+              className="group-hover:underline focus:ring-0 focus:ring-offset-0"
+            >
+              <h3 className="text-2xl font-medium">{props.article.title}</h3>
+            </Link>
+          )}
+          {props.article.excerpt && (
+            <p className="mt-1 mb-3 line-clamp-3">{props.article.excerpt}</p>
+          )}
+
+          <p className="text-muted-foreground">
+            {formatDate(props.article._createdAt)}
+          </p>
+        </div>
+
+        {!isEmpty(props.article.categories) && (
+          <ul className="flex flex-wrap items-center gap-1">
+            {props.article.categories?.map((category) => (
+              <li
+                key={category._id}
+                className="text-muted-foreground bg-muted rounded-full px-2.5 py-0.5"
+              >
+                {category.title}
+              </li>
+            ))}
+          </ul>
         )}
-        {props.article.excerpt && (
-          <p className="line-clamp-3">{props.article.excerpt}</p>
-        )}
-        <p className="text-muted-foreground pt-4">
-          {formatDate(props.article._createdAt)}
-        </p>
       </div>
     </div>
   );

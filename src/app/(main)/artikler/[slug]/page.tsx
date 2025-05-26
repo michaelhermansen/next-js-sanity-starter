@@ -42,9 +42,9 @@ export default async function ArticlePage(props: {
         <ArticleHero article={article} />
 
         <div className="container">
-          <div className="grid grid-cols-1 items-start lg:grid-cols-3 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-10 xl:gap-16">
             {headings && (
-              <aside className="py-section border-b lg:sticky lg:top-0 lg:border-b-0">
+              <aside className="py-section max-h-screen overflow-y-auto border-b lg:sticky lg:top-0 lg:border-b-0 lg:border-l lg:pl-10 xl:pl-16">
                 <TableOfContents headings={headings} />
               </aside>
             )}

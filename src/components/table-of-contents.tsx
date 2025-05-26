@@ -53,7 +53,7 @@ function RecursiveLinks(props: { links: NestedLinks; isSubList?: boolean }) {
     <ol
       className={cn({
         "text-lg": !props.isSubList,
-        "pl-6 text-base": props.isSubList,
+        "ml-1 border-l pl-3 text-base": props.isSubList,
       })}
     >
       {props.links.map((item) => {
@@ -68,15 +68,9 @@ function RecursiveLinks(props: { links: NestedLinks; isSubList?: boolean }) {
             >
               <Link
                 href={`#${item.id}`}
-                className="group flex items-center gap-2 hover:underline"
+                className="group flex items-center gap-2 leading-snug hover:underline"
                 title={item.text}
               >
-                {!props.isSubList && (
-                  <ChevronRight
-                    size="1rem"
-                    className="transition-transform group-hover:translate-x-0.5"
-                  />
-                )}
                 {item.text}
               </Link>
             </li>

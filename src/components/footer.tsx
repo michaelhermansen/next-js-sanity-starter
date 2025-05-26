@@ -20,7 +20,7 @@ export function Footer() {
           </div>
 
           <div className="text-muted-foreground border-t pt-8 text-right md:border-t-0 md:pt-0">
-            Designet og utviklet av{" "}
+            Laget av{" "}
             <Link
               href="https://netlife.com"
               className="underline hover:no-underline"

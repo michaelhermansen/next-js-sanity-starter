@@ -73,6 +73,11 @@ export const ARTICLES_QUERY = groq`*[_type == "article" && defined(slug)] | orde
     title,
     slug,
     excerpt,
+    categories[]->{
+      _id,
+      title,
+      slug,
+    },
     image{
       ...,
       asset->{

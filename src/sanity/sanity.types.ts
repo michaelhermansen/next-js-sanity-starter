@@ -637,13 +637,18 @@ export type ARTICLE_QUERYResult = {
   } | null;
 } | null;
 // Variable: ARTICLES_QUERY
-// Query: *[_type == "article" && defined(slug)] | order(_createdAt desc){    _id,    _createdAt,    title,    slug,    excerpt,    image{      ...,      asset->{        _id,        metadata {          dimensions {            width,            height          }        }      },      alt    },}
+// Query: *[_type == "article" && defined(slug)] | order(_createdAt desc){    _id,    _createdAt,    title,    slug,    excerpt,    categories[]->{      _id,      title,      slug,    },    image{      ...,      asset->{        _id,        metadata {          dimensions {            width,            height          }        }      },      alt    },}
 export type ARTICLES_QUERYResult = Array<{
   _id: string;
   _createdAt: string;
   title: string | null;
   slug: Slug | null;
   excerpt: string | null;
+  categories: Array<{
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+  }> | null;
   image: {
     asset: {
       _id: string;
@@ -915,7 +920,7 @@ declare module "@sanity/client" {
     "\n    *[_type == 'page'] | order(slug.current) {\n      'url': $baseUrl + select(slug.current == 'index' => '', '/' + slug.current),\n      'lastModified': _updatedAt,\n      'changeFrequency': 'daily',\n      'priority': select(\n        slug.current == 'index' => 1,\n        0.5\n      )\n    }\n  ": PagesQueryResult;
     "\n    *[_type == 'article'] | order(_updatedAt desc) {\n      'url': $baseUrl + '/artikler/' + slug.current,\n      'lastModified': _updatedAt,\n      'changeFrequency': 'weekly',\n      'priority': 0.7\n    }\n  ": ArticleQueryResult;
     '*[_type == "article" && slug.current == $slug][0]{\n    title,\n    excerpt,\n    slug,\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          },\n        }\n      },\n      alt\n    },\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    author->{\n      name,\n      image {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        },\n        alt\n      }\n    },\n    _createdAt,\n    _updatedAt,\n    meta_title,\n    meta_description,\n    noindex,\n    ogImage {\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n}': ARTICLE_QUERYResult;
-    '*[_type == "article" && defined(slug)] | order(_createdAt desc){\n    _id,\n    _createdAt,\n    title,\n    slug,\n    excerpt,\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n}': ARTICLES_QUERYResult;
+    '*[_type == "article" && defined(slug)] | order(_createdAt desc){\n    _id,\n    _createdAt,\n    title,\n    slug,\n    excerpt,\n    categories[]->{\n      _id,\n      title,\n      slug,\n    },\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n}': ARTICLES_QUERYResult;
     '\n  *[_type == "page" && slug.current == $slug][0]{\n    modules[]{\n      \n  _type == "hero-1" => {\n    _type,\n    _key,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    links,\n  }\n,\n      \n  _type == "section-header" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    description,\n    link,\n  }\n,\n      \n  _type == "cta-1" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            lqip,\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == "all-articles" => {\n    _type,\n    _key,\n    padding,\n    colorVariant\n  }\n,\n    },\n    meta_title,\n    title,\n    meta_description,\n    noindex,\n    ogImage {\n      ...,\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n  }\n': PAGE_QUERYResult;
     "*[_id in $documentIds]{\n    _id,\n    _type,\n    title,\n    slug,\n    excerpt,\n  }": SEARCH_RESULT_QUERYResult;
   }

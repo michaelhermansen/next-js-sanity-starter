@@ -36,17 +36,17 @@
 
 /* Dark mode config */
 .dark {
-  --background: hsl(0, 0%, 6%);
+  --background: hsl(0, 0%, 7%);
   --foreground: hsl(0, 0%, 100%);
-  --card: hsl(0, 0%, 10%);
+  --card: hsl(0, 0%, 9%);
   --card-foreground: hsl(0, 0%, 100%);
-  --popover: hsl(0, 0%, 10%);
+  --popover: hsl(0, 0%, 9%);
   --popover-foreground: hsl(0, 0%, 100%);
   --primary: hsl(0, 0%, 100%);
   --primary-foreground: hsl(0, 0%, 0%);
   --secondary: hsl(0, 0%, 0%);
   --secondary-foreground: hsl(0, 0%, 100%);
-  --muted: hsl(0, 0%, 4%);
+  --muted: hsl(0, 0%, 5%);
   --muted-foreground: hsl(0, 0%, 80%);
   --accent: hsl(126, 64%, 33%);
   --accent-foreground: hsl(0, 0%, 100%);
