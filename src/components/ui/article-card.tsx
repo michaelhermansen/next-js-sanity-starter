@@ -17,7 +17,7 @@ export function ArticleCard(props: ArticleCardProps) {
   return (
     <div
       className={cn(
-        "group bg-card cursor-pointer overflow-clip rounded border transition-all focus-within:ring-2 focus-within:ring-offset-2 hover:-translate-y-0.5 hover:shadow",
+        "group bg-card cursor-pointer overflow-clip rounded border transition-all focus-within:ring-2 focus-within:ring-offset-2 hover:-translate-y-0.5",
         props.className,
       )}
       onClick={() => linkRef.current?.click()}
@@ -41,9 +41,7 @@ export function ArticleCard(props: ArticleCardProps) {
             href={`/artikler/${props.article.slug?.current}`}
             className="group-hover:underline focus:ring-0 focus:ring-offset-0"
           >
-            <h3 className="text-2xl leading-normal font-medium">
-              {props.article.title}
-            </h3>
+            <h3 className="text-2xl font-medium">{props.article.title}</h3>
           </Link>
         )}
         {props.article.excerpt && (

@@ -14,17 +14,18 @@ type Hero1Props = Extract<
 
 export function Hero1(props: Hero1Props) {
   return (
-    <header className="bg-muted border-b">
-      <div className="section-padding container">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-          <div className="flex flex-col justify-center">
+    <header className="border-b">
+      <div className="py-section container">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+          <div className="flex flex-col justify-center gap-8">
             {props.body && (
-              <div className="text-lg">
+              <div className="animate-fade-up">
                 <PortableTextRenderer value={props.body} />
               </div>
             )}
+
             {props.links && props.links.length > 0 && (
-              <div className="mt-8 flex flex-wrap gap-4">
+              <div className="animate-fade-up flex flex-wrap gap-4 opacity-0 delay-150">
                 {props.links.map((link) => (
                   <Button
                     key={link.title}
@@ -45,8 +46,8 @@ export function Hero1(props: Hero1Props) {
               </div>
             )}
           </div>
-          <div className="flex flex-col justify-center">
-            {props.image && props.image.asset?._id && (
+          {props.image && props.image.asset?._id && (
+            <div className="flex flex-col justify-center">
               <CmsImage
                 image={props.image}
                 alt={props.image.alt || ""}
@@ -57,8 +58,8 @@ export function Hero1(props: Hero1Props) {
                   "object-contain object-left": props.image.contain,
                 })}
               />
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </header>

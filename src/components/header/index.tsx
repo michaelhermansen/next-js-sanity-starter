@@ -10,15 +10,15 @@ const navItems = [
     href: "/artikler",
   },
   {
-    label: "Eksempelside",
-    href: "/eksempelside",
+    label: "Kontakt oss",
+    href: "/kontakt-oss",
   },
 ];
 
 export function Header() {
   return (
     <header className="bg-background border-b">
-      <div className="container flex h-20 items-center justify-between">
+      <div className="container flex h-20 items-center justify-between gap-4">
         <Link href="/" aria-label="Hjem" className="text-xl font-medium">
           {siteConfig.name}
         </Link>

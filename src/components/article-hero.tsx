@@ -1,6 +1,7 @@
 import { formatDate } from "@/lib/utils";
 import { ARTICLE_QUERYResult } from "@/sanity/sanity.types";
 import { CmsImage } from "./cms-image";
+import { Avatar } from "./ui/avatar";
 
 type ArticleHeroProps = {
   article: ARTICLE_QUERYResult;
@@ -17,11 +18,11 @@ export function ArticleHero(props: ArticleHeroProps) {
   };
 
   return (
-    <div className="bg-muted border-b pb-4 xl:py-8">
+    <div className="border-b pb-4 xl:py-8">
       <div className="grid grid-cols-1 gap-6 sm:container sm:gap-8 md:gap-0 xl:grid-cols-2 xl:gap-16">
         <div className="flex flex-col justify-between gap-8 px-4 pb-6 sm:gap-10 sm:px-0 md:gap-12 md:py-8 lg:py-10 xl:gap-14 xl:py-16 2xl:py-20">
           <div className="space-y-3 md:space-y-6">
-            <h1 className="text-3xl font-semibold sm:text-4xl lg:text-5xl">
+            <h1 className="text-3xl leading-tight font-semibold sm:text-4xl lg:text-5xl">
               {title}
             </h1>
             {excerpt && (
@@ -30,15 +31,18 @@ export function ArticleHero(props: ArticleHeroProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            {author.image && author.name && (
-              <CmsImage
-                className="size-10 rounded-full sm:size-12"
-                image={author.image}
-                width={80}
-                height={80}
-                loading="eager"
-                alt={author.image.alt || ""}
-              />
+            {author.name && (
+              <Avatar name={author.name}>
+                {author.image && (
+                  <CmsImage
+                    image={author.image}
+                    alt={author.image.alt || ""}
+                    width={80}
+                    height={80}
+                    loading="eager"
+                  />
+                )}
+              </Avatar>
             )}
             <div>
               {author.name && <p className="font-medium">{author.name}</p>}

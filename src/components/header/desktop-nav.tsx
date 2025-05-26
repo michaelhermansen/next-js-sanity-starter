@@ -23,7 +23,9 @@ function NavItem(props: NavItemProps) {
     <Link
       key={props.label}
       href={props.href}
-      className={cn("py-2 hover:underline", { underline: isActive })}
+      className={cn("py-2 whitespace-nowrap hover:underline", {
+        underline: isActive,
+      })}
     >
       {props.label}
     </Link>

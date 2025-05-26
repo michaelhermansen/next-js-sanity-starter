@@ -14,8 +14,8 @@ export function PageBreadcrumbs(props: {
   currentPageTitle: string;
 }) {
   return (
-    <div className="border-b py-4">
-      <Breadcrumbs className="container overflow-x-auto">
+    <div className="border-b">
+      <Breadcrumbs className="container py-4">
         <BreadcrumbsHomeLink />
         <BreadcrumbsSeparator />
         {props.links.map((element) => (

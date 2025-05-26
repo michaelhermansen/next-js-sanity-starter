@@ -8,7 +8,7 @@ export default async function Page(props: {
   const query = searchParams.q;
 
   return (
-    <div className="section-padding container">
+    <div className="py-section container">
       <h1 className="mb-8 text-4xl font-semibold">
         Søkeresultater for <q>{query}</q>
       </h1>

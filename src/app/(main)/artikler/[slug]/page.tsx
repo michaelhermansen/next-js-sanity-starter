@@ -42,14 +42,14 @@ export default async function ArticlePage(props: {
         <ArticleHero article={article} />
 
         <div className="container">
-          <div className="grid grid-cols-1 items-start lg:grid-cols-3 lg:gap-12 2xl:gap-24">
+          <div className="grid grid-cols-1 items-start lg:grid-cols-3 lg:gap-16">
             {headings && (
-              <aside className="section-padding border-b lg:sticky lg:top-0 lg:border-b-0">
+              <aside className="py-section border-b lg:sticky lg:top-0 lg:border-b-0">
                 <TableOfContents headings={headings} />
               </aside>
             )}
 
-            <div className="section-padding lg:order-first lg:col-span-2">
+            <div className="py-section max-w-3xl lg:order-first lg:col-span-2">
               {article.body && <PortableTextRenderer value={article.body} />}
             </div>
           </div>

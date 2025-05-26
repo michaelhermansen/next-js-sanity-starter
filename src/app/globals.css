@@ -2,44 +2,7 @@
 @plugin "tailwindcss-animate";
 @custom-variant dark (&:is(.dark *));
 
-@theme {
-  --font-sans: var(--font-sans);
-
-  /* Custom animations */
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-  --animate-fade-up: fade-up 0.7s ease-out forwards;
-}
-
-@keyframes accordion-down {
-  from {
-    height: 0;
-  }
-  to {
-    height: var(--radix-accordion-content-height);
-  }
-}
-
-@keyframes accordion-up {
-  from {
-    height: var(--radix-accordion-content-height);
-  }
-  to {
-    height: 0;
-  }
-}
-
-@keyframes fade-up {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Light mode config */
 :root {
   --background: hsl(0, 0%, 98%);
   --foreground: hsl(0, 0%, 0%);
@@ -70,25 +33,27 @@
   --section-padding: calc(theme(--spacing) * 10);
   --section-padding-lg: calc(theme(--spacing) * 16);
 }
+
+/* Dark mode config */
 .dark {
-  --background: hsl(0, 0%, 0%);
+  --background: hsl(0, 0%, 6%);
   --foreground: hsl(0, 0%, 100%);
-  --card: hsl(0, 0%, 12%);
+  --card: hsl(0, 0%, 10%);
   --card-foreground: hsl(0, 0%, 100%);
-  --popover: hsl(0, 0%, 12%);
+  --popover: hsl(0, 0%, 10%);
   --popover-foreground: hsl(0, 0%, 100%);
   --primary: hsl(0, 0%, 100%);
   --primary-foreground: hsl(0, 0%, 0%);
   --secondary: hsl(0, 0%, 0%);
   --secondary-foreground: hsl(0, 0%, 100%);
-  --muted: hsl(0, 0%, 6%);
+  --muted: hsl(0, 0%, 4%);
   --muted-foreground: hsl(0, 0%, 80%);
   --accent: hsl(126, 64%, 33%);
   --accent-foreground: hsl(0, 0%, 100%);
   --destructive: hsl(346, 100%, 67%);
   --destructive-foreground: hsl(0, 0%, 0%);
-  --border: hsl(0, 0%, 12%);
-  --input: hsl(0, 0%, 15%);
+  --border: hsl(0, 0%, 14%);
+  --input: hsl(0, 0%, 20%);
   --ring: hsl(146, 78%, 54%);
   --chart-1: hsl(346, 100%, 67%);
   --chart-2: hsl(55, 100%, 63%);
@@ -97,7 +62,12 @@
   --chart-5: hsl(248, 44%, 35%);
 }
 
+/* Tailwind theme variables */
 @theme inline {
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-newsreader);
+
+  --color-*: initial;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -123,6 +93,7 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
+  --radius-*: initial;
   --radius-xs: calc(var(--radius) - 0.5rem);
   --radius-sm: calc(var(--radius) - 0.25rem);
   --radius: var(--radius);
@@ -132,20 +103,23 @@
   --radius-2xl: calc(var(--radius) + 1rem);
   --radius-3xl: calc(var(--radius) + 1.5rem);
   --radius-4xl: calc(var(--radius) + 2rem);
+
+  /* Custom animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-fade-up: fade-up 0.3s ease-out forwards;
 }
 
-@utility section-padding-top {
+/* Custom utilities */
+@utility pt-section {
   @apply pt-[var(--section-padding)] lg:pt-[var(--section-padding-lg)];
 }
-
-@utility section-padding-bottom {
+@utility pb-section {
   @apply pb-[var(--section-padding)] lg:pb-[var(--section-padding-lg)];
 }
-
-@utility section-padding {
-  @apply section-padding-top section-padding-bottom;
+@utility py-section {
+  @apply pt-section pb-section;
 }
-
 @utility container {
   width: 100%;
   margin-left: auto;
@@ -169,23 +143,52 @@
     padding-right: 4rem;
   }
   @media (width >= theme(--breakpoint-2xl)) {
-    max-width: 1536px;
+    max-width: 1440px;
     padding-left: 4rem;
     padding-right: 4rem;
   }
 }
 
+/* Keyframes */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base styles */
 @layer base {
   :root {
     @apply scroll-pt-[var(--section-padding)] scroll-smooth lg:scroll-pt-[var(--section-padding-lg)];
   }
 
   * {
-    @apply border-border ring-offset-background ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none;
+    @apply border-border ring-offset-background ring-ring leading-normal focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none;
   }
 
   body {
-    @apply bg-background text-foreground font-sans leading-normal underline-offset-2 antialiased;
+    @apply bg-background text-foreground font-sans underline-offset-2 antialiased;
   }
 
   /* override the default "X" icon in html search inputs  */

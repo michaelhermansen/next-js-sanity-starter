@@ -11,7 +11,7 @@ export async function AllArticles(props: AllArticlesProps) {
   const articles = await fetchSanityArticles();
 
   return (
-    <div className="section-padding container grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="py-section container grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {articles.map((article) => (
         <ArticleCard
           key={article._id}

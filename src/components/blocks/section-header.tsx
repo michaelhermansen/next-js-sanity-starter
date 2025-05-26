@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
-import { SectionContainer } from "@/components/ui/section-container";
-import { stegaClean } from "next-sanity";
 import { PAGE_QUERYResult } from "@/sanity/sanity.types";
+import { stegaClean } from "next-sanity";
 
 type SectionHeaderProps = Extract<
   NonNullable<NonNullable<PAGE_QUERYResult>["modules"]>[number],
@@ -16,7 +15,7 @@ export function SectionHeader(props: SectionHeaderProps) {
   const color = stegaClean(props.colorVariant);
 
   return (
-    <SectionContainer color={color} padding={props.padding}>
+    <div className="py-section">
       <div
         className={cn(
           align === "center" ? "mx-auto max-w-[48rem] text-center" : undefined,
@@ -35,6 +34,6 @@ export function SectionHeader(props: SectionHeaderProps) {
         </div>
         <p>{props.description}</p>
       </div>
-    </SectionContainer>
+    </div>
   );
 }

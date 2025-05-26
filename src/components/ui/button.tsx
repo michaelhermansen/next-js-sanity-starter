@@ -15,13 +15,14 @@ const buttonVariants = cva(
         outline: "border border-input shadow-xs bg-background hover:bg-card",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "bg-muted hover:bg-muted/50 border-transparent",
+        ghost:
+          "bg-muted hover:border-border hover:bg-muted/50 border-transparent",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-9 px-3 py-2 has-[>svg]:px-3",
         sm: "h-8 px-3 has-[>svg]:px-2.5",
-        lg: "h-11 text-lg px-5 has-[>svg]:px-4",
+        lg: "h-11 text-lg px-5 has-[>svg]:px-4 rounded",
         icon: "size-9",
       },
     },

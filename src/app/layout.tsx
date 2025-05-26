@@ -4,21 +4,42 @@ import { rootLayoutMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import localFont from "next/font/local";
+import "@/app/globals.css";
 
 export const metadata = rootLayoutMetadata;
 
 const fontSans = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-sans",
+});
+
+const fontSerif = localFont({
+  variable: "--font-newsreader",
+  src: [
+    {
+      path: "../assets/Newsreader-Variable.ttf",
+      style: "normal",
+    },
+    {
+      path: "../assets/Newsreader-Italic-Variable.ttf",
+      style: "italic",
+    },
+  ],
 });
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang={siteConfig.locales[0]} suppressHydrationWarning>
       <link rel="icon" href="/favicon.ico" />
-      <body className={cn("bg-background min-h-screen", fontSans.variable)}>
+      <body
+        className={cn(
+          "bg-background min-h-svh",
+          fontSans.variable,
+          fontSerif.variable,
+        )}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -26,8 +47,8 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           disableTransitionOnChange
         >
           {props.children}
+          <Toaster position="bottom-right" richColors />
         </ThemeProvider>
-        <Toaster position="bottom-right" richColors />
       </body>
     </html>
   );

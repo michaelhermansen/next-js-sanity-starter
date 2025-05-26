@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="border-t">
+    <footer className="bg-muted border-t">
       <div className="container">
         <div className="py-12">
           <Link className="text-2xl font-medium" href="/">
@@ -20,7 +20,7 @@ export function Footer() {
           </div>
 
           <div className="text-muted-foreground border-t pt-8 text-right md:border-t-0 md:pt-0">
-            Laget av{" "}
+            Designet og utviklet av{" "}
             <Link
               href="https://netlife.com"
               className="underline hover:no-underline"

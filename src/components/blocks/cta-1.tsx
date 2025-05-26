@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { SectionContainer } from "@/components/ui/section-container";
 import { stegaClean } from "next-sanity";
 import Link from "next/link";
 import { PortableTextRenderer } from "@/features/portable-text/portable-text-renderer";
@@ -17,7 +16,7 @@ export function Cta1(props: Cta1Props) {
   const color = stegaClean(props.colorVariant);
 
   return (
-    <SectionContainer color={color} padding={props.padding}>
+    <div className="py-section">
       <div
         className={cn(
           align === "center" ? "mx-auto max-w-[48rem] text-center" : undefined,
@@ -62,6 +61,6 @@ export function Cta1(props: Cta1Props) {
           </div>
         )}
       </div>
-    </SectionContainer>
+    </div>
   );
 }

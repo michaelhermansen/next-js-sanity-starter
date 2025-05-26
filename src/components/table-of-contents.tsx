@@ -1,5 +1,6 @@
 import { ResolvedHeading } from "@/features/portable-text/headings";
 import { cn } from "@/lib/utils";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { isArray, isEmpty } from "radash";
 import { useId } from "react";
@@ -38,8 +39,8 @@ export function TableOfContents(props: {
 
   return (
     <nav className={props.className} aria-labelledby={id}>
-      <h2 id={id} className="mb-4 text-xl font-bold">
-        Innholdsfortegnelse
+      <h2 id={id} className="mb-4 text-2xl font-semibold">
+        På denne siden
       </h2>
 
       <RecursiveLinks links={links} />
@@ -50,13 +51,9 @@ export function TableOfContents(props: {
 function RecursiveLinks(props: { links: NestedLinks; isSubList?: boolean }) {
   return (
     <ol
-      style={{
-        listStyleType: props.isSubList ? undefined : "decimal-leading-zero",
-        listStylePosition: "inside",
-      }}
       className={cn({
         "text-lg": !props.isSubList,
-        "ml-4 border-l pl-4 text-base": props.isSubList,
+        "pl-6 text-base": props.isSubList,
       })}
     >
       {props.links.map((item) => {
@@ -64,16 +61,22 @@ function RecursiveLinks(props: { links: NestedLinks; isSubList?: boolean }) {
           return (
             <li
               key={item.id}
-              className={cn("truncate whitespace-nowrap", {
-                "mt-4 font-medium first:mt-0": !props.isSubList,
-                "text-muted-foreground mt-2": props.isSubList,
+              className={cn({
+                "mt-3 first:mt-0": !props.isSubList,
+                "text-muted-foreground mt-1": props.isSubList,
               })}
             >
               <Link
                 href={`#${item.id}`}
-                className="hover:underline"
+                className="group flex items-center gap-2 hover:underline"
                 title={item.text}
               >
+                {!props.isSubList && (
+                  <ChevronRight
+                    size="1rem"
+                    className="transition-transform group-hover:translate-x-0.5"
+                  />
+                )}
                 {item.text}
               </Link>
             </li>
