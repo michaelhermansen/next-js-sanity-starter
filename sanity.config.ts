@@ -11,12 +11,7 @@ import { structure } from "@/sanity/structure";
 import { env } from "@/lib/env";
 import { siteConfig } from "@/lib/site-config";
 
-const isDevelopment = env.NEXT_PUBLIC_SITE_ENV === "development";
-
-const developmentPlugins = [
-  visionTool({ defaultApiVersion: env.NEXT_PUBLIC_SANITY_API_VERSION }),
-  embeddingsIndexDashboard(),
-];
+const adminTools = ["vision", "embeddings-index"];
 
 export default defineConfig({
   basePath: "/studio",
@@ -31,6 +26,16 @@ export default defineConfig({
       title: "Forhåndsvisning",
       previewUrl: { draftMode: { enable: "/api/draft-mode/enable" } },
     }),
-    ...(isDevelopment ? developmentPlugins : []),
+    visionTool({ defaultApiVersion: env.NEXT_PUBLIC_SANITY_API_VERSION }),
+    embeddingsIndexDashboard(),
   ],
+  // Enable certain tools only for admin users
+  tools: (tools, context) => {
+    const isAdmin = Boolean(
+      context.currentUser?.roles.find(({ name }) => name === "administrator"),
+    );
+
+    if (isAdmin) return tools;
+    return tools.filter((tool) => !adminTools.includes(tool.name));
+  },
 });
