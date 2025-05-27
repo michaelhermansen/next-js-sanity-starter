@@ -1,15 +1,10 @@
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { stegaClean } from "next-sanity";
-import Link from "next/link";
 import { PortableTextRenderer } from "@/features/portable-text/portable-text-renderer";
-import { PAGE_QUERYResult } from "@/sanity/sanity.types";
+import { cn } from "@/lib/utils";
+import { stegaClean } from "next-sanity";
+import { ModuleProps } from ".";
 import { CtaLinks } from "../cta-links";
 
-type Cta1Props = Extract<
-  NonNullable<NonNullable<PAGE_QUERYResult>["modules"]>[number],
-  { _type: "cta-1" }
->;
+type Cta1Props = ModuleProps<"cta-1">;
 
 export function Cta1(props: Cta1Props) {
   const isNarrow = stegaClean(props.sectionWidth) === "narrow";

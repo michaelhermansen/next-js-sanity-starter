@@ -1,11 +1,8 @@
 import { cn } from "@/lib/utils";
-import { PAGE_QUERYResult } from "@/sanity/sanity.types";
 import { stegaClean } from "next-sanity";
+import { ModuleProps } from ".";
 
-type SectionHeaderProps = Extract<
-  NonNullable<NonNullable<PAGE_QUERYResult>["modules"]>[number],
-  { _type: "section-header" }
->;
+type SectionHeaderProps = ModuleProps<"section-header">;
 
 export function SectionHeader(props: SectionHeaderProps) {
   const { sectionWidth = "default", stackAlign = "left" } = props;

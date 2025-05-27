@@ -1,10 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowRight, SquareArrowOutUpRight } from "lucide-react";
-import Link from "next/link";
 import { ModuleProps } from ".";
-import { TypographyH1, TypographyP } from "../typography";
 import { CtaLinks } from "../cta-links";
+import { TypographyH1, TypographyP } from "../typography";
 
 type PageHeroProps = ModuleProps<"page-hero">;
 
