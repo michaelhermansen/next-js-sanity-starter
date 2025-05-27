@@ -1,13 +1,4 @@
 {
-  "cSpell.words": [
-    "Internettmaskinen",
-    "lqip",
-    "lucide",
-    "radash",
-    "Sonner",
-    "videoid",
-    "wght"
-  ],
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.tsserver.experimental.enableProjectDiagnostics": false
+  "cSpell.words": ["lucide", "radash", "Sonner"],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

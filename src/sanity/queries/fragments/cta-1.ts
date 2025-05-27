@@ -17,7 +17,6 @@ export const cta1Query = `
           url,
           mimeType,
           metadata {
-            lqip,
             dimensions {
               width,
               height
