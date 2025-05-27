@@ -1,3 +1,4 @@
+import { TypographyH2 } from "@/components/typography";
 import { SearchResults, SearchResultsSkeleton } from "@/features/search";
 import { Suspense } from "react";
 
@@ -9,9 +10,11 @@ export default async function Page(props: {
 
   return (
     <div className="py-section container">
-      <h1 className="mb-8 text-4xl font-semibold">
-        Søkeresultater for <q>{query}</q>
-      </h1>
+      <TypographyH2 className="mb-8" asChild>
+        <h1>
+          Søkeresultater for <q>{query}</q>
+        </h1>
+      </TypographyH2>
 
       <Suspense
         key={query}
