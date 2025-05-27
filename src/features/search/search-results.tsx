@@ -17,7 +17,7 @@ export async function SearchResults(props: {
   if (!data.length) return <p>Ingen resultater</p>;
 
   return (
-    <ul className="max-w-4xl divide-y">
+    <ul className="max-w-3xl divide-y">
       {data.map((result) => {
         const href = `${result._type === "article" ? "/artikler/" : "/"}${result.slug?.current}`;
 
@@ -36,11 +36,12 @@ export async function SearchResults(props: {
 
 export function SearchResultsSkeleton(props: { maxResults: number }) {
   return (
-    <div className="max-w-4xl divide-y">
+    <div className="max-w-3xl divide-y">
       {[...range(1, props.maxResults)].map((i) => (
-        <div key={i} className="group space-y-3 py-4" style={{ opacity: 1 }}>
-          <Skeleton className="h-6 w-40 group-nth-of-type-[2n]:min-w-64 group-nth-of-type-[3n]:w-28" />
-          <Skeleton className="h-5 w-full" />
+        <div key={i} className="group py-4" style={{ opacity: 1 }}>
+          <Skeleton className="mb-3 h-6 w-40 group-nth-of-type-[2n]:min-w-64 group-nth-of-type-[3n]:w-28" />
+          <Skeleton className="mb-1 h-5 w-full" />
+          <Skeleton className="h-5 w-2/3" />
         </div>
       ))}
     </div>

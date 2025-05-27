@@ -1,3 +1,4 @@
+import "@/app/globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/features/theme/theme-provider";
 import { rootLayoutMetadata } from "@/lib/metadata";
@@ -5,7 +6,6 @@ import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
-import "@/app/globals.css";
 
 export const metadata = rootLayoutMetadata;
 
@@ -33,13 +33,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang={siteConfig.locales[0]} suppressHydrationWarning>
       <link rel="icon" href="/favicon.ico" />
-      <body
-        className={cn(
-          "bg-background min-h-svh",
-          fontSans.variable,
-          fontSerif.variable,
-        )}
-      >
+      <body className={cn(fontSans.variable, fontSerif.variable)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

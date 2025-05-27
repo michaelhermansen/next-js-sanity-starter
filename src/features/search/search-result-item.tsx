@@ -23,7 +23,7 @@ export function SearchResultItem(props: {
         {props.title}
       </Link>
       {props.excerpt && (
-        <p className="text-muted-foreground line-clamp-1">{props.excerpt}</p>
+        <p className="text-muted-foreground line-clamp-2">{props.excerpt}</p>
       )}
     </li>
   );
