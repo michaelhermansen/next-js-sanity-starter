@@ -12,17 +12,18 @@ export default defineType({
     defineField({
       name: "href",
       title: "href",
-      type: "string",
+      type: "url",
+      validation: (Rule) =>
+        Rule.uri({
+          allowRelative: true,
+          // scheme: ["https", "mailto", "tel"],
+        }),
     }),
     defineField({
-      name: "target",
+      name: "targetBlank",
       type: "boolean",
-      title: "Open in new tab",
-    }),
-    defineField({
-      name: "buttonVariant",
-      type: "button-variant",
-      title: "Button Variant",
+      title: "Åpne i ny fane",
+      initialValue: false,
     }),
   ],
 });

@@ -4,6 +4,7 @@ import { stegaClean } from "next-sanity";
 import Link from "next/link";
 import { PortableTextRenderer } from "@/features/portable-text/portable-text-renderer";
 import { PAGE_QUERYResult } from "@/sanity/sanity.types";
+import { CtaLinks } from "../cta-links";
 
 type Cta1Props = Extract<
   NonNullable<NonNullable<PAGE_QUERYResult>["modules"]>[number],
@@ -41,23 +42,7 @@ export function Cta1(props: Cta1Props) {
               align === "center" ? "justify-center" : undefined,
             )}
           >
-            {props.links &&
-              props.links.length > 0 &&
-              props.links.map((link) => (
-                <Button
-                  key={link.title}
-                  variant={stegaClean(link?.buttonVariant)}
-                  asChild
-                >
-                  <Link
-                    href={link.href as string}
-                    target={link.target ? "_blank" : undefined}
-                    rel={link.target ? "noopener" : undefined}
-                  >
-                    {link.title}
-                  </Link>
-                </Button>
-              ))}
+            {props.links && <CtaLinks links={props.links} />}
           </div>
         )}
       </div>

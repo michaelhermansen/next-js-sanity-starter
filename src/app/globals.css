@@ -184,7 +184,7 @@
   }
 
   * {
-    @apply border-border ring-offset-background ring-ring leading-normal focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none;
+    @apply border-border ring-offset-background ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none;
   }
 
   body {

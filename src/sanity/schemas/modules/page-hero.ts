@@ -3,39 +3,34 @@ import { ThLargeIcon } from "@sanity/icons";
 
 export default defineType({
   name: "page-hero",
-  title: "Toppbanner",
+  title: "Sidebanner",
   type: "object",
   icon: ThLargeIcon,
   fields: [
     defineField({
-      name: "body",
-      type: "block-content",
-      title: "Innhold",
+      name: "title",
+      type: "string",
+      title: "Tittel",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "image",
-      title: "Image",
-      type: "image",
-      options: { hotspot: true },
-      fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alternative Text",
-        },
-        {
-          name: "contain",
-          title: "Ikke beskjær",
-          type: "boolean",
-          initialValue: false,
-        },
-      ],
+      name: "paragraph",
+      type: "text",
+      title: "Avsnitt",
+      rows: 3,
     }),
     defineField({
       name: "links",
+      title: "Linker",
       type: "array",
       of: [{ type: "link" }],
       validation: (rule) => rule.max(2),
+    }),
+    defineField({
+      name: "centered",
+      title: "Midtstilt",
+      type: "boolean",
+      initialValue: false,
     }),
   ],
   preview: {
@@ -44,7 +39,7 @@ export default defineType({
     },
     prepare({ title }) {
       return {
-        title: "Toppbanner",
+        title: "Sidebanner",
         subtitle: title,
       };
     },

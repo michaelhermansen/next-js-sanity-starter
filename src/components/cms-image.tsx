@@ -2,14 +2,13 @@ import { env } from "@/lib/env";
 import { DeepNullable } from "@/lib/utility-types";
 import { SanityImage, SanityImageProps } from "sanity-image";
 import { shake } from "radash";
-import { cn } from "@/lib/utils";
 
 type BasicCmsImageMetadata = DeepNullable<{
   dimensions?: { width?: number; height?: number };
 }>;
 
 type BasicCmsImage = DeepNullable<{
-  asset:
+  asset?:
     | { _ref: string; _id?: string; metadata?: BasicCmsImageMetadata }
     | { _ref?: string; _id: string; metadata?: BasicCmsImageMetadata };
   hotspot?: { x?: number; y?: number };
@@ -50,7 +49,6 @@ export function CmsImage(props: CmsImageProps) {
       loading="lazy" // Set default to lazy loading
       mode="cover" // Set default fitting mode to "cover"
       sizes="90vw"
-      className={props.className}
       {...restProps}
     />
   );

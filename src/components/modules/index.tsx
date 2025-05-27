@@ -5,18 +5,27 @@ import { Cta1 } from "./cta-1";
 import { PageHero } from "./page-hero";
 import { SectionHeader } from "./section-header";
 
-type Module = NonNullable<NonNullable<PAGE_QUERYResult>["modules"]>[number];
+export type AnyModuleProps = NonNullable<
+  NonNullable<PAGE_QUERYResult>["modules"]
+>[number];
 
-const componentMap: {
-  [K in Module["_type"]]: ComponentType<Extract<Module, { _type: K }>>;
-} = {
+export type ModuleProps<T extends AnyModuleProps["_type"]> = Extract<
+  AnyModuleProps,
+  { _type: T }
+>;
+
+type ComponentMap = {
+  [K in AnyModuleProps["_type"]]: ComponentType<ModuleProps<K>>;
+};
+
+const componentMap: ComponentMap = {
   "page-hero": PageHero,
   "section-header": SectionHeader,
   "cta-1": Cta1,
   "all-articles": AllArticles,
 };
 
-export function ModulesRenderer(props: { modules: Module[] }) {
+export function ModulesRenderer(props: { modules: AnyModuleProps[] }) {
   return (
     <>
       {props.modules?.map((module) => {
