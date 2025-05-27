@@ -1,6 +1,5 @@
 import { ResolvedHeading } from "@/features/portable-text/headings";
 import { cn } from "@/lib/utils";
-import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { isArray, isEmpty } from "radash";
 import { useId } from "react";
