@@ -7,3 +7,5 @@ export type DeepNullable<T> = {
 export type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
+
+export type PageSearchParams = { [key: string]: string | string[] | undefined };

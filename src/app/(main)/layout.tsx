@@ -1,5 +1,6 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { QueryProvider } from "@/components/query-provider";
 import { SkipLink } from "@/components/skip-link";
 import { DisableDraftMode } from "@/features/draft-mode/disable-draft-mode";
 import { env } from "@/lib/env";
@@ -16,14 +17,20 @@ export default async function MainLayout(props: { children: React.ReactNode }) {
       {gtmId && <GoogleTagManager gtmId={gtmId} />}
       <SkipLink />
 
-      <div className="flex min-h-lvh flex-col">
-        <Header />
-        <main tabIndex={-1} id="hovedinnhold" className="flex flex-1 flex-col">
-          {props.children}
-        </main>
+      <QueryProvider>
+        <div className="flex min-h-lvh flex-col">
+          <Header />
+          <main
+            tabIndex={-1}
+            id="hovedinnhold"
+            className="flex flex-1 flex-col"
+          >
+            {props.children}
+          </main>
 
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+      </QueryProvider>
 
       <SanityLive />
       {(await draftMode()).isEnabled && (

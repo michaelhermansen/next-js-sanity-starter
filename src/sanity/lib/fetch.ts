@@ -20,9 +20,12 @@ export const fetchSanityPageBySlug = async ({
   return data;
 };
 
-export const fetchSanityArticles = async (): Promise<ARTICLES_QUERYResult> => {
+export const fetchSanityArticles = async (
+  categorySlugs?: string[],
+): Promise<ARTICLES_QUERYResult> => {
   const { data } = await sanityFetch({
     query: ARTICLES_QUERY,
+    params: { categorySlugs: categorySlugs || [] },
   });
 
   return data;

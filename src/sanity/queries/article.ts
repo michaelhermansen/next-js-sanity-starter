@@ -67,7 +67,11 @@ export const ARTICLE_QUERY = groq`*[_type == "article" && slug.current == $slug]
     }
 }`;
 
-export const ARTICLES_QUERY = groq`*[_type == "article" && defined(slug)] | order(_createdAt desc){
+export const ARTICLES_QUERY = groq`*[_type == "article" && defined(slug) && (
+    !defined($categorySlugs) || 
+    count($categorySlugs) == 0 || 
+    count((categories[]->slug.current)[@ in $categorySlugs]) > 0
+)] | order(_createdAt desc){
     _id,
     _createdAt,
     title,

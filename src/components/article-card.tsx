@@ -3,8 +3,8 @@
 import { cn, formatDate } from "@/lib/utils";
 import Link from "next/link";
 import { useRef } from "react";
-import { ARTICLES_QUERYResult } from "../../sanity/sanity.types";
-import { CmsImage } from "../cms-image";
+import { ARTICLES_QUERYResult } from "../sanity/sanity.types";
+import { CmsImage } from "./cms-image";
 import { isEmpty } from "radash";
 
 interface ArticleCardProps {

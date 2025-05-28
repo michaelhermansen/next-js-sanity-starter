@@ -1,3 +1,4 @@
+import { PageSearchParams } from "@/lib/types";
 import { ComponentType } from "react";
 import { PAGE_QUERYResult } from "../../sanity/sanity.types";
 import { AllArticles } from "./all-articles";
@@ -5,20 +6,24 @@ import { Cta1 } from "./cta-1";
 import { PageHero } from "./page-hero";
 import { SectionHeader } from "./section-header";
 
-const componentMap: ComponentMap = {
+const componentMap = {
   "page-hero": PageHero,
   "section-header": SectionHeader,
   "cta-1": Cta1,
   "all-articles": AllArticles,
 };
 
-export function ModulesRenderer(props: { modules: AnyModuleProps[] }) {
+export function ModulesRenderer(props: {
+  modules: Module[];
+  searchParams: PageSearchParams;
+}) {
   return (
     <>
       {props.modules?.map((module) => {
-        const ModuleComponent = componentMap[module._type] as ComponentType<
-          typeof module
-        >;
+        const ModuleComponent = componentMap[module._type] as ComponentType<{
+          module: typeof module;
+          searchParams: PageSearchParams;
+        }>;
 
         if (!ModuleComponent) {
           // Fallback for development/debugging of new component types
@@ -28,21 +33,23 @@ export function ModulesRenderer(props: { modules: AnyModuleProps[] }) {
           return null;
         }
 
-        return <ModuleComponent {...module} key={module._key} />;
+        return (
+          <ModuleComponent
+            key={module._key}
+            module={module}
+            searchParams={props.searchParams}
+          />
+        );
       })}
     </>
   );
 }
 
-export type AnyModuleProps = NonNullable<
+export type Module = NonNullable<
   NonNullable<PAGE_QUERYResult>["modules"]
 >[number];
 
-export type ModuleProps<T extends AnyModuleProps["_type"]> = Extract<
-  AnyModuleProps,
+export type ModuleByType<T extends Module["_type"]> = Extract<
+  Module,
   { _type: T }
 >;
-
-type ComponentMap = {
-  [K in AnyModuleProps["_type"]]: ComponentType<ModuleProps<K>>;
-};

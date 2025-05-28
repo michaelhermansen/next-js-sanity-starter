@@ -1,5 +1,5 @@
 import { env } from "@/lib/env";
-import { DeepNullable } from "@/lib/utility-types";
+import { DeepNullable } from "@/lib/types";
 import { SanityImage, SanityImageProps } from "sanity-image";
 import { shake } from "radash";
 

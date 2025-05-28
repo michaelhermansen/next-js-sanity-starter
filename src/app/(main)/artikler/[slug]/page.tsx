@@ -7,8 +7,6 @@ import { fetchSanityArticleBySlug } from "@/sanity/lib/fetch";
 import { generatePageMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 
-export const dynamic = "force-static";
-
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
 }) {

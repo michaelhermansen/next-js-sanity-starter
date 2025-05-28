@@ -1,15 +1,17 @@
 import { cn } from "@/lib/utils";
 import { stegaClean } from "next-sanity";
-import { ModuleProps } from ".";
+import { ModuleByType } from ".";
 
-type SectionHeaderProps = ModuleProps<"section-header">;
+type SectionHeaderProps = {
+  module: ModuleByType<"section-header">;
+};
 
 export function SectionHeader(props: SectionHeaderProps) {
-  const { sectionWidth = "default", stackAlign = "left" } = props;
+  const { sectionWidth = "default", stackAlign = "left" } = props.module;
 
   const isNarrow = stegaClean(sectionWidth) === "narrow";
   const align = stegaClean(stackAlign);
-  const color = stegaClean(props.colorVariant);
+  const color = stegaClean(props.module.colorVariant);
 
   return (
     <div className="py-section">
@@ -22,14 +24,16 @@ export function SectionHeader(props: SectionHeaderProps) {
         <div
           className={cn(color === "primary" ? "text-background" : undefined)}
         >
-          {props.tagLine && (
+          {props.module.tagLine && (
             <h1 className="mb-4 leading-[0]">
-              <span className="text-base font-semibold">{props.tagLine}</span>
+              <span className="text-base font-semibold">
+                {props.module.tagLine}
+              </span>
             </h1>
           )}
-          <h2 className="mb-4 text-3xl md:text-5xl">{props.title}</h2>
+          <h2 className="mb-4 text-3xl md:text-5xl">{props.module.title}</h2>
         </div>
-        <p>{props.description}</p>
+        <p>{props.module.description}</p>
       </div>
     </div>
   );

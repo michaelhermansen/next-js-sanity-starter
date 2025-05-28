@@ -30,7 +30,7 @@ export function ArticleHero(props: ArticleHeroProps) {
             </TypographyP>
           )}
 
-          <div className="flex items-center gap-3 pt-8 lg:pt-10">
+          <div className="flex items-center gap-3 pt-4 lg:pt-8">
             {author.name && (
               <Avatar name={author.name}>
                 {author.image && (

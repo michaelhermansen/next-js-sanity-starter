@@ -4,8 +4,7 @@ import { env } from "@/lib/env";
 
 export const { sanityFetch, SanityLive } = defineLive({
   client,
-  // Required for showing draft content when the Sanity Presentation Tool is used, or to enable the Vercel Toolbar Edit Mode
-  serverToken: env.SANITY_API_READ_TOKEN,
-  // Required for stand-alone live previews, the token is only shared to the browser if it's a valid Next.js Draft Mode session
   browserToken: env.SANITY_API_READ_TOKEN,
+  serverToken: env.SANITY_API_READ_TOKEN,
+  fetchOptions: { revalidate: 86_400 }, // 24 hours
 });
