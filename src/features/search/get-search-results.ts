@@ -1,10 +1,9 @@
 import { env } from "@/lib/env";
-import { sanityFetch } from "@/sanity/lib/live";
-import { SEARCH_RESULT_QUERY } from "@/sanity/queries/search-results";
-import type { SEARCH_RESULT_QUERYResult } from "@/sanity/sanity.types";
+import { fetchSearchResults } from "@/sanity/queries/search-results";
+import { SearchResultsQueryResult } from "@/sanity/sanity.types";
 import { z } from "zod";
 
-const SCORE_THRESHOLD = 0;
+const SCORE_THRESHOLD = 0.75;
 
 const endpoint = `https://${env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/vX/embeddings-index/query/${env.NEXT_PUBLIC_SANITY_DATASET}/search`;
 const embeddingsIndexResultSchema = z.array(
@@ -14,7 +13,7 @@ const embeddingsIndexResultSchema = z.array(
   }),
 );
 
-export type DocumentType = SEARCH_RESULT_QUERYResult[number]["_type"];
+export type DocumentType = SearchResultsQueryResult[number]["_type"];
 export type GetSearchResultsOptions = {
   query: string;
   maxResults: number;
@@ -49,13 +48,12 @@ export async function getSearchResults(options: GetSearchResultsOptions) {
     relevantHits.map((item) => [item.value.documentId, item.score]),
   );
 
-  const { data: results } = await sanityFetch({
-    query: SEARCH_RESULT_QUERY,
-    params: { documentIds },
+  const { data: searchResults } = await fetchSearchResults({
+    documents: documentIds,
   });
 
   // Sort documents by score descending
-  const sortedResults = results.sort((a, b) => {
+  const sortedResults = searchResults.sort((a, b) => {
     const scoreA = scoreMap.get(a._id) || 0;
     const scoreB = scoreMap.get(b._id) || 0;
     return scoreB - scoreA;

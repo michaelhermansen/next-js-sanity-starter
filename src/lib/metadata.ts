@@ -1,39 +1,59 @@
-import { siteConfig } from "@/lib/site-config";
-import { env } from "@/lib/env";
-import { urlFor } from "@/sanity/lib/image";
-import { Metadata } from "next";
-import { ARTICLE_QUERYResult, PAGE_QUERYResult } from "../sanity/sanity.types";
 import { size } from "@/app/api/og/route";
+import { env } from "@/lib/env";
+import { siteConfig } from "@/lib/site-config";
+import { urlFor } from "@/sanity/lib/image";
+import {
+  SingleArticleQueryResult,
+  SinglePageQueryResult,
+} from "@/sanity/sanity.types";
+import { Metadata } from "next";
 
 const isProduction = env.NEXT_PUBLIC_SITE_ENV === "production";
 
-export function generatePageMetadata(options: {
-  page: PAGE_QUERYResult | ARTICLE_QUERYResult;
-  slug: string;
-}): Metadata {
-  const title = options.page?.meta_title || undefined;
-  const description = options.page?.meta_description || undefined;
+export function generatePageMetadata(
+  document: SinglePageQueryResult | SingleArticleQueryResult,
+): Metadata {
+  const title = document?.meta_title || undefined;
+  const description = document?.meta_description || undefined;
   const locale = siteConfig.locales[0];
 
   const generatedOgUrl = new URL("/api/og", env.NEXT_PUBLIC_SITE_URL);
   generatedOgUrl.searchParams.set("title", title || "");
 
-  const ogImageUrl = options.page?.ogImage
-    ? urlFor(options.page?.ogImage).quality(100).width(1200).height(630).url()
+  const ogImageUrl = document?.ogImage
+    ? urlFor(document?.ogImage).quality(100).width(1200).height(630).url()
     : generatedOgUrl.toString();
 
   const robots = !isProduction
     ? "noindex, nofollow"
-    : options.page?.noindex
+    : document?.noindex
       ? "noindex"
       : "index, follow";
+
+  // Generate canonical URL based on document type and slug
+  let canonicalPath: string | undefined;
+
+  if (document?.slug?.current) {
+    switch (document._type) {
+      case "page":
+        canonicalPath = `/${document.slug.current}`;
+      case "article":
+        canonicalPath = `/artikler/${document.slug.current}`;
+    }
+  }
+
+  const canonicalUrl = canonicalPath
+    ? new URL(canonicalPath, env.NEXT_PUBLIC_SITE_URL).toString()
+    : undefined;
 
   return {
     title,
     description,
+    alternates: canonicalUrl ? { canonical: canonicalUrl } : undefined,
     openGraph: {
       title,
       description,
+      url: canonicalUrl,
       images: [
         {
           url: ogImageUrl,

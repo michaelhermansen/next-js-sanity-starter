@@ -7,7 +7,6 @@ export default defineType({
   of: [
     { type: "page-hero" },
     { type: "section-header" },
-    { type: "cta-1" },
     { type: "all-articles" },
   ],
   options: {
@@ -21,7 +20,7 @@ export default defineType({
         {
           name: "cta",
           title: "Call to action",
-          of: ["cta-1"],
+          of: [],
         },
         {
           name: "document-lists",

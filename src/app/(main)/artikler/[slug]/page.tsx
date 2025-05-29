@@ -3,28 +3,25 @@ import { PageBreadcrumbs } from "@/components/page-breadcrumbs";
 import { TableOfContents } from "@/components/table-of-contents";
 import { getHeadings } from "@/features/portable-text/headings";
 import { PortableTextRenderer } from "@/features/portable-text/portable-text-renderer";
-import { fetchSanityArticleBySlug } from "@/sanity/lib/fetch";
 import { generatePageMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
+import { fetchSingleArticle } from "@/sanity/queries/article";
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
 }) {
   const params = await props.params;
-  const article = await fetchSanityArticleBySlug({ slug: params.slug });
+  const { data: article } = await fetchSingleArticle(params);
   if (!article) notFound();
 
-  return generatePageMetadata({
-    page: article,
-    slug: `/artikler/${params.slug}`,
-  });
+  return generatePageMetadata(article);
 }
 
 export default async function ArticlePage(props: {
   params: Promise<{ slug: string }>;
 }) {
   const params = await props.params;
-  const article = await fetchSanityArticleBySlug(params);
+  const { data: article } = await fetchSingleArticle(params);
   if (!article) notFound();
 
   const headings = article.body && getHeadings(article.body);

@@ -1,11 +1,12 @@
 import { ArticleCard } from "@/components/article-card";
-import { fetchSanityArticles } from "@/sanity/lib/fetch";
+import { Skeleton } from "@/components/ui/skeleton";
+import { PageSearchParams } from "@/lib/types";
+import { fetchMultipleArticles } from "@/sanity/queries/article";
+import { range } from "radash";
+import { Suspense } from "react";
 import { ModuleByType } from "..";
 import ArticlesFilter from "./articles-filter";
-import { PageSearchParams } from "@/lib/types";
-import { Suspense } from "react";
-import { range } from "radash";
-import { Skeleton } from "@/components/ui/skeleton";
+import { fetchMultipleCategories } from "@/sanity/queries/category";
 
 type AllArticlesProps = {
   module: ModuleByType<"all-articles">;
@@ -13,29 +14,30 @@ type AllArticlesProps = {
 };
 
 export async function AllArticles(props: AllArticlesProps) {
-  const articles = await fetchSanityArticles();
-  const categoriesSearchParams = props.searchParams.c?.toString();
+  const { data: categories } = await fetchMultipleCategories();
+  const appliedCategoriesString = props.searchParams.c?.toString();
+  const appliedCategories = appliedCategoriesString?.split(",");
 
   return (
     <div className="py-section container space-y-8">
-      <ArticlesFilter articles={articles} />
+      <ArticlesFilter categories={categories} />
 
       <Suspense
         fallback={<ArticlesGridSkeleton />}
-        key={categoriesSearchParams}
+        key={appliedCategoriesString}
       >
-        <ArticlesGrid categoriesSearchParams={categoriesSearchParams} />
+        <ArticlesGrid appliedCategories={appliedCategories} />
       </Suspense>
     </div>
   );
 }
 
 async function ArticlesGrid(props: {
-  categoriesSearchParams: string | undefined;
+  appliedCategories: string[] | undefined;
 }) {
-  const articles = await fetchSanityArticles(
-    props.categoriesSearchParams?.split(","),
-  );
+  const { data: articles } = await fetchMultipleArticles({
+    categories: props.appliedCategories,
+  });
 
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

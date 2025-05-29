@@ -1,11 +1,11 @@
 import { formatDate } from "@/lib/utils";
-import { ARTICLE_QUERYResult } from "@/sanity/sanity.types";
 import { CmsImage } from "./cms-image";
 import { TypographyH1, TypographyP } from "./typography";
 import { Avatar } from "./ui/avatar";
+import { SingleArticleQueryResult } from "@/sanity/sanity.types";
 
 type ArticleHeroProps = {
-  article: ARTICLE_QUERYResult;
+  article: SingleArticleQueryResult;
 };
 
 export function ArticleHero(props: ArticleHeroProps) {

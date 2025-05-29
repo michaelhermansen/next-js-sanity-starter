@@ -1,17 +1,17 @@
 import { ModulesRenderer } from "@/components/modules";
-import { fetchSanityPageBySlug } from "@/sanity/lib/fetch";
-import { generatePageMetadata } from "@/lib/metadata";
+import { generatePageMetadata as generateDocumentMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 import { PageSearchParams } from "@/lib/types";
+import { fetchSinglePage } from "@/sanity/queries/page";
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
 }) {
   const params = await props.params;
-  const page = await fetchSanityPageBySlug({ slug: params.slug });
+  const { data: page } = await fetchSinglePage({ slug: params.slug });
   if (!page) notFound();
 
-  return generatePageMetadata({ page, slug: params.slug });
+  return generateDocumentMetadata(page);
 }
 
 export default async function Page(props: {
@@ -21,7 +21,7 @@ export default async function Page(props: {
   const params = await props.params;
   const searchParams = await props.searchParams;
 
-  const page = await fetchSanityPageBySlug({ slug: params.slug });
+  const { data: page } = await fetchSinglePage({ slug: params.slug });
   if (!page) notFound();
 
   console.log(searchParams);

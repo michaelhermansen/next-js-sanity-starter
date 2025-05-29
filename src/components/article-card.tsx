@@ -1,14 +1,14 @@
 "use client";
 
 import { cn, formatDate } from "@/lib/utils";
+import { MultipleArticlesQueryResult } from "@/sanity/sanity.types";
 import Link from "next/link";
-import { useRef } from "react";
-import { ARTICLES_QUERYResult } from "../sanity/sanity.types";
-import { CmsImage } from "./cms-image";
 import { isEmpty } from "radash";
+import { useRef } from "react";
+import { CmsImage } from "./cms-image";
 
 interface ArticleCardProps {
-  article: ARTICLES_QUERYResult[number];
+  article: MultipleArticlesQueryResult[number];
   className?: string;
 }
 
@@ -23,7 +23,7 @@ export function ArticleCard(props: ArticleCardProps) {
       )}
       onClick={() => linkRef.current?.click()}
     >
-      {props.article.image && props.article.image.asset?._id && (
+      {props.article.image && props.article.image && (
         <div className="overflow-clip border-b">
           <CmsImage
             image={props.article.image}

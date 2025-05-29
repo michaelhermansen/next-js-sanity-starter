@@ -4,7 +4,6 @@ import author from "./schemas/documents/author";
 import category from "./schemas/documents/category";
 import page from "./schemas/documents/page";
 import allArticles from "./schemas/modules/all-articles";
-import cta1 from "./schemas/modules/cta-1";
 import pageHero from "./schemas/modules/page-hero";
 import sectionHeader from "./schemas/modules/section-header";
 import blockContent from "./schemas/partials/block-content";
@@ -29,7 +28,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // modules
     pageHero,
     sectionHeader,
-    cta1,
     allArticles,
   ],
 };

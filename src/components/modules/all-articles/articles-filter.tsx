@@ -1,51 +1,46 @@
 "use client";
 
-import { ARTICLES_QUERYResult } from "@/sanity/sanity.types";
-import { useMemo } from "react";
-import { ToggleGroup, ToggleGroupItem } from "@radix-ui/react-toggle-group";
 import { useSearchParamsState } from "@/hooks/use-search-params-state";
+import { MultipleCategoriesQueryResult } from "@/sanity/sanity.types";
+import { ToggleGroup, ToggleGroupItem } from "@radix-ui/react-toggle-group";
+import { X } from "lucide-react";
 import { sift } from "radash";
 
 export default function ArticlesFilter(props: {
-  articles: ARTICLES_QUERYResult;
+  categories: MultipleCategoriesQueryResult;
 }) {
-  const categories = useArticleCategories(props.articles);
   const { value, setValue } = useSearchParamsState("c");
 
   return (
-    <ToggleGroup
-      type="multiple"
-      className="flex gap-2"
-      value={sift(value.split(","))}
-      onValueChange={(newValue) => setValue(newValue.join(","))}
-    >
-      {categories.map((category) => (
-        <ToggleGroupItem
-          key={category.slug}
-          value={category.slug}
-          className="data-[state=on]:bg-accent bg-card rounded border px-3 py-2 transition-colors"
+    <div>
+      <fieldset>
+        <legend className="mb-2 text-lg font-medium">Kategorier</legend>
+        <ToggleGroup
+          type="multiple"
+          className="flex flex-wrap gap-1.5"
+          value={sift(value.split(","))}
+          onValueChange={(newValue) => setValue(newValue.join(","))}
         >
-          {category.title}
-        </ToggleGroupItem>
-      ))}
-    </ToggleGroup>
+          {props.categories.map((category) => {
+            if (!category.slug?.current || !category.title) return null;
+
+            return (
+              <ToggleGroupItem
+                key={category.slug.current}
+                value={category.slug.current}
+                className="group data-[state=on]:bg-primary data-[state=on]:text-primary-foreground bg-card flex items-center gap-1 rounded border px-4 py-2 font-medium transition-colors duration-300"
+              >
+                <X
+                  aria-hidden
+                  size="1em"
+                  className="-mr-5 scale-0 opacity-0 transition-all duration-300 group-data-[state=on]:mr-0 group-data-[state=on]:scale-100 group-data-[state=on]:opacity-100"
+                />
+                {category.title}
+              </ToggleGroupItem>
+            );
+          })}
+        </ToggleGroup>
+      </fieldset>
+    </div>
   );
-}
-
-function useArticleCategories(articles: ARTICLES_QUERYResult) {
-  return useMemo(() => {
-    const categoriesMap = new Map<string, string>();
-
-    articles.forEach((article) => {
-      article.categories?.forEach((category) => {
-        if (!category.slug?.current || !category.title) return;
-        categoriesMap.set(category.slug.current, category.title);
-      });
-    });
-
-    return Array.from(categoriesMap.entries()).map(([slug, title]) => ({
-      slug,
-      title,
-    }));
-  }, [articles]);
 }

@@ -1,19 +1,19 @@
 import { ModulesRenderer } from "@/components/modules";
 import { generatePageMetadata } from "@/lib/metadata";
-import { fetchSanityPageBySlug } from "@/sanity/lib/fetch";
 import { notFound } from "next/navigation";
 import { PageSearchParams } from "@/lib/types";
+import { fetchSinglePage } from "@/sanity/queries/page";
 
 export async function generateMetadata() {
-  const page = await fetchSanityPageBySlug({ slug: "index" });
-  return generatePageMetadata({ page, slug: "index" });
+  const { data: page } = await fetchSinglePage({ slug: "index" });
+  return generatePageMetadata(page);
 }
 
 export default async function IndexPage(props: {
   searchParams: Promise<PageSearchParams>;
 }) {
   const searchParams = await props.searchParams;
-  const page = await fetchSanityPageBySlug({ slug: "index" });
+  const { data: page } = await fetchSinglePage({ slug: "index" });
   if (!page) notFound();
 
   return (

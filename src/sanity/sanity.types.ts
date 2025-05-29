@@ -81,67 +81,6 @@ export type AllArticles = {
     | "muted";
 };
 
-export type Cta1 = {
-  _type: "cta-1";
-  padding?: SectionPadding;
-  colorVariant?:
-    | "background"
-    | "primary"
-    | "secondary"
-    | "card"
-    | "accent"
-    | "destructive"
-    | "muted";
-  sectionWidth?: "default" | "narrow";
-  stackAlign?: "left" | "center";
-  tagLine?: string;
-  title?: string;
-  body?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      }
-    | {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        _type: "image";
-        _key: string;
-      }
-    | {
-        videoUrl?: string;
-        _type: "video";
-        _key: string;
-      }
-  >;
-  links?: Array<
-    {
-      _key: string;
-    } & Link
-  >;
-};
-
 export type SectionHeader = {
   _type: "section-header";
   padding?: SectionPadding;
@@ -241,9 +180,6 @@ export type Modules = Array<
   | ({
       _key: string;
     } & SectionHeader)
-  | ({
-      _key: string;
-    } & Cta1)
   | ({
       _key: string;
     } & AllArticles)
@@ -434,7 +370,6 @@ export type AllSanitySchemaTypes =
   | SanityFileAsset
   | Geopoint
   | AllArticles
-  | Cta1
   | SectionHeader
   | PageHero
   | SectionPadding
@@ -472,12 +407,16 @@ export type ArticleQueryResult = Array<{
 }>;
 
 // Source: src/sanity/queries/article.ts
-// Variable: ARTICLE_QUERY
-// Query: *[_type == "article" && slug.current == $slug][0]{    title,    excerpt,    slug,    image{      ...,      asset->{        _id,        metadata {          dimensions {            width,            height          },        }      },      alt    },    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          metadata {            dimensions {              width,              height            }          }        }      }    },    author->{      name,      image {        ...,        asset->{          _id,          metadata {            dimensions {              width,              height            }          }        },        alt      }    },    _createdAt,    _updatedAt,    meta_title,    meta_description,    noindex,    ogImage {      ...,      asset->{        _id,        metadata {          dimensions {            width,            height          }        }      },    }}
-export type ARTICLE_QUERYResult = {
+// Variable: singleArticleQuery
+// Query: *[_type == "article" && slug.current == $slug][0] {      _id,      _type,      _createdAt,      _updatedAt,      slug,      title,      slug,      excerpt,      image,      body,      meta_title,      meta_description,      noindex,      ogImage {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },      author->{        name,        image {          ...,            asset->{    _id,    metadata {      dimensions {        width,        height      }    }  },        }      },      image {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },      categories[]->{        _id,        title,        slug,      },    }
+export type SingleArticleQueryResult = {
+  _id: string;
+  _type: "article";
+  _createdAt: string;
+  _updatedAt: string;
+  slug: Slug | null;
   title: string | null;
   excerpt: string | null;
-  slug: Slug | null;
   image: {
     asset: {
       _id: string;
@@ -491,51 +430,28 @@ export type ARTICLE_QUERYResult = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt: string | null;
+    alt?: string;
     _type: "image";
   } | null;
-  body: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      }
-    | {
-        asset: {
-          _id: string;
-          metadata: {
-            dimensions: {
-              width: number | null;
-              height: number | null;
-            } | null;
-          } | null;
+  body: BlockContent | null;
+  meta_title: string | null;
+  meta_description: string | null;
+  noindex: boolean | null;
+  ogImage: {
+    asset: {
+      _id: string;
+      metadata: {
+        dimensions: {
+          width: number | null;
+          height: number | null;
         } | null;
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        _type: "image";
-        _key: string;
-      }
-    | {
-        videoUrl?: string;
-        _type: "video";
-        _key: string;
-      }
-  > | null;
+      } | null;
+    } | null;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
   author: {
     name: string | null;
     image: {
@@ -551,44 +467,24 @@ export type ARTICLE_QUERYResult = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt: string | null;
+      alt?: string;
       _type: "image";
     } | null;
   } | null;
-  _createdAt: string;
-  _updatedAt: string;
-  meta_title: string | null;
-  meta_description: string | null;
-  noindex: boolean | null;
-  ogImage: {
-    asset: {
-      _id: string;
-      metadata: {
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  } | null;
-} | null;
-// Variable: ARTICLES_QUERY
-// Query: *[_type == "article" && defined(slug)] | order(_createdAt desc){    _id,    _createdAt,    title,    slug,    excerpt,    categories[]->{      _id,      title,      slug,    },    image{      ...,      asset->{        _id,        metadata {          dimensions {            width,            height          }        }      },      alt    },}
-export type ARTICLES_QUERYResult = Array<{
-  _id: string;
-  _createdAt: string;
-  title: string | null;
-  slug: Slug | null;
-  excerpt: string | null;
   categories: Array<{
     _id: string;
     title: string | null;
     slug: Slug | null;
   }> | null;
+} | null;
+// Variable: multipleArticlesQuery
+// Query: *[_type == "article" && defined(slug) && (      !defined($categories) ||       count($categories) == 0 ||       count((categories[]->slug.current)[@ in $categories]) > 0    )] | order(_createdAt desc) {      _id,      _createdAt,      title,      slug,      excerpt,      image {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },      categories[]->{        _id,        title,        slug,      },    }
+export type MultipleArticlesQueryResult = Array<{
+  _id: string;
+  _createdAt: string;
+  title: string | null;
+  slug: Slug | null;
+  excerpt: string | null;
   image: {
     asset: {
       _id: string;
@@ -602,138 +498,38 @@ export type ARTICLES_QUERYResult = Array<{
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt: string | null;
+    alt?: string;
     _type: "image";
   } | null;
+  categories: Array<{
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+  }> | null;
+}>;
+
+// Source: src/sanity/queries/category.ts
+// Variable: multipleCategoriesQuery
+// Query: *[_type == "category"] | order(orderRank asc) {      title,      slug    }
+export type MultipleCategoriesQueryResult = Array<{
+  title: string | null;
+  slug: Slug | null;
 }>;
 
 // Source: src/sanity/queries/page.ts
-// Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{    modules[]{        _type == "page-hero" => {    _type,    _key,    title,    paragraph,    links,    centered  },        _type == "section-header" => {    _type,    _key,    padding,    colorVariant,    sectionWidth,    stackAlign,    tagLine,    title,    description,    link,  },        _type == "cta-1" => {    _type,    _key,    padding,    colorVariant,    sectionWidth,    stackAlign,    tagLine,    title,    body[]{      ...,      _type == "image" => {        ...,        asset->{          _id,          url,          mimeType,          metadata {            dimensions {              width,              height            }          }        }      }    },    links,  },        _type == "all-articles" => {    _type,    _key,    padding,    colorVariant  },    },    meta_title,    title,    meta_description,    noindex,    ogImage {      ...,      asset->{        _id,        url,        metadata {          dimensions {            width,            height          }        }      },    }  }
-export type PAGE_QUERYResult = {
-  modules: Array<
-    | {
-        _type: "all-articles";
-        _key: string;
-        padding: SectionPadding | null;
-        colorVariant:
-          | "accent"
-          | "background"
-          | "card"
-          | "destructive"
-          | "muted"
-          | "primary"
-          | "secondary"
-          | null;
-      }
-    | {
-        _type: "cta-1";
-        _key: string;
-        padding: SectionPadding | null;
-        colorVariant:
-          | "accent"
-          | "background"
-          | "card"
-          | "destructive"
-          | "muted"
-          | "primary"
-          | "secondary"
-          | null;
-        sectionWidth: "default" | "narrow" | null;
-        stackAlign: "center" | "left" | null;
-        tagLine: string | null;
-        title: string | null;
-        body: Array<
-          | {
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-              listItem?: "bullet" | "number";
-              markDefs?: Array<{
-                href?: string;
-                _type: "link";
-                _key: string;
-              }>;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }
-          | {
-              asset: {
-                _id: string;
-                url: string | null;
-                mimeType: string | null;
-                metadata: {
-                  dimensions: {
-                    width: number | null;
-                    height: number | null;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-              _key: string;
-            }
-          | {
-              videoUrl?: string;
-              _type: "video";
-              _key: string;
-            }
-        > | null;
-        links: Array<
-          {
-            _key: string;
-          } & Link
-        > | null;
-      }
-    | {
-        _type: "page-hero";
-        _key: string;
-        title: string | null;
-        paragraph: string | null;
-        links: Array<
-          {
-            _key: string;
-          } & Link
-        > | null;
-        centered: boolean | null;
-      }
-    | {
-        _type: "section-header";
-        _key: string;
-        padding: SectionPadding | null;
-        colorVariant:
-          | "accent"
-          | "background"
-          | "card"
-          | "destructive"
-          | "muted"
-          | "primary"
-          | "secondary"
-          | null;
-        sectionWidth: "default" | "narrow" | null;
-        stackAlign: "center" | "left" | null;
-        tagLine: string | null;
-        title: string | null;
-        description: string | null;
-        link: null;
-      }
-  > | null;
-  meta_title: string | null;
+// Variable: singlePageQuery
+// Query: *[_type == "page" && slug.current == $slug][0]{      _id,      _type,      slug,      title,      meta_title,      meta_description,      noindex,      ogImage {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },        modules[]{    _type == "page-hero" => {...},    _type == "all-articles" => {...},    _type == "section-header" => {...}  }    }
+export type SinglePageQueryResult = {
+  _id: string;
+  _type: "page";
+  slug: Slug | null;
   title: string | null;
+  meta_title: string | null;
   meta_description: string | null;
   noindex: boolean | null;
   ogImage: {
     asset: {
       _id: string;
-      url: string | null;
       metadata: {
         dimensions: {
           width: number | null;
@@ -746,12 +542,57 @@ export type PAGE_QUERYResult = {
     crop?: SanityImageCrop;
     _type: "image";
   } | null;
+  modules: Array<
+    | {
+        _key: string;
+        _type: "all-articles";
+        padding?: SectionPadding;
+        colorVariant?:
+          | "accent"
+          | "background"
+          | "card"
+          | "destructive"
+          | "muted"
+          | "primary"
+          | "secondary";
+      }
+    | {
+        _key: string;
+        _type: "page-hero";
+        title?: string;
+        paragraph?: string;
+        links?: Array<
+          {
+            _key: string;
+          } & Link
+        >;
+        centered?: boolean;
+      }
+    | {
+        _key: string;
+        _type: "section-header";
+        padding?: SectionPadding;
+        colorVariant?:
+          | "accent"
+          | "background"
+          | "card"
+          | "destructive"
+          | "muted"
+          | "primary"
+          | "secondary";
+        sectionWidth?: "default" | "narrow";
+        stackAlign?: "center" | "left";
+        tagLine?: string;
+        title?: string;
+        description?: string;
+      }
+  > | null;
 } | null;
 
 // Source: src/sanity/queries/search-results.ts
-// Variable: SEARCH_RESULT_QUERY
-// Query: *[_id in $documentIds]{    _id,    _type,    title,    slug,    excerpt,  }
-export type SEARCH_RESULT_QUERYResult = Array<
+// Variable: searchResultsQuery
+// Query: *[_type in ["page", "article"] && _id in $documents] {      _id,      _type,      title,      slug,      excerpt    }
+export type SearchResultsQueryResult = Array<
   | {
       _id: string;
       _type: "article";
@@ -761,37 +602,9 @@ export type SEARCH_RESULT_QUERYResult = Array<
     }
   | {
       _id: string;
-      _type: "author";
-      title: null;
-      slug: Slug | null;
-      excerpt: null;
-    }
-  | {
-      _id: string;
-      _type: "category";
-      title: string | null;
-      slug: Slug | null;
-      excerpt: null;
-    }
-  | {
-      _id: string;
       _type: "page";
       title: string | null;
       slug: Slug | null;
-      excerpt: null;
-    }
-  | {
-      _id: string;
-      _type: "sanity.fileAsset";
-      title: string | null;
-      slug: null;
-      excerpt: null;
-    }
-  | {
-      _id: string;
-      _type: "sanity.imageAsset";
-      title: string | null;
-      slug: null;
       excerpt: null;
     }
 >;
@@ -802,9 +615,10 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "\n    *[_type == 'page'] | order(slug.current) {\n      'url': $baseUrl + select(slug.current == 'index' => '', '/' + slug.current),\n      'lastModified': _updatedAt,\n      'changeFrequency': 'daily',\n      'priority': select(\n        slug.current == 'index' => 1,\n        0.5\n      )\n    }\n  ": PagesQueryResult;
     "\n    *[_type == 'article'] | order(_updatedAt desc) {\n      'url': $baseUrl + '/artikler/' + slug.current,\n      'lastModified': _updatedAt,\n      'changeFrequency': 'weekly',\n      'priority': 0.7\n    }\n  ": ArticleQueryResult;
-    '*[_type == "article" && slug.current == $slug][0]{\n    title,\n    excerpt,\n    slug,\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          },\n        }\n      },\n      alt\n    },\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    author->{\n      name,\n      image {\n        ...,\n        asset->{\n          _id,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        },\n        alt\n      }\n    },\n    _createdAt,\n    _updatedAt,\n    meta_title,\n    meta_description,\n    noindex,\n    ogImage {\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n}': ARTICLE_QUERYResult;
-    '*[_type == "article" && defined(slug)] | order(_createdAt desc){\n    _id,\n    _createdAt,\n    title,\n    slug,\n    excerpt,\n    categories[]->{\n      _id,\n      title,\n      slug,\n    },\n    image{\n      ...,\n      asset->{\n        _id,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n}': ARTICLES_QUERYResult;
-    '\n  *[_type == "page" && slug.current == $slug][0]{\n    modules[]{\n      \n  _type == "page-hero" => {\n    _type,\n    _key,\n    title,\n    paragraph,\n    links,\n    centered\n  }\n,\n      \n  _type == "section-header" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    description,\n    link,\n  }\n,\n      \n  _type == "cta-1" => {\n    _type,\n    _key,\n    padding,\n    colorVariant,\n    sectionWidth,\n    stackAlign,\n    tagLine,\n    title,\n    body[]{\n      ...,\n      _type == "image" => {\n        ...,\n        asset->{\n          _id,\n          url,\n          mimeType,\n          metadata {\n            dimensions {\n              width,\n              height\n            }\n          }\n        }\n      }\n    },\n    links,\n  }\n,\n      \n  _type == "all-articles" => {\n    _type,\n    _key,\n    padding,\n    colorVariant\n  }\n,\n    },\n    meta_title,\n    title,\n    meta_description,\n    noindex,\n    ogImage {\n      ...,\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    }\n  }\n': PAGE_QUERYResult;
-    "*[_id in $documentIds]{\n    _id,\n    _type,\n    title,\n    slug,\n    excerpt,\n  }": SEARCH_RESULT_QUERYResult;
+    '\n    *[_type == "article" && slug.current == $slug][0] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      slug,\n      title,\n      slug,\n      excerpt,\n      image,\n      body,\n      meta_title,\n      meta_description,\n      noindex,\n      ogImage {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      author->{\n        name,\n        image {\n          ...,\n          \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n,\n        }\n      },\n      image {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      categories[]->{\n        _id,\n        title,\n        slug,\n      },\n    }\n  ': SingleArticleQueryResult;
+    '\n    *[_type == "article" && defined(slug) && (\n      !defined($categories) || \n      count($categories) == 0 || \n      count((categories[]->slug.current)[@ in $categories]) > 0\n    )] | order(_createdAt desc) {\n      _id,\n      _createdAt,\n      title,\n      slug,\n      excerpt,\n      image {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      categories[]->{\n        _id,\n        title,\n        slug,\n      },\n    }\n  ': MultipleArticlesQueryResult;
+    '\n    *[_type == "category"] | order(orderRank asc) {\n      title,\n      slug\n    }\n  ': MultipleCategoriesQueryResult;
+    '\n    *[_type == "page" && slug.current == $slug][0]{\n      _id,\n      _type,\n      slug,\n      title,\n      meta_title,\n      meta_description,\n      noindex,\n      ogImage {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      \n  modules[]{\n    _type == "page-hero" => {...},\n    _type == "all-articles" => {...},\n    _type == "section-header" => {...}\n  }\n\n    }\n  ': SinglePageQueryResult;
+    '\n    *[_type in ["page", "article"] && _id in $documents] {\n      _id,\n      _type,\n      title,\n      slug,\n      excerpt\n    }\n  ': SearchResultsQueryResult;
   }
 }

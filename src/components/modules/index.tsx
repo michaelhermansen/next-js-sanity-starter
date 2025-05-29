@@ -1,20 +1,18 @@
 import { PageSearchParams } from "@/lib/types";
+import { SinglePageQueryResult } from "@/sanity/sanity.types";
 import { ComponentType } from "react";
-import { PAGE_QUERYResult } from "../../sanity/sanity.types";
 import { AllArticles } from "./all-articles";
-import { Cta1 } from "./cta-1";
 import { PageHero } from "./page-hero";
 import { SectionHeader } from "./section-header";
 
 const componentMap = {
   "page-hero": PageHero,
   "section-header": SectionHeader,
-  "cta-1": Cta1,
   "all-articles": AllArticles,
-};
+} as const;
 
 export function ModulesRenderer(props: {
-  modules: Module[];
+  modules: AnyModule[];
   searchParams: PageSearchParams;
 }) {
   return (
@@ -45,11 +43,11 @@ export function ModulesRenderer(props: {
   );
 }
 
-export type Module = NonNullable<
-  NonNullable<PAGE_QUERYResult>["modules"]
+export type AnyModule = NonNullable<
+  NonNullable<SinglePageQueryResult>["modules"]
 >[number];
 
-export type ModuleByType<T extends Module["_type"]> = Extract<
-  Module,
+export type ModuleByType<T extends AnyModule["_type"]> = Extract<
+  AnyModule,
   { _type: T }
 >;
