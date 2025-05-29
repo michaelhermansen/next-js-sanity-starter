@@ -14,15 +14,15 @@ export function PageHero(props: PageHeroProps) {
     <header className="border-b">
       <div className="py-section container">
         <div
-          className={cn("max-w-3xl", {
-            "mx-auto text-center text-balance": module.centered,
+          className={cn("max-w-3xl text-balance", {
+            "mx-auto text-center": module.centered,
             "py-section": module.paragraph || module.links?.length,
           })}
         >
-          <div className="animate-fade-up pb-2">
+          <div className="animate-fade-up">
             <TypographyH1>{module.title}</TypographyH1>
             {module.paragraph && (
-              <TypographyP className="font-serif text-2xl sm:text-3xl">
+              <TypographyP className="font-serif text-xl sm:text-2xl md:text-3xl">
                 {module.paragraph}
               </TypographyP>
             )}
@@ -31,7 +31,7 @@ export function PageHero(props: PageHeroProps) {
           {module.links && module.links.length > 0 && (
             <div
               className={cn(
-                "animate-fade-up flex flex-wrap gap-4 pt-6 opacity-0 delay-150",
+                "animate-fade-up flex flex-wrap gap-4 pt-8 opacity-0 delay-150",
                 { "justify-center": module.centered },
               )}
             >

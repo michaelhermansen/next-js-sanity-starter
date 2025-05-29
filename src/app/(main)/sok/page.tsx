@@ -1,5 +1,9 @@
 import { TypographyH2 } from "@/components/typography";
-import { SearchResults, SearchResultsSkeleton } from "@/features/search";
+import {
+  SearchResults,
+  SearchResultsSkeleton,
+} from "@/features/search/search-results";
+
 import { Suspense } from "react";
 
 export default async function Page(props: {

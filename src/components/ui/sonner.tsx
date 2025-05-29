@@ -10,6 +10,8 @@ const Toaster = (props: ToasterProps) => {
       className="toaster group select-none"
       closeButton
       toastOptions={{
+        closeButtonAriaLabel: "Lukk varsel",
+        duration: 10_000,
         unstyled: true,
         classNames: {
           toast:

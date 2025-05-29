@@ -1,6 +1,5 @@
-import { DesktopNav } from "@/components/header/desktop-nav";
-import { MobileNav } from "@/components/header/mobile-nav";
-import { SearchField } from "@/features/search";
+import { NavMenu } from "@/components/header/nav-menu";
+import { SearchField } from "@/features/search/search-field";
 import { siteConfig } from "@/lib/site-config";
 import Link from "next/link";
 
@@ -18,16 +17,14 @@ const navItems = [
 export function Header() {
   return (
     <header className="bg-background border-b">
-      <div className="container flex h-20 items-center justify-between gap-4">
+      <div className="container flex h-20 items-center justify-between gap-6">
         <Link href="/" aria-label="Hjem" className="text-xl font-medium">
           {siteConfig.name}
         </Link>
-        <div className="hidden items-center justify-between gap-8 xl:flex">
-          <DesktopNav navItems={navItems} />
-          <SearchField resultPathname="/sok" />
-        </div>
-        <div className="flex items-center gap-2 xl:hidden">
-          <MobileNav navItems={navItems} />
+
+        <div className="flex items-center gap-3">
+          <SearchField resultPathname="/sok" className="hidden sm:block" />
+          <NavMenu navItems={navItems} />
         </div>
       </div>
     </header>

@@ -27,7 +27,7 @@ export function TypographyH1(props: TypographyProps) {
   return (
     <Comp
       className={cn(
-        "mt-6 mb-4 font-serif text-5xl leading-[1.1] font-medium first:mt-0 last:mb-0 sm:text-6xl md:text-7xl",
+        "mt-6 mb-4 font-serif text-5xl leading-[1.1] font-medium hyphens-auto first:mt-0 last:mb-0 sm:text-6xl md:text-7xl",
         className,
       )}
       {...restProps}

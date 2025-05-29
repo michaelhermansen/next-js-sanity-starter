@@ -6,19 +6,25 @@ import { Search } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FormEvent } from "react";
 
-export function SearchField(props: { resultPathname: string }) {
+export function SearchField(props: {
+  resultPathname: string;
+  className?: string;
+  onSearch?: () => void;
+}) {
   const { handleSubmit, defaultValue } = useSearchField({
     fieldName: "query",
     resultPathname: props.resultPathname,
   });
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex w-full rounded-sm ring-offset-2 focus-within:ring-2"
-    >
-      <label className="flex-1">
-        <span className="sr-only">Søk</span>
+    <search className={props.className}>
+      <form
+        onSubmit={(e) => {
+          if (props.onSearch) props.onSearch();
+          handleSubmit(e);
+        }}
+        className="flex w-full rounded-sm ring-offset-2 focus-within:ring-2"
+      >
         <input
           required
           name="query"
@@ -27,19 +33,20 @@ export function SearchField(props: { resultPathname: string }) {
           placeholder="Søk"
           defaultValue={defaultValue}
         />
-      </label>
-      <Button
-        size="icon"
-        variant="outline"
-        type="submit"
-        className="rounded-l-none"
-        tabIndex={-1}
-      >
-        <AccessibleIcon label="Søk">
-          <Search size="1rem" />
-        </AccessibleIcon>
-      </Button>
-    </form>
+
+        <Button
+          size="icon"
+          variant="outline"
+          type="submit"
+          className="rounded-l-none"
+          tabIndex={-1}
+        >
+          <AccessibleIcon label="Søk">
+            <Search size="1rem" />
+          </AccessibleIcon>
+        </Button>
+      </form>
+    </search>
   );
 }
 
