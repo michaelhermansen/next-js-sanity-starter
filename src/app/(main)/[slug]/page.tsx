@@ -1,4 +1,4 @@
-import { PageBlocksRenderer } from "@/components/page-blocks";
+import { PageBlocksRenderer } from "@/features/page-builder/page-blocks-renderer";
 import { generatePageMetadata as generateDocumentMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 import { PageSearchParams } from "@/lib/types";

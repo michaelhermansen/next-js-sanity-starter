@@ -1,4 +1,4 @@
-import { PageBlocksRenderer } from "@/components/page-blocks";
+import { PageBlocksRenderer } from "@/features/page-builder/page-blocks-renderer";
 import { generatePageMetadata } from "@/lib/metadata";
 import { PageSearchParams } from "@/lib/types";
 import { fetchSinglePage } from "@/sanity/queries/page";

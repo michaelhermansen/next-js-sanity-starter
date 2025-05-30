@@ -1,9 +1,9 @@
 import { PageSearchParams } from "@/lib/types";
 import { SinglePageQueryResult } from "@/sanity/sanity.types";
 import { ComponentType } from "react";
-import { AllArticles } from "./all-articles";
-import { PageHero } from "./page-hero";
-import { SectionHeader } from "./section-header";
+import { AllArticles } from "./page-blocks/all-articles";
+import { PageHero } from "./page-blocks/page-hero";
+import { SectionHeader } from "./page-blocks/section-header";
 
 const componentMap = {
   "page-hero": PageHero,
