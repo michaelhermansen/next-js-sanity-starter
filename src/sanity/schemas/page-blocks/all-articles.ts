@@ -8,14 +8,10 @@ export default defineType({
   icon: DocumentTextIcon,
   fields: [
     defineField({
-      name: "padding",
-      type: "section-padding",
-    }),
-    defineField({
-      name: "colorVariant",
-      type: "color-variant",
-      title: "Color Variant",
-      description: "Select a background color variant",
+      name: "deactivated",
+      title: "Deaktivert",
+      type: "boolean",
+      initialValue: false,
     }),
   ],
   preview: {

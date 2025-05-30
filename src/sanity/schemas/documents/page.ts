@@ -42,9 +42,9 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "modules",
-      title: "Moduler",
-      type: "modules",
+      name: "pageBlocks",
+      title: "Byggeblokker",
+      type: "pageBlocks",
       group: "content",
     }),
     defineField({

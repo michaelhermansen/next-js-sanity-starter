@@ -1,7 +1,7 @@
 import { env } from "@/lib/env";
 import { DeepNullable } from "@/lib/types";
-import { SanityImage, SanityImageProps } from "sanity-image";
 import { shake } from "radash";
+import { SanityImage, SanityImageProps } from "sanity-image";
 
 type BasicCmsImageMetadata = DeepNullable<{
   dimensions?: { width?: number; height?: number };

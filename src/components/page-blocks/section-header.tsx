@@ -1,17 +1,17 @@
 import { cn } from "@/lib/utils";
 import { stegaClean } from "next-sanity";
-import { ModuleByType } from ".";
+import { PageBlockByType } from ".";
 
 type SectionHeaderProps = {
-  module: ModuleByType<"section-header">;
+  pageBlock: PageBlockByType<"section-header">;
 };
 
 export function SectionHeader(props: SectionHeaderProps) {
-  const { sectionWidth = "default", stackAlign = "left" } = props.module;
+  const { sectionWidth = "default", stackAlign = "left" } = props.pageBlock;
 
   const isNarrow = stegaClean(sectionWidth) === "narrow";
   const align = stegaClean(stackAlign);
-  const color = stegaClean(props.module.colorVariant);
+  const color = stegaClean(props.pageBlock.colorVariant);
 
   return (
     <div className="py-section">
@@ -24,16 +24,16 @@ export function SectionHeader(props: SectionHeaderProps) {
         <div
           className={cn(color === "primary" ? "text-background" : undefined)}
         >
-          {props.module.tagLine && (
+          {props.pageBlock.tagLine && (
             <h1 className="mb-4 leading-[0]">
               <span className="text-base font-semibold">
-                {props.module.tagLine}
+                {props.pageBlock.tagLine}
               </span>
             </h1>
           )}
-          <h2 className="mb-4 text-3xl md:text-5xl">{props.module.title}</h2>
+          <h2 className="mb-4 text-3xl md:text-5xl">{props.pageBlock.title}</h2>
         </div>
-        <p>{props.module.description}</p>
+        <p>{props.pageBlock.description}</p>
       </div>
     </div>
   );

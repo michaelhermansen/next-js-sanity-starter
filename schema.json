@@ -338,48 +338,10 @@
             "value": "all-articles"
           }
         },
-        "padding": {
+        "deactivated": {
           "type": "objectAttribute",
           "value": {
-            "type": "inline",
-            "name": "section-padding"
-          },
-          "optional": true
-        },
-        "colorVariant": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "union",
-            "of": [
-              {
-                "type": "string",
-                "value": "background"
-              },
-              {
-                "type": "string",
-                "value": "primary"
-              },
-              {
-                "type": "string",
-                "value": "secondary"
-              },
-              {
-                "type": "string",
-                "value": "card"
-              },
-              {
-                "type": "string",
-                "value": "accent"
-              },
-              {
-                "type": "string",
-                "value": "destructive"
-              },
-              {
-                "type": "string",
-                "value": "muted"
-              }
-            ]
+            "type": "boolean"
           },
           "optional": true
         }
@@ -955,7 +917,7 @@
     }
   },
   {
-    "name": "modules",
+    "name": "pageBlocks",
     "type": "type",
     "value": {
       "type": "array",
@@ -1562,11 +1524,11 @@
         },
         "optional": true
       },
-      "modules": {
+      "pageBlocks": {
         "type": "objectAttribute",
         "value": {
           "type": "inline",
-          "name": "modules"
+          "name": "pageBlocks"
         },
         "optional": true
       },

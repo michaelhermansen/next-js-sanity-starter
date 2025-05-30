@@ -3,13 +3,13 @@ import article from "./schemas/documents/article";
 import author from "./schemas/documents/author";
 import category from "./schemas/documents/category";
 import page from "./schemas/documents/page";
-import allArticles from "./schemas/modules/all-articles";
-import pageHero from "./schemas/modules/page-hero";
-import sectionHeader from "./schemas/modules/section-header";
+import allArticles from "./schemas/page-blocks/all-articles";
+import pageHero from "./schemas/page-blocks/page-hero";
+import sectionHeader from "./schemas/page-blocks/section-header";
 import blockContent from "./schemas/partials/block-content";
 import { colorVariant } from "./schemas/partials/color-variant";
 import link from "./schemas/partials/link";
-import modules from "./schemas/partials/modules";
+import pageBlocks from "./schemas/partials/page-blocks";
 import sectionPadding from "./schemas/partials/section-padding";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -20,12 +20,12 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     author,
     category,
     // partials
-    modules,
+    pageBlocks,
     blockContent,
     link,
     colorVariant,
     sectionPadding,
-    // modules
+    // page blocks
     pageHero,
     sectionHeader,
     allArticles,

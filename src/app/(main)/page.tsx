@@ -1,8 +1,8 @@
-import { ModulesRenderer } from "@/components/modules";
+import { PageBlocksRenderer } from "@/components/page-blocks";
 import { generatePageMetadata } from "@/lib/metadata";
-import { notFound } from "next/navigation";
 import { PageSearchParams } from "@/lib/types";
 import { fetchSinglePage } from "@/sanity/queries/page";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata() {
   const { data: page } = await fetchSinglePage({ slug: "index" });
@@ -17,6 +17,9 @@ export default async function IndexPage(props: {
   if (!page) notFound();
 
   return (
-    <ModulesRenderer modules={page.modules ?? []} searchParams={searchParams} />
+    <PageBlocksRenderer
+      pageBlocks={page.pageBlocks || []}
+      searchParams={searchParams}
+    />
   );
 }

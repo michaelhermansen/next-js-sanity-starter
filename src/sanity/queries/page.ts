@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "../lib/live";
-import { modules } from "./fragments/modules";
+import { pageBlocks } from "./fragments/page-blocks";
 import { imageAsset } from "./fragments/image-asset";
 
 export async function fetchSinglePage(params: { slug: string }) {
@@ -17,7 +17,7 @@ export async function fetchSinglePage(params: { slug: string }) {
         ...,
         ${imageAsset}
       },
-      ${modules}
+      ${pageBlocks}
     }
   `);
 

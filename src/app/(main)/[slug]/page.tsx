@@ -1,4 +1,4 @@
-import { ModulesRenderer } from "@/components/modules";
+import { PageBlocksRenderer } from "@/components/page-blocks";
 import { generatePageMetadata as generateDocumentMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 import { PageSearchParams } from "@/lib/types";
@@ -27,6 +27,9 @@ export default async function Page(props: {
   console.log(searchParams);
 
   return (
-    <ModulesRenderer modules={page.modules ?? []} searchParams={searchParams} />
+    <PageBlocksRenderer
+      pageBlocks={page.pageBlocks || []}
+      searchParams={searchParams}
+    />
   );
 }

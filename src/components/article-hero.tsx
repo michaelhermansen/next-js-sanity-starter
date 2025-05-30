@@ -1,8 +1,8 @@
 import { formatDate } from "@/lib/utils";
+import { SingleArticleQueryResult } from "@/sanity/sanity.types";
 import { CmsImage } from "./cms-image";
 import { TypographyH1, TypographyP } from "./typography";
 import { Avatar } from "./ui/avatar";
-import { SingleArticleQueryResult } from "@/sanity/sanity.types";
 
 type ArticleHeroProps = {
   article: SingleArticleQueryResult;

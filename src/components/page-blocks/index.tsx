@@ -11,30 +11,32 @@ const componentMap = {
   "all-articles": AllArticles,
 } as const;
 
-export function ModulesRenderer(props: {
-  modules: AnyModule[];
+export function PageBlocksRenderer(props: {
+  pageBlocks: AnyPageBlock[];
   searchParams: PageSearchParams;
 }) {
   return (
     <>
-      {props.modules?.map((module) => {
-        const ModuleComponent = componentMap[module._type] as ComponentType<{
-          module: typeof module;
+      {props.pageBlocks?.map((pageBlock) => {
+        const PageBlockComponent = componentMap[
+          pageBlock._type
+        ] as ComponentType<{
+          pageBlock: typeof pageBlock;
           searchParams: PageSearchParams;
         }>;
 
-        if (!ModuleComponent) {
-          // Fallback for development/debugging of new component types
+        if (!PageBlockComponent) {
+          // Fallback for development/debugging of new page block types
           console.warn(
-            `No component implemented for module type: ${module._type}`,
+            `No component implemented for page block type: ${pageBlock._type}`,
           );
           return null;
         }
 
         return (
-          <ModuleComponent
-            key={module._key}
-            module={module}
+          <PageBlockComponent
+            key={pageBlock._key}
+            pageBlock={pageBlock}
             searchParams={props.searchParams}
           />
         );
@@ -43,11 +45,11 @@ export function ModulesRenderer(props: {
   );
 }
 
-export type AnyModule = NonNullable<
-  NonNullable<SinglePageQueryResult>["modules"]
+export type AnyPageBlock = NonNullable<
+  NonNullable<SinglePageQueryResult>["pageBlocks"]
 >[number];
 
-export type ModuleByType<T extends AnyModule["_type"]> = Extract<
-  AnyModule,
+export type PageBlockByType<T extends AnyPageBlock["_type"]> = Extract<
+  AnyPageBlock,
   { _type: T }
 >;

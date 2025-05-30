@@ -2,14 +2,14 @@ import { ArticleCard } from "@/components/article-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PageSearchParams } from "@/lib/types";
 import { fetchMultipleArticles } from "@/sanity/queries/article";
+import { fetchMultipleCategories } from "@/sanity/queries/category";
 import { range } from "radash";
 import { Suspense } from "react";
-import { ModuleByType } from "..";
+import { PageBlockByType } from "..";
 import ArticlesFilter from "./articles-filter";
-import { fetchMultipleCategories } from "@/sanity/queries/category";
 
 type AllArticlesProps = {
-  module: ModuleByType<"all-articles">;
+  pageBlock: PageBlockByType<"all-articles">;
   searchParams: PageSearchParams;
 };
 

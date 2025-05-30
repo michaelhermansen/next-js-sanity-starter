@@ -1,8 +1,8 @@
 import { defineType } from "sanity";
 
 export default defineType({
-  name: "modules",
-  title: "Moduler",
+  name: "pageBlocks",
+  title: "Byggeblokker",
   type: "array",
   of: [
     { type: "page-hero" },

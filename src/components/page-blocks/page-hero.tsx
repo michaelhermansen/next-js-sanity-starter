@@ -1,41 +1,41 @@
 import { cn } from "@/lib/utils";
-import { ModuleByType } from ".";
+import { PageBlockByType } from ".";
 import { CtaLinks } from "../cta-links";
 import { TypographyH1, TypographyP } from "../typography";
 
 type PageHeroProps = {
-  module: ModuleByType<"page-hero">;
+  pageBlock: PageBlockByType<"page-hero">;
 };
 
 export function PageHero(props: PageHeroProps) {
-  const { module } = props;
+  const { pageBlock } = props;
 
   return (
     <header className="border-b">
       <div className="py-section container">
         <div
           className={cn("max-w-3xl text-balance", {
-            "mx-auto text-center": module.centered,
-            "py-section": module.paragraph || module.links?.length,
+            "mx-auto text-center": pageBlock.centered,
+            "py-section": pageBlock.paragraph || pageBlock.links?.length,
           })}
         >
           <div className="animate-fade-up">
-            <TypographyH1>{module.title}</TypographyH1>
-            {module.paragraph && (
+            <TypographyH1>{pageBlock.title}</TypographyH1>
+            {pageBlock.paragraph && (
               <TypographyP className="font-serif text-xl sm:text-2xl md:text-3xl">
-                {module.paragraph}
+                {pageBlock.paragraph}
               </TypographyP>
             )}
           </div>
 
-          {module.links && module.links.length > 0 && (
+          {pageBlock.links && pageBlock.links.length > 0 && (
             <div
               className={cn(
                 "animate-fade-up flex flex-wrap gap-4 pt-8 opacity-0 delay-150",
-                { "justify-center": module.centered },
+                { "justify-center": pageBlock.centered },
               )}
             >
-              <CtaLinks links={module.links} />
+              <CtaLinks links={pageBlock.links} />
             </div>
           )}
         </div>
