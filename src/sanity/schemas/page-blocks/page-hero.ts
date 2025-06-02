@@ -8,6 +8,12 @@ export default defineType({
   icon: ThLargeIcon,
   fields: [
     defineField({
+      name: "deactivated",
+      title: "Deaktivert",
+      type: "boolean",
+      initialValue: false,
+    }),
+    defineField({
       name: "title",
       type: "string",
       title: "Tittel",
@@ -36,11 +42,12 @@ export default defineType({
   preview: {
     select: {
       title: "title",
+      deactivated: "deactivated",
     },
-    prepare({ title }) {
+    prepare({ title, deactivated }) {
       return {
         title: "Sidebanner",
-        subtitle: title,
+        subtitle: deactivated ? "Deaktivert" : title,
       };
     },
   },

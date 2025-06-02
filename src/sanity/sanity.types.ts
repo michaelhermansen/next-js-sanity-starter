@@ -68,31 +68,16 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllArticles = {
-  _type: "all-articles";
-  deactivated?: boolean;
-};
-
 export type SectionHeader = {
   _type: "section-header";
-  padding?: SectionPadding;
-  colorVariant?:
-    | "background"
-    | "primary"
-    | "secondary"
-    | "card"
-    | "accent"
-    | "destructive"
-    | "muted";
-  sectionWidth?: "default" | "narrow";
-  stackAlign?: "left" | "center";
-  tagLine?: string;
+  deactivated?: boolean;
   title?: string;
-  description?: string;
+  paragraph?: string;
 };
 
 export type PageHero = {
   _type: "page-hero";
+  deactivated?: boolean;
   title?: string;
   paragraph?: string;
   links?: Array<
@@ -103,20 +88,27 @@ export type PageHero = {
   centered?: boolean;
 };
 
-export type SectionPadding = {
-  _type: "section-padding";
-  top?: boolean;
-  bottom?: boolean;
+export type NavigationSection = {
+  _type: "navigationSection";
+  deactivated?: boolean;
+  title?: string;
+  navigationCards?: Array<
+    {
+      _key: string;
+    } & NavigationCard
+  >;
 };
 
-export type ColorVariant =
-  | "background"
-  | "primary"
-  | "secondary"
-  | "card"
-  | "accent"
-  | "destructive"
-  | "muted";
+export type AllArticles = {
+  _type: "all-articles";
+  deactivated?: boolean;
+};
+
+export type NavigationCard = {
+  _type: "navigationCard";
+  link?: Link;
+  description?: string;
+};
 
 export type Link = {
   _type: "link";
@@ -133,10 +125,11 @@ export type BlockContent = Array<
         _type: "span";
         _key: string;
       }>;
-      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+      style?: "normal" | "h2" | "h3" | "blockquote";
       listItem?: "bullet" | "number";
       markDefs?: Array<{
         href?: string;
+        targetBlank?: boolean;
         _type: "link";
         _key: string;
       }>;
@@ -155,11 +148,13 @@ export type BlockContent = Array<
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       alt?: string;
+      figcaption?: string;
       _type: "image";
       _key: string;
     }
   | {
       videoUrl?: string;
+      aspectRatio?: "16/9" | "1/1";
       _type: "video";
       _key: string;
     }
@@ -168,13 +163,16 @@ export type BlockContent = Array<
 export type PageBlocks = Array<
   | ({
       _key: string;
+    } & AllArticles)
+  | ({
+      _key: string;
+    } & NavigationSection)
+  | ({
+      _key: string;
     } & PageHero)
   | ({
       _key: string;
     } & SectionHeader)
-  | ({
-      _key: string;
-    } & AllArticles)
 >;
 
 export type Category = {
@@ -361,11 +359,11 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
-  | AllArticles
   | SectionHeader
   | PageHero
-  | SectionPadding
-  | ColorVariant
+  | NavigationSection
+  | AllArticles
+  | NavigationCard
   | Link
   | BlockContent
   | PageBlocks
@@ -510,7 +508,7 @@ export type MultipleCategoriesQueryResult = Array<{
 
 // Source: src/sanity/queries/page.ts
 // Variable: singlePageQuery
-// Query: *[_type == "page" && slug.current == $slug][0]{      _id,      _type,      slug,      title,      meta_title,      meta_description,      noindex,      ogImage {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },        pageBlocks[deactivated != true]{    _type == "page-hero" => {...},    _type == "all-articles" => {...},    _type == "section-header" => {...}  }    }
+// Query: *[_type == "page" && slug.current == $slug][0]{      _id,      _type,      slug,      title,      meta_title,      meta_description,      noindex,      ogImage {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },        pageBlocks[deactivated != true]{    _type == "all-articles" => {...},    _type == "page-hero" => {...},    _type == "navigationSection" => {...},    _type == "section-header" => {...}  }    }
 export type SinglePageQueryResult = {
   _id: string;
   _type: "page";
@@ -542,7 +540,19 @@ export type SinglePageQueryResult = {
       }
     | {
         _key: string;
+        _type: "navigationSection";
+        deactivated?: boolean;
+        title?: string;
+        navigationCards?: Array<
+          {
+            _key: string;
+          } & NavigationCard
+        >;
+      }
+    | {
+        _key: string;
         _type: "page-hero";
+        deactivated?: boolean;
         title?: string;
         paragraph?: string;
         links?: Array<
@@ -555,20 +565,9 @@ export type SinglePageQueryResult = {
     | {
         _key: string;
         _type: "section-header";
-        padding?: SectionPadding;
-        colorVariant?:
-          | "accent"
-          | "background"
-          | "card"
-          | "destructive"
-          | "muted"
-          | "primary"
-          | "secondary";
-        sectionWidth?: "default" | "narrow";
-        stackAlign?: "center" | "left";
-        tagLine?: string;
+        deactivated?: boolean;
         title?: string;
-        description?: string;
+        paragraph?: string;
       }
   > | null;
 } | null;
@@ -602,7 +601,7 @@ declare module "@sanity/client" {
     '\n    *[_type == "article" && slug.current == $slug][0] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      slug,\n      title,\n      slug,\n      excerpt,\n      image,\n      body,\n      meta_title,\n      meta_description,\n      noindex,\n      ogImage {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      author->{\n        name,\n        image {\n          ...,\n          \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n,\n        }\n      },\n      image {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      categories[]->{\n        _id,\n        title,\n        slug,\n      },\n    }\n  ': SingleArticleQueryResult;
     '\n    *[_type == "article" && defined(slug) && (\n      !defined($categories) || \n      count($categories) == 0 || \n      count((categories[]->slug.current)[@ in $categories]) > 0\n    )] | order(_createdAt desc) {\n      _id,\n      _createdAt,\n      title,\n      slug,\n      excerpt,\n      image {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      categories[]->{\n        _id,\n        title,\n        slug,\n      },\n    }\n  ': MultipleArticlesQueryResult;
     '\n    *[_type == "category"] | order(orderRank asc) {\n      title,\n      slug\n    }\n  ': MultipleCategoriesQueryResult;
-    '\n    *[_type == "page" && slug.current == $slug][0]{\n      _id,\n      _type,\n      slug,\n      title,\n      meta_title,\n      meta_description,\n      noindex,\n      ogImage {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      \n  pageBlocks[deactivated != true]{\n    _type == "page-hero" => {...},\n    _type == "all-articles" => {...},\n    _type == "section-header" => {...}\n  }\n\n    }\n  ': SinglePageQueryResult;
+    '\n    *[_type == "page" && slug.current == $slug][0]{\n      _id,\n      _type,\n      slug,\n      title,\n      meta_title,\n      meta_description,\n      noindex,\n      ogImage {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      \n  pageBlocks[deactivated != true]{\n    _type == "all-articles" => {...},\n    _type == "page-hero" => {...},\n    _type == "navigationSection" => {...},\n    _type == "section-header" => {...}\n  }\n\n    }\n  ': SinglePageQueryResult;
     '\n    *[_type in ["page", "article"] && _id in $documents] {\n      _id,\n      _type,\n      title,\n      slug,\n      excerpt\n    }\n  ': SearchResultsQueryResult;
   }
 }

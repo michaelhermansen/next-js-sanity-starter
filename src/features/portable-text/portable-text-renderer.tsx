@@ -23,7 +23,10 @@ const portableTextComponents: PortableTextProps["components"] = {
     },
     video: ({ value }) => {
       return (
-        <div className="my-8 aspect-video overflow-clip rounded-md">
+        <div
+          className="my-8 max-h-[600px] overflow-clip rounded-md"
+          style={{ aspectRatio: value.aspectRatio }}
+        >
           <VideoPlayer url={value.videoUrl} />
         </div>
       );

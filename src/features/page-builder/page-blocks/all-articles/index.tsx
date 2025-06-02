@@ -5,7 +5,7 @@ import { fetchMultipleArticles } from "@/sanity/queries/article";
 import { fetchMultipleCategories } from "@/sanity/queries/category";
 import { range } from "radash";
 import { Suspense } from "react";
-import { PageBlockByType } from "..";
+import { PageBlockByType } from "../../page-blocks-renderer";
 import ArticlesFilter from "./articles-filter";
 
 type AllArticlesProps = {

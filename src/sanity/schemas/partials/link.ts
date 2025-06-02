@@ -7,16 +7,18 @@ export default defineType({
   fields: [
     defineField({
       name: "title",
+      title: "Tittel",
       type: "string",
     }),
     defineField({
+      title: "URL",
       name: "href",
-      title: "href",
       type: "url",
+      description: "F.eks. «/artikler» eller «https://example.com».",
       validation: (Rule) =>
         Rule.uri({
           allowRelative: true,
-          // scheme: ["https", "mailto", "tel"],
+          scheme: ["http", "https", "mailto", "tel"],
         }),
     }),
     defineField({

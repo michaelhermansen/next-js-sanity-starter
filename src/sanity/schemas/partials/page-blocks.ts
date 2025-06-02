@@ -5,9 +5,10 @@ export default defineType({
   title: "Byggeblokker",
   type: "array",
   of: [
+    { type: "all-articles" },
+    { type: "navigationSection" },
     { type: "page-hero" },
     { type: "section-header" },
-    { type: "all-articles" },
   ],
   options: {
     insertMenu: {

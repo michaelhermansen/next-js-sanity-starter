@@ -4,30 +4,32 @@ import author from "./schemas/documents/author";
 import category from "./schemas/documents/category";
 import page from "./schemas/documents/page";
 import allArticles from "./schemas/page-blocks/all-articles";
+import navigationSection from "./schemas/page-blocks/navigation-section";
 import pageHero from "./schemas/page-blocks/page-hero";
 import sectionHeader from "./schemas/page-blocks/section-header";
 import blockContent from "./schemas/partials/block-content";
-import { colorVariant } from "./schemas/partials/color-variant";
 import link from "./schemas/partials/link";
 import pageBlocks from "./schemas/partials/page-blocks";
-import sectionPadding from "./schemas/partials/section-padding";
+import navigationCard from "./schemas/partials/navigation-card";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
-    // documents
+    // Documents
     page,
     article,
     author,
     category,
-    // partials
+
+    // Partials
     pageBlocks,
     blockContent,
     link,
-    colorVariant,
-    sectionPadding,
-    // page blocks
+    navigationCard,
+
+    // Page blocks
+    allArticles,
+    navigationSection,
     pageHero,
     sectionHeader,
-    allArticles,
   ],
 };

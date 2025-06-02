@@ -1,4 +1,10 @@
 {
-  "cSpell.words": ["lucide", "radash", "Sonner"],
+  "cSpell.words": [
+    "lucide",
+    "Navigasjonskort",
+    "Navigasjonsseksjon",
+    "radash",
+    "Sonner"
+  ],
   "typescript.tsdk": "node_modules/typescript/lib"
 }

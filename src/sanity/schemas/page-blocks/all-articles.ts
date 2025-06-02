@@ -15,9 +15,11 @@ export default defineType({
     }),
   ],
   preview: {
-    prepare() {
+    select: { deactivated: "deactivated" },
+    prepare({ deactivated }) {
       return {
-        title: "All Articles",
+        title: "Alle artikler",
+        subtitle: deactivated ? "Deaktivert" : undefined,
       };
     },
   },

@@ -6,7 +6,10 @@ export function Skeleton(props: HTMLAttributes<HTMLDivElement>) {
 
   return (
     <div
-      className={cn("bg-muted animate-pulse rounded-xs", className)}
+      className={cn(
+        "bg-muted h-6 max-w-full animate-pulse rounded-xs",
+        className,
+      )}
       {...restProps}
     />
   );

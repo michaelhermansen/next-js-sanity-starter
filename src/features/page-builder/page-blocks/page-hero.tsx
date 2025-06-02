@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import { PageBlockByType } from ".";
 import { TypographyH1, TypographyP } from "@/components/typography";
 import { CtaLinks } from "@/components/cta-links";
+import { PageBlockByType } from "../page-blocks-renderer";
 
 type PageHeroProps = {
   pageBlock: PageBlockByType<"page-hero">;

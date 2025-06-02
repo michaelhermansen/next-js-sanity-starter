@@ -3,12 +3,12 @@ import { SinglePageQueryResult } from "@/sanity/sanity.types";
 import { ComponentType } from "react";
 import { AllArticles } from "./page-blocks/all-articles";
 import { PageHero } from "./page-blocks/page-hero";
-import { SectionHeader } from "./page-blocks/section-header";
+import { NavigationSection } from "./page-blocks/navigation-section";
 
 const componentMap = {
-  "page-hero": PageHero,
-  "section-header": SectionHeader,
   "all-articles": AllArticles,
+  "page-hero": PageHero,
+  navigationSection: NavigationSection,
 } as const;
 
 export function PageBlocksRenderer(props: {
@@ -16,32 +16,31 @@ export function PageBlocksRenderer(props: {
   searchParams: PageSearchParams;
 }) {
   return (
-    <>
+    <div>
       {props.pageBlocks?.map((pageBlock) => {
-        const PageBlockComponent = componentMap[
-          pageBlock._type
-        ] as ComponentType<{
-          pageBlock: typeof pageBlock;
-          searchParams: PageSearchParams;
-        }>;
-
-        if (!PageBlockComponent) {
+        if (!(pageBlock._type in componentMap)) {
           // Fallback for development/debugging of new page block types
-          console.warn(
-            `No component implemented for page block type: ${pageBlock._type}`,
-          );
+          console.warn(`No component implemented for type: ${pageBlock._type}`);
           return null;
         }
 
+        const currentType = pageBlock._type as keyof typeof componentMap;
+        type CurrentPageBlock = PageBlockByType<typeof currentType>;
+
+        const PageBlockComponent = componentMap[currentType] as ComponentType<{
+          pageBlock: CurrentPageBlock;
+          searchParams?: PageSearchParams;
+        }>;
+
         return (
           <PageBlockComponent
-            key={pageBlock._key}
-            pageBlock={pageBlock}
+            pageBlock={pageBlock as CurrentPageBlock}
             searchParams={props.searchParams}
+            key={pageBlock._key}
           />
         );
       })}
-    </>
+    </div>
   );
 }
 

@@ -4,8 +4,8 @@ import { TableOfContents } from "@/components/table-of-contents";
 import { getHeadings } from "@/features/portable-text/headings";
 import { PortableTextRenderer } from "@/features/portable-text/portable-text-renderer";
 import { generatePageMetadata } from "@/lib/metadata";
-import { notFound } from "next/navigation";
 import { fetchSingleArticle } from "@/sanity/queries/article";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;

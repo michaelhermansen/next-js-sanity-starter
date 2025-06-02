@@ -24,8 +24,6 @@ export default async function Page(props: {
   const { data: page } = await fetchSinglePage({ slug: params.slug });
   if (!page) notFound();
 
-  console.log(searchParams);
-
   return (
     <PageBlocksRenderer
       pageBlocks={page.pageBlocks || []}
