@@ -6,8 +6,8 @@ import { PageHero } from "./page-blocks/page-hero";
 import { NavigationSection } from "./page-blocks/navigation-section";
 
 const componentMap = {
-  "all-articles": AllArticles,
-  "page-hero": PageHero,
+  allArticles: AllArticles,
+  pageHero: PageHero,
   navigationSection: NavigationSection,
 } as const;
 

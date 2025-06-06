@@ -2,8 +2,8 @@ import { defineField, defineType } from "sanity";
 import { ThLargeIcon } from "@sanity/icons";
 
 export default defineType({
-  name: "page-hero",
-  title: "Sidebanner",
+  name: "pageHero",
+  title: "Sidetopp",
   type: "object",
   icon: ThLargeIcon,
   fields: [
@@ -46,7 +46,7 @@ export default defineType({
     },
     prepare({ title, deactivated }) {
       return {
-        title: "Sidebanner",
+        title: "Sidetopp",
         subtitle: deactivated ? "Deaktivert" : title,
       };
     },

@@ -5,36 +5,31 @@ export default defineType({
   title: "Byggeblokker",
   type: "array",
   of: [
-    { type: "all-articles" },
+    { type: "pageHero" },
     { type: "navigationSection" },
-    { type: "page-hero" },
-    { type: "section-header" },
+    { type: "allArticles" },
   ],
   options: {
     insertMenu: {
       groups: [
         {
-          name: "headers",
-          title: "Bannere",
-          of: ["page-hero", "hero-2", "section-header"],
+          name: "modules",
+          title: "Moduler",
+          of: ["pageHero", "navigationSection"],
         },
         {
-          name: "cta",
-          title: "Call to action",
-          of: [],
-        },
-        {
-          name: "document-lists",
+          name: "documentLists",
           title: "Dokumentlister",
-          of: ["all-articles"],
+          of: ["allArticles"],
         },
       ],
+      filter: true,
       views: [
+        { name: "list" },
         {
           name: "grid",
-          previewImageUrl: (block) => `/sanity/preview/${block}.jpg`,
+          previewImageUrl: (block) => `/sanity/preview/${block}.png`,
         },
-        { name: "list" },
       ],
     },
   },

@@ -2,7 +2,7 @@ import { DocumentTextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "all-articles",
+  name: "allArticles",
   type: "object",
   title: "Alle artikler",
   icon: DocumentTextIcon,

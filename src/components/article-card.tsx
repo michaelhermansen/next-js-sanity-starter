@@ -2,10 +2,9 @@
 
 import { cn, formatDate } from "@/lib/utils";
 import { MultipleArticlesQueryResult } from "@/sanity/sanity.types";
-import Link from "next/link";
 import { isEmpty } from "radash";
-import { useRef } from "react";
 import { CmsImage } from "./cms-image";
+import { ClickableCard, ClickableCardLink } from "./ui/clickable-card";
 
 interface ArticleCardProps {
   article: MultipleArticlesQueryResult[number];
@@ -13,15 +12,12 @@ interface ArticleCardProps {
 }
 
 export function ArticleCard(props: ArticleCardProps) {
-  const linkRef = useRef<HTMLAnchorElement | null>(null);
-
   return (
-    <div
+    <ClickableCard
       className={cn(
-        "group bg-card flex cursor-pointer flex-col overflow-clip rounded border transition-all focus-within:ring-2 focus-within:ring-offset-2 hover:-translate-y-0.5",
+        "group bg-card flex flex-col overflow-clip rounded border transition-all hover:-translate-y-0.5",
         props.className,
       )}
-      onClick={() => linkRef.current?.click()}
     >
       {props.article.image && props.article.image && (
         <div className="overflow-clip border-b">
@@ -38,14 +34,14 @@ export function ArticleCard(props: ArticleCardProps) {
       <div className="flex flex-1 flex-col gap-8 p-4">
         <div>
           {props.article.title && (
-            <Link
-              ref={linkRef}
+            <ClickableCardLink
               href={`/artikler/${props.article.slug?.current}`}
-              className="group-hover:underline focus:ring-0 focus:ring-offset-0"
+              className="group-hover:underline"
             >
               <h3 className="text-2xl font-medium">{props.article.title}</h3>
-            </Link>
+            </ClickableCardLink>
           )}
+
           {props.article.excerpt && (
             <p className="mt-1 mb-3 line-clamp-3">{props.article.excerpt}</p>
           )}
@@ -68,6 +64,6 @@ export function ArticleCard(props: ArticleCardProps) {
           </ul>
         )}
       </div>
-    </div>
+    </ClickableCard>
   );
 }

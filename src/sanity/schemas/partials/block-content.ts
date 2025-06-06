@@ -4,7 +4,7 @@ import { VideoIcon } from "@sanity/icons";
 
 export default defineType({
   title: "Block Content",
-  name: "block-content",
+  name: "blockContent",
   type: "array",
   of: [
     defineArrayMember({

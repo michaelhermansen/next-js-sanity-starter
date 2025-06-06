@@ -9,7 +9,7 @@ import { PageBlockByType } from "../../page-blocks-renderer";
 import ArticlesFilter from "./articles-filter";
 
 type AllArticlesProps = {
-  pageBlock: PageBlockByType<"all-articles">;
+  pageBlock: PageBlockByType<"allArticles">;
   searchParams: PageSearchParams;
 };
 
@@ -19,7 +19,7 @@ export async function AllArticles(props: AllArticlesProps) {
   const appliedCategories = appliedCategoriesString?.split(",");
 
   return (
-    <div className="py-section container space-y-8">
+    <div className="py-section container space-y-8 border-b">
       <ArticlesFilter categories={categories} />
 
       <Suspense

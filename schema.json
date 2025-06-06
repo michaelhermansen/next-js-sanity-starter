@@ -326,7 +326,7 @@
     }
   },
   {
-    "name": "section-header",
+    "name": "pageHero",
     "type": "type",
     "value": {
       "type": "object",
@@ -335,44 +335,7 @@
           "type": "objectAttribute",
           "value": {
             "type": "string",
-            "value": "section-header"
-          }
-        },
-        "deactivated": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "boolean"
-          },
-          "optional": true
-        },
-        "title": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
-        "paragraph": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        }
-      }
-    }
-  },
-  {
-    "name": "page-hero",
-    "type": "type",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "page-hero"
+            "value": "pageHero"
           }
         },
         "deactivated": {
@@ -481,7 +444,7 @@
     }
   },
   {
-    "name": "all-articles",
+    "name": "allArticles",
     "type": "type",
     "value": {
       "type": "object",
@@ -490,7 +453,7 @@
           "type": "objectAttribute",
           "value": {
             "type": "string",
-            "value": "all-articles"
+            "value": "allArticles"
           }
         },
         "deactivated": {
@@ -572,7 +535,7 @@
     }
   },
   {
-    "name": "block-content",
+    "name": "blockContent",
     "type": "type",
     "value": {
       "type": "array",
@@ -903,7 +866,7 @@
             },
             "rest": {
               "type": "inline",
-              "name": "all-articles"
+              "name": "pageHero"
             }
           },
           {
@@ -933,22 +896,7 @@
             },
             "rest": {
               "type": "inline",
-              "name": "page-hero"
-            }
-          },
-          {
-            "type": "object",
-            "attributes": {
-              "_key": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
-                }
-              }
-            },
-            "rest": {
-              "type": "inline",
-              "name": "section-header"
+              "name": "allArticles"
             }
           }
         ]
@@ -1225,7 +1173,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "inline",
-          "name": "block-content"
+          "name": "blockContent"
         },
         "optional": true
       },

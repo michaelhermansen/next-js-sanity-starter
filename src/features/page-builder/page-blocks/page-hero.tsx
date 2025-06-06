@@ -4,7 +4,7 @@ import { CtaLinks } from "@/components/cta-links";
 import { PageBlockByType } from "../page-blocks-renderer";
 
 type PageHeroProps = {
-  pageBlock: PageBlockByType<"page-hero">;
+  pageBlock: PageBlockByType<"pageHero">;
 };
 
 export function PageHero(props: PageHeroProps) {
