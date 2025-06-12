@@ -28,7 +28,7 @@ export default function ArticlesFilter(props: {
               <ToggleGroupItem
                 key={category.slug.current}
                 value={category.slug.current}
-                className="group data-[state=on]:bg-primary data-[state=on]:text-primary-foreground bg-card flex items-center gap-1 rounded border px-4 py-2 font-medium transition-colors duration-300"
+                className="group data-[state=on]:bg-primary data-[state=on]:text-primary-foreground bg-card flex items-center gap-1 rounded border px-4 py-2 font-medium transition-all duration-300"
               >
                 <X
                   aria-hidden

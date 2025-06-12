@@ -387,7 +387,7 @@ export type ArticleQueryResult = Array<{
 
 // Source: src/sanity/queries/article.ts
 // Variable: singleArticleQuery
-// Query: *[_type == "article" && slug.current == $slug][0] {      _id,      _type,      _createdAt,      _updatedAt,      slug,      title,      slug,      excerpt,      image,      body,      meta_title,      meta_description,      noindex,      ogImage {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },      author->{        name,        image {          ...,            asset->{    _id,    metadata {      dimensions {        width,        height      }    }  },        }      },      image {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },      categories[]->{        _id,        title,        slug,      },    }
+// Query: *[_type == "article" && slug.current == $slug][0] {      _id,      _type,      _createdAt,      _updatedAt,      slug,      title,      slug,      excerpt,      image,      body,      meta_title,      meta_description,      noindex,      ogImage {        ...,          asset->{    _id,    metadata {      lqip,      dimensions {        width,        height      }    }  }      },      author->{        name,        image {          ...,            asset->{    _id,    metadata {      lqip,      dimensions {        width,        height      }    }  },        }      },      image {        ...,          asset->{    _id,    metadata {      lqip,      dimensions {        width,        height      }    }  }      },      categories[]->{        _id,        title,        slug,      },    }
 export type SingleArticleQueryResult = {
   _id: string;
   _type: "article";
@@ -400,6 +400,7 @@ export type SingleArticleQueryResult = {
     asset: {
       _id: string;
       metadata: {
+        lqip: string | null;
         dimensions: {
           width: number | null;
           height: number | null;
@@ -420,6 +421,7 @@ export type SingleArticleQueryResult = {
     asset: {
       _id: string;
       metadata: {
+        lqip: string | null;
         dimensions: {
           width: number | null;
           height: number | null;
@@ -437,6 +439,7 @@ export type SingleArticleQueryResult = {
       asset: {
         _id: string;
         metadata: {
+          lqip: string | null;
           dimensions: {
             width: number | null;
             height: number | null;
@@ -457,7 +460,7 @@ export type SingleArticleQueryResult = {
   }> | null;
 } | null;
 // Variable: multipleArticlesQuery
-// Query: *[_type == "article" && defined(slug) && (      !defined($categories) ||       count($categories) == 0 ||       count((categories[]->slug.current)[@ in $categories]) > 0    )] | order(_createdAt desc) {      _id,      _createdAt,      title,      slug,      excerpt,      image {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },      categories[]->{        _id,        title,        slug,      },    }
+// Query: *[_type == "article" && defined(slug) && (      !defined($categories) ||       count($categories) == 0 ||       count((categories[]->slug.current)[@ in $categories]) > 0    )] | order(_createdAt desc) {      _id,      _createdAt,      title,      slug,      excerpt,      image {        ...,          asset->{    _id,    metadata {      lqip,      dimensions {        width,        height      }    }  }      },      categories[]->{        _id,        title,        slug,      },    }
 export type MultipleArticlesQueryResult = Array<{
   _id: string;
   _createdAt: string;
@@ -468,6 +471,7 @@ export type MultipleArticlesQueryResult = Array<{
     asset: {
       _id: string;
       metadata: {
+        lqip: string | null;
         dimensions: {
           width: number | null;
           height: number | null;
@@ -497,7 +501,7 @@ export type MultipleCategoriesQueryResult = Array<{
 
 // Source: src/sanity/queries/page.ts
 // Variable: singlePageQuery
-// Query: *[_type == "page" && slug.current == $slug][0]{      _id,      _type,      slug,      title,      meta_title,      meta_description,      noindex,      ogImage {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },        pageBlocks[deactivated != true]{    _type == "allArticles" => {...},    _type == "pageHero" => {...},    _type == "navigationSection" => {...},  }    }
+// Query: *[_type == "page" && slug.current == $slug][0]{      _id,      _type,      slug,      title,      meta_title,      meta_description,      noindex,      ogImage {        ...,          asset->{    _id,    metadata {      lqip,      dimensions {        width,        height      }    }  }      },        pageBlocks[deactivated != true]{    _type == "allArticles" => {...},    _type == "pageHero" => {...},    _type == "navigationSection" => {...},  }    }
 export type SinglePageQueryResult = {
   _id: string;
   _type: "page";
@@ -510,6 +514,7 @@ export type SinglePageQueryResult = {
     asset: {
       _id: string;
       metadata: {
+        lqip: string | null;
         dimensions: {
           width: number | null;
           height: number | null;
@@ -580,10 +585,10 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "\n    *[_type == 'page'] | order(slug.current) {\n      'url': $baseUrl + select(slug.current == 'index' => '', '/' + slug.current),\n      'lastModified': _updatedAt,\n      'changeFrequency': 'daily',\n      'priority': select(\n        slug.current == 'index' => 1,\n        0.5\n      )\n    }\n  ": PagesQueryResult;
     "\n    *[_type == 'article'] | order(_updatedAt desc) {\n      'url': $baseUrl + '/artikler/' + slug.current,\n      'lastModified': _updatedAt,\n      'changeFrequency': 'weekly',\n      'priority': 0.7\n    }\n  ": ArticleQueryResult;
-    '\n    *[_type == "article" && slug.current == $slug][0] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      slug,\n      title,\n      slug,\n      excerpt,\n      image,\n      body,\n      meta_title,\n      meta_description,\n      noindex,\n      ogImage {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      author->{\n        name,\n        image {\n          ...,\n          \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n,\n        }\n      },\n      image {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      categories[]->{\n        _id,\n        title,\n        slug,\n      },\n    }\n  ': SingleArticleQueryResult;
-    '\n    *[_type == "article" && defined(slug) && (\n      !defined($categories) || \n      count($categories) == 0 || \n      count((categories[]->slug.current)[@ in $categories]) > 0\n    )] | order(_createdAt desc) {\n      _id,\n      _createdAt,\n      title,\n      slug,\n      excerpt,\n      image {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      categories[]->{\n        _id,\n        title,\n        slug,\n      },\n    }\n  ': MultipleArticlesQueryResult;
+    '\n    *[_type == "article" && slug.current == $slug][0] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      slug,\n      title,\n      slug,\n      excerpt,\n      image,\n      body,\n      meta_title,\n      meta_description,\n      noindex,\n      ogImage {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      author->{\n        name,\n        image {\n          ...,\n          \n  asset->{\n    _id,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n,\n        }\n      },\n      image {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      categories[]->{\n        _id,\n        title,\n        slug,\n      },\n    }\n  ': SingleArticleQueryResult;
+    '\n    *[_type == "article" && defined(slug) && (\n      !defined($categories) || \n      count($categories) == 0 || \n      count((categories[]->slug.current)[@ in $categories]) > 0\n    )] | order(_createdAt desc) {\n      _id,\n      _createdAt,\n      title,\n      slug,\n      excerpt,\n      image {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      categories[]->{\n        _id,\n        title,\n        slug,\n      },\n    }\n  ': MultipleArticlesQueryResult;
     '\n    *[_type == "category"] | order(orderRank asc) {\n      title,\n      slug\n    }\n  ': MultipleCategoriesQueryResult;
-    '\n    *[_type == "page" && slug.current == $slug][0]{\n      _id,\n      _type,\n      slug,\n      title,\n      meta_title,\n      meta_description,\n      noindex,\n      ogImage {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      \n  pageBlocks[deactivated != true]{\n    _type == "allArticles" => {...},\n    _type == "pageHero" => {...},\n    _type == "navigationSection" => {...},\n  }\n\n    }\n  ': SinglePageQueryResult;
+    '\n    *[_type == "page" && slug.current == $slug][0]{\n      _id,\n      _type,\n      slug,\n      title,\n      meta_title,\n      meta_description,\n      noindex,\n      ogImage {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      \n  pageBlocks[deactivated != true]{\n    _type == "allArticles" => {...},\n    _type == "pageHero" => {...},\n    _type == "navigationSection" => {...},\n  }\n\n    }\n  ': SinglePageQueryResult;
     '\n    *[_type in ["page", "article"] && _id in $documents] {\n      _id,\n      _type,\n      title,\n      slug,\n      excerpt\n    }\n  ': SearchResultsQueryResult;
   }
 }

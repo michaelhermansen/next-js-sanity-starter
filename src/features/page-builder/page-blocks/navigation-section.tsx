@@ -5,7 +5,6 @@ import {
   ClickableCardLink,
 } from "@/components/ui/clickable-card";
 import { ChevronRight, SquareArrowOutUpRight } from "lucide-react";
-import { useId } from "react";
 import { PageBlockByType } from "../page-blocks-renderer";
 
 type NavigationSectionProps = {
@@ -13,18 +12,13 @@ type NavigationSectionProps = {
 };
 
 export function NavigationSection(props: NavigationSectionProps) {
-  const id = useId();
   const { pageBlock } = props;
 
   return (
     <div className="border-b py-10">
       <div className="container">
-        <h2 id={id} className="sr-only">
-          {pageBlock.title}
-        </h2>
-
         {pageBlock.navigationCards && (
-          <nav aria-labelledby={id}>
+          <nav aria-label={pageBlock.title}>
             <ul className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-4 2xl:gap-4">
               {pageBlock.navigationCards.map((card) => (
                 <NavigationCard

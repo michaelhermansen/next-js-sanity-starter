@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { AccessibleIcon } from "@radix-ui/react-accessible-icon";
 import { Search } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -25,11 +26,11 @@ export function SearchField(props: {
         }}
         className="flex w-full rounded-sm ring-offset-2 focus-within:ring-2"
       >
-        <input
+        <Input
           required
           name="query"
           type="search"
-          className="bg-background border-input focus:bg-card h-9 w-full rounded-sm rounded-r-none border border-r-0 pr-2 pl-0 indent-3 shadow-xs transition-colors focus:ring-0 focus:ring-offset-0"
+          className="rounded-r-none border-r-0 focus:ring-0 focus:ring-offset-0"
           placeholder="Søk"
           defaultValue={defaultValue}
         />

@@ -15,7 +15,7 @@ export function ArticleCard(props: ArticleCardProps) {
   return (
     <ClickableCard
       className={cn(
-        "group bg-card flex flex-col overflow-clip rounded border transition-all hover:-translate-y-0.5",
+        "group bg-card flex flex-col overflow-clip rounded border",
         props.className,
       )}
     >
@@ -26,7 +26,7 @@ export function ArticleCard(props: ArticleCardProps) {
             alt={props.article.image.alt || ""}
             width={600}
             height={350}
-            className="w-full transition-transform duration-700 ease-out group-focus-within:scale-105 group-hover:scale-105"
+            className="w-full transition-transform duration-700 ease-out group-hover:scale-105"
           />
         </div>
       )}
@@ -52,7 +52,10 @@ export function ArticleCard(props: ArticleCardProps) {
         </div>
 
         {!isEmpty(props.article.categories) && (
-          <ul className="flex flex-wrap items-center gap-1">
+          <ul
+            className="flex flex-wrap items-center gap-1"
+            aria-label="Kategorier"
+          >
             {props.article.categories?.map((category) => (
               <li
                 key={category._id}

@@ -179,11 +179,11 @@
 /* Base styles */
 @layer base {
   :root {
-    @apply scroll-pt-[var(--section-padding)] scroll-smooth lg:scroll-pt-[var(--section-padding-lg)];
+    @apply scroll-pt-[var(--section-padding)] lg:scroll-pt-[var(--section-padding-lg)];
   }
 
   * {
-    @apply border-border ring-offset-background ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none;
+    @apply border-border ring-offset-background ring-ring transition-shadow focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none;
   }
 
   body {

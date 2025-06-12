@@ -65,7 +65,7 @@ export function ArticleHero(props: ArticleHeroProps) {
             className="aspect-[4/3] w-full object-cover sm:aspect-video sm:rounded lg:aspect-[2/1]"
             image={image}
             alt={image.alt || ""}
-            width={1000}
+            width={1400}
             height={600}
             loading="eager"
           />
