@@ -27,6 +27,7 @@ const fontSerif = localFont({
       style: "italic",
     },
   ],
+  adjustFontFallback: "Times New Roman",
 });
 
 export default function RootLayout(props: { children: React.ReactNode }) {
