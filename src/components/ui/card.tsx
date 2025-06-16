@@ -1,75 +1,63 @@
-import * as React from "react";
+"use client";
 
 import { cn } from "@/lib/utils";
+import { Slot } from "@radix-ui/react-slot";
+import Link from "next/link";
+import {
+  ComponentProps,
+  createContext,
+  RefObject,
+  useContext,
+  useRef,
+} from "react";
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+const ClickableCardContext = createContext<{
+  linkRef?: RefObject<HTMLAnchorElement | null>;
+  clickable?: boolean;
+}>({});
+
+export function Card(
+  props: ComponentProps<"div"> & { clickable?: boolean; asChild?: boolean },
+) {
+  const { clickable, onClick, asChild, className, ...restProps } = props;
+  const linkRef = useRef<HTMLAnchorElement | null>(null);
+
+  const Comp = asChild ? Slot : "div";
+
   return (
-    <div
-      data-slot="card"
-      className={cn(
-        "bg-card text-card-foreground rounded-xl border shadow-sm",
-        className,
-      )}
-      {...props}
-    />
+    <ClickableCardContext.Provider value={{ linkRef, clickable }}>
+      <Comp
+        className={cn(
+          "bg-card text-card-foreground overflow-clip rounded border",
+          clickable &&
+            "cursor-pointer focus-within:ring-2 focus-within:ring-offset-2",
+          className,
+        )}
+        onClick={(e) => {
+          if (onClick) onClick(e);
+          if (clickable) linkRef.current?.click();
+        }}
+        {...restProps}
+      />
+    </ClickableCardContext.Provider>
   );
 }
 
-function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
+export function CardContent(props: ComponentProps<"div">) {
+  const { className, ...restProps } = props;
+
+  return <div className={cn("p-4", className)} {...restProps} />;
+}
+
+export function CardLink(props: Omit<ComponentProps<typeof Link>, "ref">) {
+  const { className, ...restProps } = props;
+  const { linkRef, clickable } = useContext(ClickableCardContext);
+
   return (
-    <div
-      data-slot="card-header"
-      className={cn("flex flex-col gap-1.5 p-6", className)}
-      {...props}
+    <Link
+      {...restProps}
+      className={cn(clickable && "focus:ring-0 focus:ring-offset-0", className)}
+      ref={linkRef}
     />
   );
 }
-
-function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="card-title"
-      className={cn("leading-none font-semibold tracking-tight", className)}
-      {...props}
-    />
-  );
-}
-
-function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="card-description"
-      className={cn("text-muted-foreground", className)}
-      {...props}
-    />
-  );
-}
-
-function CardContent({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="card-content"
-      className={cn("p-6 pt-0", className)}
-      {...props}
-    />
-  );
-}
-
-function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="card-footer"
-      className={cn("flex items-center p-6 pt-0", className)}
-      {...props}
-    />
-  );
-}
-
-export {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  CardContent,
-};

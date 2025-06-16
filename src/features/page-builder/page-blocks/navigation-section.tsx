@@ -1,11 +1,8 @@
 "use client";
 
-import {
-  ClickableCard,
-  ClickableCardLink,
-} from "@/components/ui/clickable-card";
 import { ChevronRight, SquareArrowOutUpRight } from "lucide-react";
 import { PageBlockByType } from "../page-blocks-renderer";
+import { Card, CardContent, CardLink } from "@/components/ui/card";
 
 type NavigationSectionProps = {
   pageBlock: PageBlockByType<"navigationSection">;
@@ -44,36 +41,38 @@ function NavigationCard(props: {
   targetBlank?: boolean;
 }) {
   return (
-    <ClickableCard asChild>
-      <li className="bg-card group flex items-center gap-2 rounded border px-4 py-3">
-        <div className="h-full flex-1">
-          <ClickableCardLink
-            href={props.href || ""}
-            target={props.targetBlank ? "_blank" : undefined}
-            rel={props.targetBlank ? "noopener" : undefined}
-            className="block text-lg font-medium group-hover:underline"
-          >
-            {props.title}
-          </ClickableCardLink>
+    <Card clickable asChild>
+      <li>
+        <CardContent className="group flex items-center gap-2 py-3">
+          <div className="flex-1">
+            <CardLink
+              href={props.href || ""}
+              target={props.targetBlank ? "_blank" : undefined}
+              rel={props.targetBlank ? "noopener" : undefined}
+              className="text-lg font-medium group-hover:underline"
+            >
+              {props.title}
+            </CardLink>
 
-          {props.description && (
-            <div className="text-muted-foreground">{props.description}</div>
+            {props.description && (
+              <div className="text-muted-foreground">{props.description}</div>
+            )}
+          </div>
+
+          {!props.targetBlank && (
+            <ChevronRight
+              size="1.25rem"
+              className="text-muted-foreground -translate-x-1 opacity-0 transition-all group-focus-within:translate-x-0 group-focus-within:opacity-100 group-hover:translate-x-0 group-hover:opacity-100"
+            />
           )}
-        </div>
-
-        {!props.targetBlank && (
-          <ChevronRight
-            size="1.25rem"
-            className="text-muted-foreground -translate-x-1 opacity-0 transition-all group-focus-within:translate-x-0 group-focus-within:opacity-100 group-hover:translate-x-0 group-hover:opacity-100"
-          />
-        )}
-        {props.targetBlank && (
-          <SquareArrowOutUpRight
-            size="1.25em"
-            className="text-muted-foreground scale-90 opacity-0 transition-all group-focus-within:scale-100 group-focus-within:opacity-100 group-hover:scale-100 group-hover:opacity-100"
-          />
-        )}
+          {props.targetBlank && (
+            <SquareArrowOutUpRight
+              size="1.25em"
+              className="text-muted-foreground scale-90 opacity-0 transition-all group-focus-within:scale-100 group-focus-within:opacity-100 group-hover:scale-100 group-hover:opacity-100"
+            />
+          )}
+        </CardContent>
       </li>
-    </ClickableCard>
+    </Card>
   );
 }

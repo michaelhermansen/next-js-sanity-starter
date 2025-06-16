@@ -1,6 +1,6 @@
-import { ArticleHero } from "@/components/article-hero";
 import { PageBreadcrumbs } from "@/components/page-breadcrumbs";
 import { TableOfContents } from "@/components/table-of-contents";
+import { ArticleHero } from "@/features/articles/article-hero";
 import { getHeadings } from "@/features/portable-text/headings";
 import { PortableTextRenderer } from "@/features/portable-text/portable-text-renderer";
 import { generatePageMetadata } from "@/lib/metadata";

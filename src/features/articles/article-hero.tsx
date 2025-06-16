@@ -1,8 +1,8 @@
+import { CmsImage } from "@/components/cms-image";
+import { Avatar } from "@/components/ui/avatar";
+import { TypographyH1, TypographyP } from "@/components/ui/typography";
 import { formatDate } from "@/lib/utils";
 import { SingleArticleQueryResult } from "@/sanity/sanity.types";
-import { CmsImage } from "./cms-image";
-import { TypographyH1, TypographyP } from "./typography";
-import { Avatar } from "./ui/avatar";
 
 type ArticleHeroProps = {
   article: SingleArticleQueryResult;

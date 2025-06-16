@@ -8,7 +8,7 @@ export default function CookieBannerTrigger() {
     try {
       window.CookieScript.instance.show();
     } catch (error) {
-      console.error(error);
+      console.warn(error);
       toast("Noe gikk galt", {
         description: "Kunne ikke hente dine cookie-preferanser.",
       });

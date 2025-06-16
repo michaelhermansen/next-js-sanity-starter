@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { TypographyH1, TypographyP } from "@/components/typography";
+import { TypographyH1, TypographyP } from "@/components/ui/typography";
 import { CtaLinks } from "@/components/cta-links";
 import { PageBlockByType } from "../page-blocks-renderer";
 

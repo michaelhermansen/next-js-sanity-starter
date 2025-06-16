@@ -1,4 +1,4 @@
-import { ArticleCard } from "@/components/article-card";
+import { ArticleCard } from "@/features/articles/article-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PageSearchParams } from "@/lib/types";
 import { fetchMultipleArticles } from "@/sanity/queries/article";

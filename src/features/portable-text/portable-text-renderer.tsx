@@ -4,7 +4,7 @@ import {
   TypographyH2,
   TypographyH3,
   TypographyP,
-} from "@/components/typography";
+} from "@/components/ui/typography";
 import { VideoPlayer } from "@/components/video-player";
 import { PortableText, PortableTextProps } from "next-sanity";
 import Link from "next/link";

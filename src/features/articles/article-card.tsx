@@ -3,8 +3,12 @@
 import { cn, formatDate } from "@/lib/utils";
 import { MultipleArticlesQueryResult } from "@/sanity/sanity.types";
 import { isEmpty } from "radash";
-import { CmsImage } from "./cms-image";
-import { ClickableCard, ClickableCardLink } from "./ui/clickable-card";
+import { CmsImage } from "../../components/cms-image";
+import {
+  ClickableCard,
+  ClickableCardLink,
+} from "../../components/ui/clickable-card";
+import { Card, CardContent, CardLink } from "@/components/ui/card";
 
 interface ArticleCardProps {
   article: MultipleArticlesQueryResult[number];
@@ -13,12 +17,7 @@ interface ArticleCardProps {
 
 export function ArticleCard(props: ArticleCardProps) {
   return (
-    <ClickableCard
-      className={cn(
-        "group bg-card flex flex-col overflow-clip rounded border",
-        props.className,
-      )}
-    >
+    <Card className={cn("group flex flex-col", props.className)} clickable>
       {props.article.image && props.article.image && (
         <div className="overflow-clip border-b">
           <CmsImage
@@ -31,19 +30,21 @@ export function ArticleCard(props: ArticleCardProps) {
         </div>
       )}
 
-      <div className="flex flex-1 flex-col gap-8 p-4">
+      <CardContent className="flex flex-1 flex-col gap-8 p-4">
         <div>
           {props.article.title && (
-            <ClickableCardLink
+            <CardLink
               href={`/artikler/${props.article.slug?.current}`}
               className="group-hover:underline"
             >
               <h3 className="text-2xl font-medium">{props.article.title}</h3>
-            </ClickableCardLink>
+            </CardLink>
           )}
 
           {props.article.excerpt && (
-            <p className="mt-1 mb-3 line-clamp-3">{props.article.excerpt}</p>
+            <p className="text-muted-foreground mt-1 mb-3 line-clamp-3">
+              {props.article.excerpt}
+            </p>
           )}
 
           <p className="text-muted-foreground">
@@ -61,12 +62,13 @@ export function ArticleCard(props: ArticleCardProps) {
                 key={category._id}
                 className="text-muted-foreground bg-muted rounded-full px-2.5 py-0.5"
               >
+                <span className="sr-only">Merkelapp: </span>
                 {category.title}
               </li>
             ))}
           </ul>
         )}
-      </div>
-    </ClickableCard>
+      </CardContent>
+    </Card>
   );
 }

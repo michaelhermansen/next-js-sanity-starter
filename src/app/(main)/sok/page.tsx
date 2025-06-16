@@ -1,4 +1,4 @@
-import { TypographyH2 } from "@/components/typography";
+import { TypographyH2 } from "@/components/ui/typography";
 import {
   SearchResults,
   SearchResultsSkeleton,

@@ -28,12 +28,12 @@ export default function ArticlesFilter(props: {
               <ToggleGroupItem
                 key={category.slug.current}
                 value={category.slug.current}
-                className="group data-[state=on]:bg-primary data-[state=on]:text-primary-foreground bg-card flex items-center gap-1 rounded border px-4 py-2 font-medium transition-all duration-300"
+                className="group data-[state=on]:bg-primary data-[state=on]:text-primary-foreground bg-card flex items-center gap-1 rounded border px-4 py-2 font-medium transition-all duration-200"
               >
                 <X
                   aria-hidden
                   size="1em"
-                  className="-mr-5 scale-0 opacity-0 transition-all duration-300 group-data-[state=on]:mr-0 group-data-[state=on]:scale-100 group-data-[state=on]:opacity-100"
+                  className="-mr-5 scale-0 opacity-0 transition-all duration-200 group-data-[state=on]:mr-0 group-data-[state=on]:scale-100 group-data-[state=on]:opacity-100"
                 />
                 {category.title}
               </ToggleGroupItem>
