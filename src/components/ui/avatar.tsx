@@ -24,7 +24,7 @@ export function Avatar(props: {
       </div>
       <span
         aria-hidden
-        className="text-accent-foreground pointer-events-none absolute top-1/2 left-1/2 z-0 -translate-1/2 text-sm font-medium uppercase"
+        className="text-accent-foreground pointer-events-none absolute top-1/2 left-1/2 z-0 -translate-x-1/2 -translate-y-1/2 text-sm font-medium uppercase"
       >
         {fallback}
       </span>

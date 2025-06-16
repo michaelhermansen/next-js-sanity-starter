@@ -74,8 +74,10 @@ export const rootLayoutMetadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
     default: siteConfig.name,
   },
+  description: siteConfig.description,
   openGraph: {
     title: siteConfig.name,
+    description: siteConfig.description,
     images: [
       {
         url: `/api/og`,
@@ -83,7 +85,7 @@ export const rootLayoutMetadata: Metadata = {
         height: size.height,
       },
     ],
-    locale: "nb_NO",
+    locale: siteConfig.locales[0],
     type: "website",
   },
   robots: !isProduction ? "noindex, nofollow" : "index, follow",

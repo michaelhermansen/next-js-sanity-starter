@@ -3,11 +3,7 @@
 import { cn, formatDate } from "@/lib/utils";
 import { MultipleArticlesQueryResult } from "@/sanity/sanity.types";
 import { isEmpty } from "radash";
-import { CmsImage } from "../../components/cms-image";
-import {
-  ClickableCard,
-  ClickableCardLink,
-} from "../../components/ui/clickable-card";
+import { CmsImage } from "@/components/cms-image";
 import { Card, CardContent, CardLink } from "@/components/ui/card";
 
 interface ArticleCardProps {

@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run lint",
     "typegen": "sanity schema extract && sanity typegen generate",
     "typegen:watch": "pnpm typegen && concurrently \"chokidar 'src/sanity/queries/**/*' -c 'sanity typegen generate'\" \"chokidar 'src/sanity/schemas/**/*' -c 'pnpm typegen'\""
   },

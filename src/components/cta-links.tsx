@@ -16,7 +16,7 @@ export function CtaLinks(props: { links: Link[] }) {
           <NextLink
             href={link.href || "#"}
             target={link.targetBlank ? "_blank" : undefined}
-            rel={link.targetBlank ? "noopener" : undefined}
+            rel={link.targetBlank ? "noopener noreferrer" : undefined}
           >
             {link.title}
             {link.targetBlank && <SquareArrowOutUpRight />}

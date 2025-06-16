@@ -44,18 +44,14 @@ const portableTextComponents: PortableTextProps["components"] = {
   },
   marks: {
     link: ({ value, children }) => {
-      const isExternal =
-        (value?.href || "").startsWith("http") ||
-        (value?.href || "").startsWith("https") ||
-        (value?.href || "").startsWith("mailto");
-
-      const target = isExternal ? "_blank" : undefined;
+      const href = value?.href || "";
+      const isExternal = href.startsWith("http") || href.startsWith("mailto");
 
       return (
         <Link
-          href={value?.href}
-          target={target}
-          rel={target ? "noopener" : undefined}
+          href={href}
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "noopener noreferrer" : undefined}
           className="underline hover:no-underline"
         >
           {children}

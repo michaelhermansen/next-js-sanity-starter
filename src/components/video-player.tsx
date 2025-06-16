@@ -3,21 +3,30 @@
 import { Loader } from "lucide-react";
 import dynamic from "next/dynamic";
 
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+const ReactPlayer = dynamic(() => import("react-player"), {
+  ssr: false,
+  loading: () => (
+    <div className="grid size-full place-items-center bg-black">
+      <Loader className="animate-spin text-white" />
+    </div>
+  ),
+});
 
-export function VideoPlayer(props: { url: string }) {
+interface VideoPlayerProps {
+  url: string;
+  className?: string;
+}
+
+export function VideoPlayer({ url, className, ...props }: VideoPlayerProps) {
   return (
-    <div className="size-full bg-black">
+    <div className={className || "size-full bg-black"}>
       <ReactPlayer
-        url={props.url}
+        url={url}
         width="100%"
         height="100%"
         controls
-        fallback={
-          <div className="grid size-full place-items-center">
-            <Loader className="animate-spin text-white" />
-          </div>
-        }
+        playing={false}
+        {...props}
       />
     </div>
   );

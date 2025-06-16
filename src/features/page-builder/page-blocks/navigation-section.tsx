@@ -48,7 +48,7 @@ function NavigationCard(props: {
             <CardLink
               href={props.href || ""}
               target={props.targetBlank ? "_blank" : undefined}
-              rel={props.targetBlank ? "noopener" : undefined}
+              rel={props.targetBlank ? "noopener noreferrer" : undefined}
               className="text-lg font-medium group-hover:underline"
             >
               {props.title}
