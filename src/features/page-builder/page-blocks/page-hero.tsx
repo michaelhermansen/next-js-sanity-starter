@@ -14,7 +14,7 @@ export function PageHero(props: PageHeroProps) {
     <header className="border-b">
       <div className="py-section container">
         <div
-          className={cn("max-w-3xl text-balance", {
+          className={cn("max-w-4xl text-balance", {
             "mx-auto text-center": pageBlock.centered,
             "py-section": pageBlock.paragraph || pageBlock.links?.length,
           })}

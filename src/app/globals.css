@@ -179,7 +179,7 @@
 /* Base styles */
 @layer base {
   :root {
-    @apply scroll-pt-[var(--section-padding)] lg:scroll-pt-[var(--section-padding-lg)];
+    @apply scroll-pt-[var(--section-padding)] scroll-smooth lg:scroll-pt-[var(--section-padding-lg)];
   }
 
   * {
