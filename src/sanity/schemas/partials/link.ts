@@ -14,7 +14,7 @@ export default defineType({
       title: "URL",
       name: "href",
       type: "url",
-      description: "F.eks. «/artikler» eller «https://example.com».",
+      description: "F.eks. «/aktuelt eller «https://example.com».",
       validation: (Rule) =>
         Rule.uri({
           allowRelative: true,

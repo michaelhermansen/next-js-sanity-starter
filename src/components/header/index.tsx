@@ -5,8 +5,8 @@ import Link from "next/link";
 
 const navItems = [
   {
-    label: "Artikler",
-    href: "/artikler",
+    label: "Aktuelt",
+    href: "/aktuelt",
   },
   {
     label: "Kontakt oss",

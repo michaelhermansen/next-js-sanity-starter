@@ -19,7 +19,7 @@ export async function SearchResults(props: {
   return (
     <ul className="max-w-3xl divide-y">
       {data.map((result) => {
-        const href = `${result._type === "article" ? "/artikler/" : "/"}${result.slug?.current}`;
+        const href = `${result._type === "article" ? "/aktuelt/" : "/"}${result.slug?.current}`;
 
         return (
           <SearchResultItem

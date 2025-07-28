@@ -28,7 +28,7 @@ async function getPagesSitemap(): Promise<MetadataRoute.Sitemap[]> {
 async function getArticleSitemap(): Promise<MetadataRoute.Sitemap[]> {
   const articleQuery = groq`
     *[_type == 'article'] | order(_updatedAt desc) {
-      'url': $baseUrl + '/artikler/' + slug.current,
+      'url': $baseUrl + '/aktuelt/' + slug.current,
       'lastModified': _updatedAt,
       'changeFrequency': 'weekly',
       'priority': 0.7

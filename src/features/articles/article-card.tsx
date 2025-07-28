@@ -30,7 +30,7 @@ export function ArticleCard(props: ArticleCardProps) {
         <div>
           {props.article.title && (
             <CardLink
-              href={`/artikler/${props.article.slug?.current}`}
+              href={`/aktuelt/${props.article.slug?.current}`}
               className="group-hover:underline"
             >
               <h3 className="text-2xl font-medium">{props.article.title}</h3>

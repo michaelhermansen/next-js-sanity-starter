@@ -38,7 +38,7 @@ export function generatePageMetadata(
       case "page":
         canonicalPath = `/${document.slug.current}`;
       case "article":
-        canonicalPath = `/artikler/${document.slug.current}`;
+        canonicalPath = `/aktuelt/${document.slug.current}`;
     }
   }
 
