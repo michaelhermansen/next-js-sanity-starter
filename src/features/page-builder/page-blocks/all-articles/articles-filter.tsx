@@ -4,16 +4,12 @@ import { useSearchParamsState } from "@/hooks/use-search-params-state";
 import { MultipleCategoriesQueryResult } from "@/sanity/sanity.types";
 import { ToggleGroup, ToggleGroupItem } from "@radix-ui/react-toggle-group";
 import { X } from "lucide-react";
-import { useMemo } from "react";
 
 export default function ArticlesFilter(props: {
   categories: MultipleCategoriesQueryResult;
 }) {
   const { value, setValue } = useSearchParamsState("c");
-
-  const selectedCategories = useMemo(() => {
-    return value ? value.split(",").filter(Boolean) : [];
-  }, [value]);
+  const selectedCategories = value ? value.split(",").filter(Boolean) : [];
 
   const handleValueChange = (newValue: string[]) => {
     setValue(newValue.join(","));
