@@ -21,7 +21,7 @@ export function VideoPlayer({ url, className, ...props }: VideoPlayerProps) {
   return (
     <div className={className || "size-full bg-black"}>
       <ReactPlayer
-        url={url}
+        src={url}
         width="100%"
         height="100%"
         controls
