@@ -13,8 +13,8 @@ const isProduction = env.NEXT_PUBLIC_SITE_ENV === "production";
 export function generatePageMetadata(
   document: SinglePageQueryResult | SingleArticleQueryResult,
 ): Metadata {
-  const title = document?.meta_title || undefined;
-  const description = document?.meta_description || undefined;
+  const title = document?.metaTitle || undefined;
+  const description = document?.metaDescription || undefined;
   const locale = siteConfig.locales[0];
 
   const generatedOgUrl = new URL("/api/og", env.NEXT_PUBLIC_SITE_URL);

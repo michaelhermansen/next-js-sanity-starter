@@ -4,10 +4,11 @@ import { ThemeProvider } from "@/features/theme/theme-provider";
 import { rootLayoutMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
+import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 
-export const metadata = rootLayoutMetadata;
+export const metadata: Metadata = rootLayoutMetadata;
 
 const fontSans = Inter({
   variable: "--font-inter",

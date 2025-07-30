@@ -82,13 +82,13 @@ export default defineType({
       group: "content",
     }),
     defineField({
-      name: "meta_title",
+      name: "metaTitle",
       title: "Meta Title",
       type: "string",
       group: "seo",
     }),
     defineField({
-      name: "meta_description",
+      name: "metaDescription",
       title: "Meta Description",
       type: "text",
       group: "seo",

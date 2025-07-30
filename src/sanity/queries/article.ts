@@ -15,8 +15,8 @@ export async function fetchSingleArticle(params: { slug: string }) {
       excerpt,
       image,
       body,
-      meta_title,
-      meta_description,
+      metaTitle,
+      metaDescription,
       noindex,
       ogImage {
         ...,

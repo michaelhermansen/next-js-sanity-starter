@@ -3,10 +3,11 @@ import { generatePageMetadata as generateDocumentMetadata } from "@/lib/metadata
 import { notFound } from "next/navigation";
 import { PageSearchParams } from "@/lib/types";
 import { fetchSinglePage } from "@/sanity/queries/page";
+import { Metadata } from "next";
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const params = await props.params;
   const { data: page } = await fetchSinglePage({ slug: params.slug });
   if (!page) notFound();

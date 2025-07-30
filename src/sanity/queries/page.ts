@@ -10,8 +10,8 @@ export async function fetchSinglePage(params: { slug: string }) {
       _type,
       slug,
       title,
-      meta_title,
-      meta_description,
+      metaTitle,
+      metaDescription,
       noindex,
       ogImage {
         ...,

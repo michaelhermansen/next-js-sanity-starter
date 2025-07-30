@@ -48,14 +48,14 @@ export default defineType({
       group: "content",
     }),
     defineField({
-      name: "meta_title",
+      name: "metaTitle",
       title: "Meta-tittel",
       description: "Tittelen som vises av søkemotorer.",
       type: "string",
       group: "seo",
     }),
     defineField({
-      name: "meta_description",
+      name: "metaDescription",
       title: "Meta-beskrivelse",
       description: "Beskrivelsen som vises av søkemotorer.",
       type: "text",

@@ -13,61 +13,6 @@
  */
 
 // Source: schema.json
-export type SanityImagePaletteSwatch = {
-  _type: "sanity.imagePaletteSwatch";
-  background?: string;
-  foreground?: string;
-  population?: number;
-  title?: string;
-};
-
-export type SanityImagePalette = {
-  _type: "sanity.imagePalette";
-  darkMuted?: SanityImagePaletteSwatch;
-  lightVibrant?: SanityImagePaletteSwatch;
-  darkVibrant?: SanityImagePaletteSwatch;
-  vibrant?: SanityImagePaletteSwatch;
-  dominant?: SanityImagePaletteSwatch;
-  lightMuted?: SanityImagePaletteSwatch;
-  muted?: SanityImagePaletteSwatch;
-};
-
-export type SanityImageDimensions = {
-  _type: "sanity.imageDimensions";
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
-};
-
-export type SanityFileAsset = {
-  _id: string;
-  _type: "sanity.fileAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  source?: SanityAssetSourceData;
-};
-
-export type Geopoint = {
-  _type: "geopoint";
-  lat?: number;
-  lng?: number;
-  alt?: number;
-};
-
 export type PageHero = {
   _type: "pageHero";
   deactivated?: boolean;
@@ -212,8 +157,8 @@ export type Article = {
     [internalGroqTypeReferenceTo]?: "category";
   }>;
   body?: BlockContent;
-  meta_title?: string;
-  meta_description?: string;
+  metaTitle?: string;
+  metaDescription?: string;
   noindex?: boolean;
   ogImage?: {
     asset?: {
@@ -262,8 +207,8 @@ export type Page = {
   title?: string;
   slug?: Slug;
   pageBlocks?: PageBlocks;
-  meta_title?: string;
-  meta_description?: string;
+  metaTitle?: string;
+  metaDescription?: string;
   noindex?: boolean;
   ogImage?: {
     asset?: {
@@ -280,12 +225,30 @@ export type Page = {
   orderRank?: string;
 };
 
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+export type SanityImagePaletteSwatch = {
+  _type: "sanity.imagePaletteSwatch";
+  background?: string;
+  foreground?: string;
+  population?: number;
+  title?: string;
+};
+
+export type SanityImagePalette = {
+  _type: "sanity.imagePalette";
+  darkMuted?: SanityImagePaletteSwatch;
+  lightVibrant?: SanityImagePaletteSwatch;
+  darkVibrant?: SanityImagePaletteSwatch;
+  vibrant?: SanityImagePaletteSwatch;
+  dominant?: SanityImagePaletteSwatch;
+  lightMuted?: SanityImagePaletteSwatch;
+  muted?: SanityImagePaletteSwatch;
+};
+
+export type SanityImageDimensions = {
+  _type: "sanity.imageDimensions";
+  height?: number;
+  width?: number;
+  aspectRatio?: number;
 };
 
 export type SanityImageHotspot = {
@@ -294,6 +257,36 @@ export type SanityImageHotspot = {
   y?: number;
   height?: number;
   width?: number;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityFileAsset = {
+  _id: string;
+  _type: "sanity.fileAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  source?: SanityAssetSourceData;
 };
 
 export type SanityImageAsset = {
@@ -319,13 +312,6 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
-};
-
 export type SanityImageMetadata = {
   _type: "sanity.imageMetadata";
   location?: Geopoint;
@@ -337,18 +323,27 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
+export type Geopoint = {
+  _type: "geopoint";
+  lat?: number;
+  lng?: number;
+  alt?: number;
+};
+
 export type Slug = {
   _type: "slug";
   current?: string;
   source?: string;
 };
 
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData";
+  name?: string;
+  id?: string;
+  url?: string;
+};
+
 export type AllSanitySchemaTypes =
-  | SanityImagePaletteSwatch
-  | SanityImagePalette
-  | SanityImageDimensions
-  | SanityFileAsset
-  | Geopoint
   | PageHero
   | NavigationSection
   | AllArticles
@@ -360,12 +355,17 @@ export type AllSanitySchemaTypes =
   | Article
   | Author
   | Page
-  | SanityImageCrop
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
   | SanityImageHotspot
+  | SanityImageCrop
+  | SanityFileAsset
   | SanityImageAsset
-  | SanityAssetSourceData
   | SanityImageMetadata
-  | Slug;
+  | Geopoint
+  | Slug
+  | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: src/app/sitemap.ts
 // Variable: pagesQuery
@@ -377,7 +377,7 @@ export type PagesQueryResult = Array<{
   priority: 0.5 | 1;
 }>;
 // Variable: articleQuery
-// Query: *[_type == 'article'] | order(_updatedAt desc) {      'url': $baseUrl + '/artikler/' + slug.current,      'lastModified': _updatedAt,      'changeFrequency': 'weekly',      'priority': 0.7    }
+// Query: *[_type == 'article'] | order(_updatedAt desc) {      'url': $baseUrl + '/aktuelt/' + slug.current,      'lastModified': _updatedAt,      'changeFrequency': 'weekly',      'priority': 0.7    }
 export type ArticleQueryResult = Array<{
   url: unknown;
   lastModified: string;
@@ -387,7 +387,7 @@ export type ArticleQueryResult = Array<{
 
 // Source: src/sanity/queries/article.ts
 // Variable: singleArticleQuery
-// Query: *[_type == "article" && slug.current == $slug][0] {      _id,      _type,      _createdAt,      _updatedAt,      slug,      title,      slug,      excerpt,      image,      body,      meta_title,      meta_description,      noindex,      ogImage {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },      author->{        name,        image {          ...,            asset->{    _id,    metadata {      dimensions {        width,        height      }    }  },        }      },      image {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },      categories[]->{        _id,        title,        slug,      },    }
+// Query: *[_type == "article" && slug.current == $slug][0] {      _id,      _type,      _createdAt,      _updatedAt,      slug,      title,      slug,      excerpt,      image,      body,      metaTitle,      metaDescription,      noindex,      ogImage {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },      author->{        name,        image {          ...,            asset->{    _id,    metadata {      dimensions {        width,        height      }    }  },        }      },      image {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },      categories[]->{        _id,        title,        slug,      },    }
 export type SingleArticleQueryResult = {
   _id: string;
   _type: "article";
@@ -413,8 +413,8 @@ export type SingleArticleQueryResult = {
     _type: "image";
   } | null;
   body: BlockContent | null;
-  meta_title: string | null;
-  meta_description: string | null;
+  metaTitle: string | null;
+  metaDescription: string | null;
   noindex: boolean | null;
   ogImage: {
     asset: {
@@ -497,14 +497,14 @@ export type MultipleCategoriesQueryResult = Array<{
 
 // Source: src/sanity/queries/page.ts
 // Variable: singlePageQuery
-// Query: *[_type == "page" && slug.current == $slug][0]{      _id,      _type,      slug,      title,      meta_title,      meta_description,      noindex,      ogImage {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },        pageBlocks[deactivated != true]{    _type == "allArticles" => {...},    _type == "pageHero" => {...},    _type == "navigationSection" => {...},  }    }
+// Query: *[_type == "page" && slug.current == $slug][0]{      _id,      _type,      slug,      title,      metaTitle,      metaDescription,      noindex,      ogImage {        ...,          asset->{    _id,    metadata {      dimensions {        width,        height      }    }  }      },        pageBlocks[deactivated != true]{    _type == "allArticles" => {...},    _type == "pageHero" => {...},    _type == "navigationSection" => {...},  }    }
 export type SinglePageQueryResult = {
   _id: string;
   _type: "page";
   slug: Slug | null;
   title: string | null;
-  meta_title: string | null;
-  meta_description: string | null;
+  metaTitle: string | null;
+  metaDescription: string | null;
   noindex: boolean | null;
   ogImage: {
     asset: {
@@ -579,11 +579,11 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n    *[_type == 'page'] | order(slug.current) {\n      'url': $baseUrl + select(slug.current == 'index' => '', '/' + slug.current),\n      'lastModified': _updatedAt,\n      'changeFrequency': 'daily',\n      'priority': select(\n        slug.current == 'index' => 1,\n        0.5\n      )\n    }\n  ": PagesQueryResult;
-    "\n    *[_type == 'article'] | order(_updatedAt desc) {\n      'url': $baseUrl + '/artikler/' + slug.current,\n      'lastModified': _updatedAt,\n      'changeFrequency': 'weekly',\n      'priority': 0.7\n    }\n  ": ArticleQueryResult;
-    '\n    *[_type == "article" && slug.current == $slug][0] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      slug,\n      title,\n      slug,\n      excerpt,\n      image,\n      body,\n      meta_title,\n      meta_description,\n      noindex,\n      ogImage {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      author->{\n        name,\n        image {\n          ...,\n          \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n,\n        }\n      },\n      image {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      categories[]->{\n        _id,\n        title,\n        slug,\n      },\n    }\n  ': SingleArticleQueryResult;
+    "\n    *[_type == 'article'] | order(_updatedAt desc) {\n      'url': $baseUrl + '/aktuelt/' + slug.current,\n      'lastModified': _updatedAt,\n      'changeFrequency': 'weekly',\n      'priority': 0.7\n    }\n  ": ArticleQueryResult;
+    '\n    *[_type == "article" && slug.current == $slug][0] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      slug,\n      title,\n      slug,\n      excerpt,\n      image,\n      body,\n      metaTitle,\n      metaDescription,\n      noindex,\n      ogImage {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      author->{\n        name,\n        image {\n          ...,\n          \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n,\n        }\n      },\n      image {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      categories[]->{\n        _id,\n        title,\n        slug,\n      },\n    }\n  ': SingleArticleQueryResult;
     '\n    *[_type == "article" && defined(slug) && (\n      !defined($categories) || \n      count($categories) == 0 || \n      count((categories[]->slug.current)[@ in $categories]) > 0\n    )] | order(_createdAt desc) {\n      _id,\n      _createdAt,\n      title,\n      slug,\n      excerpt,\n      image {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      categories[]->{\n        _id,\n        title,\n        slug,\n      },\n    }\n  ': MultipleArticlesQueryResult;
     '\n    *[_type == "category"] | order(orderRank asc) {\n      title,\n      slug\n    }\n  ': MultipleCategoriesQueryResult;
-    '\n    *[_type == "page" && slug.current == $slug][0]{\n      _id,\n      _type,\n      slug,\n      title,\n      meta_title,\n      meta_description,\n      noindex,\n      ogImage {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      \n  pageBlocks[deactivated != true]{\n    _type == "allArticles" => {...},\n    _type == "pageHero" => {...},\n    _type == "navigationSection" => {...},\n  }\n\n    }\n  ': SinglePageQueryResult;
+    '\n    *[_type == "page" && slug.current == $slug][0]{\n      _id,\n      _type,\n      slug,\n      title,\n      metaTitle,\n      metaDescription,\n      noindex,\n      ogImage {\n        ...,\n        \n  asset->{\n    _id,\n    metadata {\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n      },\n      \n  pageBlocks[deactivated != true]{\n    _type == "allArticles" => {...},\n    _type == "pageHero" => {...},\n    _type == "navigationSection" => {...},\n  }\n\n    }\n  ': SinglePageQueryResult;
     '\n    *[_type in ["page", "article"] && _id in $documents] {\n      _id,\n      _type,\n      title,\n      slug,\n      excerpt\n    }\n  ': SearchResultsQueryResult;
   }
 }

@@ -5,15 +5,15 @@ import { getHeadings } from "@/features/portable-text/headings";
 import { PortableTextRenderer } from "@/features/portable-text/portable-text-renderer";
 import { generatePageMetadata } from "@/lib/metadata";
 import { fetchSingleArticle } from "@/sanity/queries/article";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const params = await props.params;
   const { data: article } = await fetchSingleArticle(params);
   if (!article) notFound();
-
   return generatePageMetadata(article);
 }
 
@@ -29,7 +29,7 @@ export default async function ArticlePage(props: {
   return (
     <>
       <PageBreadcrumbs
-        links={[{ title: "Artikler", href: "/artikler" }]}
+        links={[{ title: "Aktuelt", href: "/aktuelt" }]}
         currentPageTitle={article.title || ""}
       />
 

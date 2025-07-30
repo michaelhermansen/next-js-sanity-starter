@@ -3,8 +3,9 @@ import { generatePageMetadata } from "@/lib/metadata";
 import { PageSearchParams } from "@/lib/types";
 import { fetchSinglePage } from "@/sanity/queries/page";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
   const { data: page } = await fetchSinglePage({ slug: "index" });
   return generatePageMetadata(page);
 }
