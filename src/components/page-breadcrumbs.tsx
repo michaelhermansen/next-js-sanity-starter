@@ -15,7 +15,7 @@ export function PageBreadcrumbs(props: {
   currentPageTitle: string;
 }) {
   return (
-    <div className="border-b">
+    <div>
       <Breadcrumbs className="container py-4">
         <BreadcrumbsHomeLink />
         <BreadcrumbsSeparator />
@@ -37,7 +37,7 @@ export function PageBreadcrumbs(props: {
 
 export function PageBreadcrumbsSkeleton() {
   return (
-    <div className="border-b">
+    <div className="">
       <div className="container flex py-4">
         <Skeleton className="w-32" />
       </div>

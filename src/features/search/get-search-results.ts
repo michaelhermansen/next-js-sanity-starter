@@ -3,7 +3,7 @@ import { fetchSearchResults } from "@/sanity/queries/search-results";
 import { SearchResultsQueryResult } from "@/sanity/sanity.types";
 import { z } from "zod";
 
-const SCORE_THRESHOLD = 0.75;
+const SCORE_THRESHOLD = 0.78;
 
 const endpoint = `https://${env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/vX/embeddings-index/query/${env.NEXT_PUBLIC_SANITY_DATASET}/search`;
 const embeddingsIndexResultSchema = z.array(

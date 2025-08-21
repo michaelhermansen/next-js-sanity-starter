@@ -13,7 +13,7 @@ export default async function Page(props: {
   const query = searchParams.q;
 
   return (
-    <div className="py-section container">
+    <div className="container py-12">
       <TypographyH2 className="mb-8" asChild>
         <h1>
           Søkeresultater for <q>{query}</q>

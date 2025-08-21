@@ -1,10 +1,11 @@
 "use client";
 
+import { CmsImage } from "@/components/cms-image";
+import { Card, CardContent } from "@/components/ui/card";
 import { cn, formatDate } from "@/lib/utils";
 import { MultipleArticlesQueryResult } from "@/sanity/sanity.types";
+import Link from "next/link";
 import { isEmpty } from "radash";
-import { CmsImage } from "@/components/cms-image";
-import { Card, CardContent, CardLink } from "@/components/ui/card";
 
 interface ArticleCardProps {
   article: MultipleArticlesQueryResult[number];
@@ -13,7 +14,7 @@ interface ArticleCardProps {
 
 export function ArticleCard(props: ArticleCardProps) {
   return (
-    <Card className={cn("group flex flex-col", props.className)} clickable>
+    <Card className={cn("group link-area flex flex-col", props.className)}>
       {props.article.image && props.article.image && (
         <div className="overflow-clip border-b">
           <CmsImage
@@ -29,12 +30,12 @@ export function ArticleCard(props: ArticleCardProps) {
       <CardContent className="flex flex-1 flex-col gap-8 p-4">
         <div>
           {props.article.title && (
-            <CardLink
+            <Link
               href={`/aktuelt/${props.article.slug?.current}`}
-              className="group-hover:underline"
+              className="link-area-target hover:underline"
             >
               <h3 className="text-2xl font-medium">{props.article.title}</h3>
-            </CardLink>
+            </Link>
           )}
 
           {props.article.excerpt && (

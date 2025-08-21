@@ -11,12 +11,12 @@ export function PageHero(props: PageHeroProps) {
   const { pageBlock } = props;
 
   return (
-    <header className="border-b">
-      <div className="py-section container">
+    <header className="">
+      <div className="container py-12">
         <div
           className={cn("max-w-4xl text-balance", {
             "mx-auto text-center": pageBlock.centered,
-            "py-section": pageBlock.paragraph || pageBlock.links?.length,
+            "py-12": pageBlock.paragraph || pageBlock.links?.length,
           })}
         >
           <div className="animate-fade-up">

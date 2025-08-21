@@ -110,15 +110,22 @@
 }
 
 /* Custom utilities */
-@utility pt-section {
-  @apply pt-[var(--section-padding)] lg:pt-[var(--section-padding-lg)];
+@utility link-area {
+  @apply relative;
+
+  & a.link-area-target::before {
+    @apply absolute inset-0;
+  }
 }
-@utility pb-section {
-  @apply pb-[var(--section-padding)] lg:pb-[var(--section-padding-lg)];
+
+@utility link-area-target {
+  @apply inline-block;
+
+  &::before {
+    content: "";
+  }
 }
-@utility py-section {
-  @apply pt-section pb-section;
-}
+
 @utility container {
   width: 100%;
   margin-left: auto;

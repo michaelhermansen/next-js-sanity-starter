@@ -10,7 +10,7 @@ import { FormEvent } from "react";
 export function SearchField(props: {
   resultPathname: string;
   className?: string;
-  onSearch?: () => void;
+  onSearchAction?: () => void;
 }) {
   const { handleSubmit, defaultValue } = useSearchField({
     fieldName: "query",
@@ -21,7 +21,7 @@ export function SearchField(props: {
     <search className={props.className}>
       <form
         onSubmit={(e) => {
-          if (props.onSearch) props.onSearch();
+          if (props.onSearchAction) props.onSearchAction();
           handleSubmit(e);
         }}
         className="flex w-full rounded-sm ring-offset-2 focus-within:ring-2"

@@ -1,8 +1,10 @@
 "use client";
 
+import { Card, CardContent } from "@/components/ui/card";
 import { ChevronRight, SquareArrowOutUpRight } from "lucide-react";
+import Link from "next/link";
 import { PageBlockByType } from "../page-blocks-renderer";
-import { Card, CardContent, CardLink } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 type NavigationSectionProps = {
   pageBlock: PageBlockByType<"navigationSection">;
@@ -12,11 +14,18 @@ export function NavigationSection(props: NavigationSectionProps) {
   const { pageBlock } = props;
 
   return (
-    <div className="border-b py-10">
+    <div className="py-10">
       <div className="container">
         {pageBlock.navigationCards && (
           <nav aria-label={pageBlock.title}>
-            <ul className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-4 2xl:gap-4">
+            <ul
+              className={cn(
+                "grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3 2xl:gap-4",
+                {
+                  "xl:grid-cols-4": pageBlock.navigationCards.length % 4 === 0,
+                },
+              )}
+            >
               {pageBlock.navigationCards.map((card) => (
                 <NavigationCard
                   key={card._key}
@@ -41,18 +50,18 @@ function NavigationCard(props: {
   targetBlank?: boolean;
 }) {
   return (
-    <Card clickable asChild>
+    <Card asChild className="link-area">
       <li>
         <CardContent className="group flex items-center gap-2 py-3">
           <div className="flex-1">
-            <CardLink
+            <Link
               href={props.href || ""}
               target={props.targetBlank ? "_blank" : undefined}
               rel={props.targetBlank ? "noopener noreferrer" : undefined}
-              className="text-lg font-medium group-hover:underline"
+              className="link-area-target text-lg font-medium hover:underline"
             >
               {props.title}
-            </CardLink>
+            </Link>
 
             {props.description && (
               <div className="text-muted-foreground">{props.description}</div>

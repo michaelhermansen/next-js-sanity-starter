@@ -15,7 +15,7 @@ export function Avatar(props: {
   return (
     <span
       className={cn(
-        "bg-accent relative size-10 overflow-clip rounded-full",
+        "bg-accent relative size-10 shrink-0 overflow-clip rounded-full",
         props.className,
       )}
     >

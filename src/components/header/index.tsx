@@ -16,7 +16,7 @@ const navItems = [
 
 export function Header() {
   return (
-    <header className="bg-background border-b">
+    <header className="bg-background">
       <div className="container flex h-20 items-center justify-between gap-6">
         <Link href="/" aria-label="Hjem" className="text-xl font-medium">
           {siteConfig.name}

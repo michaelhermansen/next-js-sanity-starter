@@ -6,7 +6,7 @@ export default function Loading() {
     <div>
       <PageBreadcrumbsSkeleton />
 
-      <div className="py-section container">
+      <div className="container py-12">
         <Skeleton className="mb-8 h-16 w-80" />
         <Skeleton className="mb-2 w-full max-w-4xl" />
         <Skeleton className="mb-2 w-full max-w-4xl" />

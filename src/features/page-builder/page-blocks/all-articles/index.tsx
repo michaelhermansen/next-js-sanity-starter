@@ -19,7 +19,7 @@ export async function AllArticles(props: AllArticlesProps) {
   const appliedCategories = appliedCategoriesString?.split(",");
 
   return (
-    <div className="py-section container space-y-8 border-b">
+    <div className="container space-y-8 py-12">
       <ArticlesFilter categories={categories} />
 
       <Suspense
@@ -42,11 +42,7 @@ async function ArticlesGrid(props: {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {articles.map((article) => (
-        <ArticleCard
-          key={article._id}
-          article={article}
-          className="md:first:col-span-2"
-        />
+        <ArticleCard key={article._id} article={article} />
       ))}
     </div>
   );
@@ -56,7 +52,7 @@ function ArticlesGridSkeleton() {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {[...range(1, 10)].map((i) => (
-        <Skeleton key={i} className="min-h-72 rounded md:first:col-span-2" />
+        <Skeleton key={i} className="min-h-72 rounded" />
       ))}
     </div>
   );

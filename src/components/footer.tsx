@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-muted">
+    <footer className="bg-muted border-t">
       <div className="container">
         <div className="py-12">
           <Link className="text-2xl font-medium" href="/">

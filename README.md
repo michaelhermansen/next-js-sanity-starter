@@ -204,7 +204,6 @@ Hierarchical typography components in `src/components/ui/typography.tsx`:
 
 **Custom utilities**:
 
-- `pt-section`, `pb-section`, `py-section` - Consistent section spacing
 - `container` - Responsive container with max-widths
 - Custom animations for accordions and fade effects
 

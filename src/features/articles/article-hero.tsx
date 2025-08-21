@@ -19,9 +19,9 @@ export function ArticleHero(props: ArticleHeroProps) {
   };
 
   return (
-    <div className="pt-section sm:pb-section border-b">
+    <div className="pt-12 sm:pb-12">
       <div className="container">
-        <div className="max-w-4xl pb-8 lg:pb-10">
+        <div className="max-w-4xl pb-8 lg:pb-10 2xl:pr-11">
           <TypographyH1 className="animate-fade-up">{title}</TypographyH1>
 
           {excerpt && (
@@ -29,47 +29,46 @@ export function ArticleHero(props: ArticleHeroProps) {
               {excerpt}
             </TypographyP>
           )}
-
-          <div className="flex items-center gap-3 pt-4 lg:pt-8">
-            {author.name && (
-              <Avatar name={author.name}>
-                {author.image && (
-                  <CmsImage
-                    image={author.image}
-                    alt={author.image.alt || ""}
-                    width={80}
-                    height={80}
-                    loading="eager"
-                  />
-                )}
-              </Avatar>
-            )}
-            <div>
-              {author.name && <p className="font-medium">{author.name}</p>}
-              {createdAt && (
-                <time
-                  dateTime={createdAt}
-                  className="text-muted-foreground text-sm sm:text-base"
-                >
-                  {formatDate(createdAt)}
-                </time>
-              )}
-            </div>
-          </div>
         </div>
       </div>
 
-      <div className="sm:container">
+      <div className="container grid lg:grid-cols-3 lg:gap-10 xl:gap-16">
         {image?.asset?._id && (
           <CmsImage
-            className="aspect-[4/3] w-full object-cover sm:aspect-video sm:rounded lg:aspect-[2/1]"
+            className="col-span-2 w-full rounded object-cover"
             image={image}
             alt={image.alt || ""}
-            width={1400}
-            height={600}
+            width={700}
             loading="eager"
           />
         )}
+
+        <div className="flex h-max items-center gap-3">
+          {author.name && (
+            <Avatar name={author.name}>
+              {author.image && (
+                <CmsImage
+                  image={author.image}
+                  alt={author.image.alt || ""}
+                  width={80}
+                  height={80}
+                  loading="eager"
+                />
+              )}
+            </Avatar>
+          )}
+          <div>
+            {author.name && <p className="font-medium">{author.name}</p>}
+            {createdAt && (
+              <time
+                dateTime={createdAt}
+                className="text-muted-foreground text-sm sm:text-base"
+              >
+                {formatDate(createdAt)}
+              </time>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

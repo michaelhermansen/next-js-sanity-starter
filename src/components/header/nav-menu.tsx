@@ -49,7 +49,7 @@ export function NavMenu(props: {
         <SearchField
           resultPathname="/sok"
           className="sm:hidden"
-          onSearch={() => setOpen(false)}
+          onSearchAction={() => setOpen(false)}
         />
 
         <div className="py-6">
@@ -78,7 +78,7 @@ function NavItem(props: { label: string; href: string; onClick: () => void }) {
         onClick={props.onClick}
         href={props.href}
         className={cn(
-          "block py-3 text-2xl underline-offset-6 hover:underline sm:text-3xl",
+          "block py-3 text-2xl underline-offset-6 hover:underline sm:text-3xl md:text-4xl",
           { underline: pathname.startsWith(props.href) },
         )}
       >
